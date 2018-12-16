@@ -529,6 +529,13 @@ function initializeMap(tileLayer){
 		minZoom: 1
 		});
 
+	var grbLayer = L.tileLayer.wms('https://geoservices.informatievlaanderen.be/raadpleegdiensten/OGW/wms?', 
+		{layers:"grb_bsk",
+		 attribution: "Kaartachtergrond: Grootschalig Referentie Bestand (GRB) van © AIV Vlaanderen | Data van OpenStreetMap | Teksten van Wikipedia"});
+
+
+
+
 
 	map = L.map('map', {
 		center: [50.9, 3.9],
@@ -540,6 +547,7 @@ function initializeMap(tileLayer){
 		"OpenStreetMap Be": osmBeLayer,
 		"OpenStreetMap": osmLayer,
 		"Luchtfoto AIV Vlaanderen": wmsLayer
+		// "GRB Vlaanderen ('Kadasterkaart')": grbLayer
 	};
 
 	

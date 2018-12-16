@@ -12,9 +12,9 @@ function popupText(tags, area){
 
 
 	text += "<p>";
-	text += toHa(tags.area)+" hectare - "
+	text += toHa(tags.area)+" hectare"
 	if(tags.area != area && !isNaN(area)){
-		text += toHa(area)+" hectare geselecteerd";
+		text += toHa(area)+" - hectare geselecteerd";
 	}
 	if(tags.operator){
 		text += " - beheer door "+tags.operator;
