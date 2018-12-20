@@ -572,7 +572,7 @@ function initializeMap(tileLayer){
 	map = L.map('map', {
 		center: [50.9, 3.9],
 		zoom:9,
-		layers: [osmLayer]			
+		layers: [osmBeLayer]			
 		});
 
 	var baseLayers = {
