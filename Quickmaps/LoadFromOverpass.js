@@ -491,6 +491,25 @@ function searchAndRender(tags, searchIn, textGenerator, imageFunction, highLevel
 	})
 }
 
+
+function CachedFirstRender(tags, searchIn, textGenerator, imageFunction, highLevelOnly, continuation){
+    console.log("Loading from github cache... Hang on");
+    
+    
+	var filter = "";
+	for(var i = 0; i < tags.length; i++){
+		filter = filter.concat("["+tags[i]+"]");
+	}
+    
+    let staleQuery = "https://raw.githubusercontent.com/pietervdvn/pietervdvn.github.io/master/Quickmaps/cache/"+searchIn+"/"+filter+".json"
+    $.getJSON(staleQuery, 
+        function(json) {renderQuery(json.elements, textGenerator, imageFunction, highLevelOnly, continuation);}
+        ).fail(function(){  
+            searchAndRender(tags, searchIn, textGenerator, imageFunction, highLevelOnly, continuation);
+            } )
+
+}
+
 /*
 Renders the data. You can feed a retrieved cache file here too
 */

@@ -28,10 +28,7 @@
 console.log("Getting started...");
 map = initializeMap();
 map.setView([51.222, 3.227], 12);
-/*
-searchAndRender(map, ['"operator"="Natuurpunt Brugge"', '"leisure"="nature_reserve"'], popupText);/*/
-$.getJSON("https://pietervdvn.github.io/Quickmaps/cache/Brugge/['leisure'='nature_reserve']['operator'='Natuurpunt Brugge'].json",
-	function(json){renderQuery(json.elements, popupText, imageFunction)}); //*/
+CachedFirstRender(['"leisure"="nature_reserve"','"operator"="Natuurpunt Brugge"'],"Brugge", popupText, imageFunction);
 
 
 </script>

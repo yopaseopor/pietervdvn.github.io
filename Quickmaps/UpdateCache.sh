@@ -10,8 +10,8 @@ function update { # search area, relId, tags
 }
 
 cd cache
-update "Brugge" "3600562654" "['amenity'='public_bookcase']"
-update "Brugge" "3600562654" "['leisure'='nature_reserve']['operator'='Natuurpunt Brugge']"
+update "Brugge" "3600562654" '["amenity"="public_bookcase"]'
+update "Brugge" "3600562654" '["leisure"="nature_reserve"]["operator"="Natuurpunt Brugge"]'
 
 git add .
 git commit -m "Update of the cache"

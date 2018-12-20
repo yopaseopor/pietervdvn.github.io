@@ -70,10 +70,7 @@ function image(tags){
 console.log("Getting started...");
 map = initializeMap();
 map.setView([51.222, 3.227], 12);
-//*
-searchAndRender(['"amenity"="public_bookcase"'],"Brugge" ,popupText, image);/*/
-$.getJSON("https://raw.githubusercontent.com/pietervdvn/pietervdvn.github.io/master/cache/Natuurgebieden.json",
-	function(json){renderQuery(json.elements, popupText, imageFunction)}); //*/
+CachedFirstRender(['"amenity"="public_bookcase"'],"Brugge" ,popupText, image);
 
 
 </script>
