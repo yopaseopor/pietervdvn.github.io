@@ -2,12 +2,12 @@
 <head>
 	 <meta charset="UTF-8"> 
 	<title>Natuurgebieden-Plan</title>
-	<link rel="stylesheet" href="vendor/leaflet/leaflet.css"/>
-	<script src="vendor/leaflet/leaflet.js"></script>
-	<script src="vendor/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="../vendor/leaflet/leaflet.css"/>
+	<script src="../vendor/leaflet/leaflet.js"></script>
+	<script src="../vendor/jquery-3.3.1.min.js"></script>
 	<script src="NatuurpuntPopupText.js"></script>
-	<script src="SortTable.js"></script>
-  	<script src="LoadFromOverpass.js"></script>
+	<script src="../SortTable.js"></script>
+  	<script src="../LoadFromOverpass.js"></script>
 
 	<style>
 		#map{ width: 1500px; height: 800; }
@@ -59,7 +59,7 @@ var seen = {}
 
 function addDebugText(tags, area){
 	if(seen[tags.id]){
-		return;
+		return popupText(tags, area);
 	}
 	seen[tags.id] = tags;
 
@@ -127,6 +127,7 @@ function addTotals(){
 var urlParams = new URLSearchParams(window.location.search);
 
 let afd = urlParams.get('operator')
+let searchIn = urlParams.get('searcharea')
 
 console.log("Getting started...");
 map = initializeMap();
@@ -135,10 +136,13 @@ map.setView([51.222, 3.227], 12);
 if(afd == undefined ){
 	alert("You forgot the query string. add '?operator=NAME OF NATURE RESERVE OPERATOR' to the url");
 }
+if(searchIn == undefined){
+    searchIn = "Belgium";
+}
 
 //*
-searchAndRender(['"operator"~"'+afd+'"', '"leisure"="nature_reserve"'], addDebugText, imageFunction, map, false, addTotals);
-searchAndRender(['"operator"~"'+afd+'"', '"tourism"="information"'], infoBoardText, imageBoardFunction, map, true);
+searchAndRender(['"operator"~"'+afd+'"', '"leisure"="nature_reserve"'], searchIn, addDebugText, imageFunction, false, addTotals);
+searchAndRender(['"operator"~"'+afd+'"', '"tourism"="information"'], searchIn, infoBoardText, imageBoardFunction, true);
 /*/
 $.getJSON("https://raw.githubusercontent.com/pietervdvn/pietervdvn.github.io/master/cache/Natuurgebieden.json",
 	function(json){renderQuery(json.elements, popupText, imageFunction, false, addTotals)});

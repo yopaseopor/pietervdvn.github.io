@@ -14,7 +14,7 @@ function popupText(tags, area){
 	text += "<p>";
 	text += toHa(tags.area)+" hectare"
 	if(tags.area != area && !isNaN(area)){
-		text += toHa(area)+" - hectare geselecteerd";
+		text += " - " + toHa(area)+" hectare geselecteerd";
 	}
 	if(tags.operator){
 		text += " - beheer door "+tags.operator;
@@ -86,7 +86,7 @@ function popupText(tags, area){
 
 
 var natuurpuntIcon = L.icon({
-    iconUrl: 'Natuurpunt.jpg',
+    iconUrl: 'resources/Natuurpunt.jpg',
 
     iconSize:     [50, 50], // size of the icon
     iconAnchor:   [25, 35], // point of the icon which will correspond to marker's location
@@ -94,7 +94,7 @@ var natuurpuntIcon = L.icon({
 });
 
 var anbIcon = L.icon({
-    iconUrl: 'ANB.jpeg',
+    iconUrl: 'resources/ANB.jpg',
 
     iconSize:     [50, 50], // size of the icon
     iconAnchor:   [25, 35], // point of the icon which will correspond to marker's location
