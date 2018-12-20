@@ -10,8 +10,7 @@ function popupText(tags, area){
 		text += "<h3>"+tags.name+"</h3>";
 	}
 
-
-	text += "<p>";
+	text += "<table><tr><td>";
 	text += toHa(tags.area)+" hectare"
 	if(tags.area != area && !isNaN(area)){
 		text += " - " + toHa(area)+" hectare geselecteerd";
@@ -34,9 +33,7 @@ function popupText(tags, area){
 		}else{
 			text += "niet gegeven"		
 		}
-		text += "</p>"
 	}
-	
 
 
 	if(tags.access){
@@ -71,16 +68,22 @@ function popupText(tags, area){
 		text += "<p>Beschrijving: <strong>"+tags.description+"</strong><p>";
 	}
 
-	if(tags.wikipedia){
-		text += "<h2>Op wikipedia</h2>";
+	if(tags.image){
+        text+="</td><td><img width=300px src="+tags.image+"/>";
+	}
 
-		text += '<div id="" style="overflow:scroll; height:400px;">' + tags.wikipedia_contents + '</div>';
+	if(tags.wikipedia){
+		text += "</td></tr><tr><td colspan='2'><h2>Op wikipedia</h2>";
+
+		text += '<div id="" style="overflow:scroll; height:300px;">' + tags.wikipedia_contents + '</div>';
 	}
 
 
 	if(tags.website){
-		text += "<a href=\""+tags.website+"\" target='_blank'>Bekijk op de site</a><br />";
+		text += "</td></tr><tr><td colspan='2'><a href=\""+tags.website+"\" target='_blank'>Bekijk op de site</a><br />";
 	}
+	
+	text += "</td></tr></table>"
 	return text;
 }
 
