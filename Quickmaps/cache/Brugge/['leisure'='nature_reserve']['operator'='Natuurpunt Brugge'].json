@@ -2,7 +2,7 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2018-12-20T01:28:04Z",
+    "timestamp_osm_base": "2018-12-20T01:43:04Z",
     "timestamp_areas_base": "2018-12-20T01:18:04Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
@@ -204,6 +204,7 @@
     "description": "Heide en heischraal landschap met landduin en grote soortenverscheidenheid",
     "dogs": "no",
     "email": "arnoutenregine@skynet.be",
+    "image": "https://natuurpuntbrugge.be/wp-content/uploads/2017/05/Schobbejakshoogte-schapen-PDG-1024x768.jpg",
     "leisure": "nature_reserve",
     "name": "Schobbejakshoogte",
     "operator": "Natuurpunt Brugge",
