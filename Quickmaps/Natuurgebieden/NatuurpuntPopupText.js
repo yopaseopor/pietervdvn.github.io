@@ -69,7 +69,7 @@ function popupText(tags, area){
 	}
 
 	if(tags.image){
-        text+="</td><td><img width=300px src="+tags.image+"/>";
+        text+="</td><td><img width=300px src='"+tags.image+"' alt='Bezig met laden...'/>";
 	}
 
 	if(tags.wikipedia){
