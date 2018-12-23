@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2018-12-22T21:26:02Z",
-    "timestamp_areas_base": "2018-12-22T21:03:03Z",
+    "timestamp_osm_base": "2018-12-23T17:16:02Z",
+    "timestamp_areas_base": "2018-12-23T16:54:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -84,6 +84,44 @@
     "public_bookcase:type": "reading_box",
     "ref": "48318",
     "wikimedia_commons": "File:Boekenkast Sint-Lodewijks.jpg"
+  }
+},
+{
+  "type": "node",
+  "id": 6156051610,
+  "lat": 51.2057082,
+  "lon": 3.1962044,
+  "tags": {
+    "amenity": "public_bookcase",
+    "brand": "Little Free Library",
+    "capacity": "25",
+    "name": "Litte Free Library Hertsvelde",
+    "ref": "13695"
+  }
+},
+{
+  "type": "node",
+  "id": 6156187094,
+  "lat": 51.2037968,
+  "lon": 3.1862056,
+  "tags": {
+    "amenity": "public_bookcase",
+    "capacity": "50",
+    "capacity:adult_books": "20",
+    "capacity:children_books": "30"
+  }
+},
+{
+  "type": "node",
+  "id": 6156873339,
+  "lat": 51.1842679,
+  "lon": 3.1907591,
+  "tags": {
+    "amenity": "public_bookcase",
+    "brand": "Little Free Library",
+    "capacity": "40",
+    "name": "Minibib Sint-Michiels",
+    "ref": "65231"
   }
 }
 
