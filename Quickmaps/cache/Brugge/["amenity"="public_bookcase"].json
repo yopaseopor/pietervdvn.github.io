@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2018-12-23T17:52:03Z",
-    "timestamp_areas_base": "2018-12-23T17:08:02Z",
+    "timestamp_osm_base": "2018-12-23T19:53:02Z",
+    "timestamp_areas_base": "2018-12-23T19:15:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -49,6 +49,7 @@
     "description": "Sinds 2014 vindt je een boekenruilkastje in Hoeve Hangerijn. Het kastje is te vinden in de stallen en werd gerealiseerd met de steun van   de Brugse buurtcheques.",
     "image": "https://littlefreelibrary.secure.force.com/servlet/servlet.FileDownload?file=00Pd000000R03iTEAR",
     "name": "Little Free Library Hoeve Hangerijn",
+    "operator": "Hoeve Hangerijn",
     "start_date": "2014"
   }
 },
