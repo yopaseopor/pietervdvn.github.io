@@ -30,6 +30,8 @@ function popupText(tags){
 	text+="<p>"
 	if(tags.description)
     	text+= tags.description+"</p><br /><p>"
+    if(tags.description_1)
+    	text+= tags.description_1+"</p><br /><p>"
 	if(tags.brand){
     	text+= "Deel van het netwerk "+tags.brand
     	if(tags.ref)
@@ -56,21 +58,21 @@ function popupText(tags){
 
 function image(tags){
     if(tags.image){
-        var img = L.icon({
+        var icon = L.icon({
             iconUrl: tags.image,
 
-            iconSize:     [76, 76], // size of the icon
-            iconAnchor:   [38, 38], // point of the icon which will correspond to marker's location
-            popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+            iconSize:     [75], // size of the icon
+            iconAnchor:   [35, 35], // point of the icon which will correspond to marker's location
+            popupAnchor:  [0, -35] // point from which the popup should open relative to the iconAnchor
         });
-        return img;
+        return icon;
     }
 }
 
 console.log("Getting started...");
 map = initializeMap();
 map.setView([51.222, 3.227], 12);
-CachedFirstRender(['"amenity"="public_bookcase"'],"Brugge" ,popupText, image);
+CachedFirstRender(['"amenity"="public_bookcase"'],"Bruges" ,popupText, image);
 
 
 </script>
