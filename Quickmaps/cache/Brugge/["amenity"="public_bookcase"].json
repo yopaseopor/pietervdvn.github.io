@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2018-12-23T19:53:02Z",
-    "timestamp_areas_base": "2018-12-23T19:15:02Z",
+    "timestamp_osm_base": "2019-01-01T23:25:03Z",
+    "timestamp_areas_base": "2019-01-01T22:28:03Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -90,8 +90,8 @@
 {
   "type": "node",
   "id": 6156051610,
-  "lat": 51.2057082,
-  "lon": 3.1962044,
+  "lat": 51.2057076,
+  "lon": 3.1962513,
   "tags": {
     "amenity": "public_bookcase",
     "brand": "Little Free Library",
@@ -99,7 +99,7 @@
     "description": "I came up with the idea of a Little Free Library in our street because I know many people here (especialy women) like to read. We recommend and lend books to each other. I also love the idea of sharing things with each other. ",
     "description_1": "My husband made the library all by himself. He painted it yellow and green, the Brazilian Fifa World Cup colours :-). A lot of people from other streets pass by here while jogging or walking with their dog, we intend to reach them too.",
     "image": "https://littlefreelibrary.secure.force.com/servlet/servlet.FileDownload?file=00Pd000000IisiiEAB",
-    "name": "Litte Free Library Hertsvelde",
+    "name": "Little Free Library Hertsvelde",
     "operator": "Manon Billiet",
     "ref": "13695"
   }
