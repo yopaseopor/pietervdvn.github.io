@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2019-01-18T18:00:02Z",
-    "timestamp_areas_base": "2019-01-18T16:34:02Z",
+    "timestamp_osm_base": "2019-01-19T20:19:02Z",
+    "timestamp_areas_base": "2019-01-19T19:22:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -34,6 +34,8 @@
   "tags": {
     "amenity": "public_bookcase",
     "capacity": "25",
+    "description": "Deze boekenruilkast vindt je recht tegenover de Pim Pam Poem",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/32/Ruilboekenkast_Stubbekwartier.jpg",
     "name": "Stubbekwartier-buurtbibliotheek"
   }
 },
@@ -132,7 +134,21 @@
     "description_1": "Met deze little free library hoopt ze mensen te kunnen aanzetten om terug meer te lezen (en te ontspannen).",
     "image": "https://littlefreelibrary.secure.force.com/servlet/servlet.FileDownload?file=00P0W000011VJGjUAO",
     "name": "Minibib Sint-Michiels",
-    "ref": "65231"
+    "ref": "65231",
+    "start_date": "2018-07-27"
+  }
+},
+{
+  "type": "node",
+  "id": 6221170102,
+  "lat": 51.2185334,
+  "lon": 3.2188596,
+  "tags": {
+    "amenity": "public_bookcase",
+    "capacity": "35",
+    "description": "In samenwerking met het OCMW dienstencentrum ’t Werftje werd tijdens de Kattefeesten het project “Little Free Library” officieel in gebruik genomen. Een wijkbibliotheekje waar iedereen van de buurt samen zorg voor draagt.",
+    "image": "https://i2.wp.com/www.stubbekwartier.be/wp-content/uploads/2016/03/bibliotheekhuisje.jpg?zoom=2&resize=682%2C351",
+    "name": "Boekenruilkastje Werfplein"
   }
 }
 
