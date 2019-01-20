@@ -379,6 +379,13 @@ function extractAreas(jsonEls, idMap){
 	return areas;
 }
 
+function makeOverviewLayer(elements, textFunction, imageFunction){
+    if(elements.length > 100){
+        return heatLayer(elements);
+    }
+    return makeIconLayer(elements, textFunction, imageFunction)
+}
+
 function makeIconLayer(elements, textFunction, imageFunction){
 	var layer = L.featureGroup();
 	for(i in elements){
@@ -403,6 +410,19 @@ function makeIconLayer(elements, textFunction, imageFunction){
 	return layer;
 }
 
+
+function heatLayer(elements){
+    var points = [];
+    for(i in elements){
+        if(elements[i].nodes){
+            points.push(geoCenter(elements[i].nodes));
+        }else{
+            points.push ([elements[i].lat, elements[i].lon])
+        }
+    }
+    var heat = L.heatLayer(points, {radius: 25});
+    return heat;
+}
 
 function drawArea(area, imageFunction){
 	var points = [];
@@ -518,8 +538,8 @@ function renderQuery(json, textGenerator, imageFunction, highLevelOnly, continua
 	let ids = idMap(json);
 	let areas = extractAreas(json, ids);
 
-	let lowZoomLayer = makeIconLayer(mergeByName(areas), textGenerator, imageFunction);
-	let midZoomLayer=  makeIconLayer(areas, textGenerator, imageFunction);
+	let lowZoomLayer = makeOverviewLayer(mergeByName(areas), textGenerator, imageFunction);
+	let midZoomLayer=  makeOverviewLayer(areas, textGenerator, imageFunction);
 	let highZoomLayer = makeDrawnLayer(areas, textGenerator, imageFunction);
 	map.on('zoomend', function(){
 		map.removeLayer(highZoomLayer);
@@ -560,30 +580,27 @@ Call this function when setting up your map
 function initializeMap(tileLayer){	
 
 	// load the tile layer from GEO6
-	//var tileLayer = "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png";
-// https://geoservices.informatievlaanderen.be/raadpleegdiensten/OGW/wms?FORMAT=image/jpeg&VERSION=1.1.1&SERVICE=WMS&REQUEST=GetMap&LAYERS=OGWRGB13_15VL&STYLES=&SRS=EPSG:3857&WIDTH=256&HEIGHT=256&BBOX=354514.9371372979,6655677.799976959,354667.8111938467,6655830.674033508
 	var wmsLayer = L.tileLayer.wms('https://geoservices.informatievlaanderen.be/raadpleegdiensten/OGW/wms?s', 
 		{layers:"OGWRGB13_15VL",
-		 attribution: "Luchtfoto's van © AIV Vlaanderen (2013-2015) | Data van OpenStreetMap | Teksten van Wikipedia"});
+		 attribution: "Luchtfoto's van © AIV Vlaanderen (2013-2015) | Data van OpenStreetMap"});
 
-	var osmLayer = L.tileLayer("https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+	var osmLayer = L.tileLayer("https://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
 		{
-		attribution: 'Map Data and background © <a href="osm.org">OpenStreetMap</a> | Teksten Wikipedia',
+		attribution: 'Map Data and background © <a href="osm.org">OpenStreetMap</a>',
 		maxZoom: 21,
 		minZoom: 1
 		});
 
 	var osmBeLayer = L.tileLayer("https://tile.openstreetmap.be/osmbe/{z}/{x}/{y}.png",
 		{
-		attribution: 'Map Data and background © <a href="osm.org">OpenStreetMap</a> | <a href="https://geo6.be/">Tiles by Geo6</a> | Teksten Wikipedia',
+		attribution: 'Map Data and background © <a href="osm.org">OpenStreetMap</a> | <a href="https://geo6.be/">Tiles by Geo6</a>',
 		maxZoom: 21,
 		minZoom: 1
 		});
 
 	var grbLayer = L.tileLayer.wms('https://geoservices.informatievlaanderen.be/raadpleegdiensten/OGW/wms?', 
 		{layers:"grb_bsk",
-		 attribution: "Kaartachtergrond: Grootschalig Referentie Bestand (GRB) van © AIV Vlaanderen | Data van OpenStreetMap | Teksten van Wikipedia"});
-
+		 attribution: "Kaartachtergrond: Grootschalig Referentie Bestand (GRB) van © AIV Vlaanderen | Data van OpenStreetMap"});
 
 
 
