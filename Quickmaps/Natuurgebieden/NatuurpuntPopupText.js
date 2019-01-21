@@ -106,7 +106,23 @@ var anbIcon = L.icon({
 
 
 var info = L.icon({
-    iconUrl: 'info.png',
+    iconUrl: 'resources/info.png',
+
+    iconSize:     [26, 26], // size of the icon
+    iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
+});
+
+var birdhide = L.icon({
+    iconUrl: 'resources/birdhide.png',
+
+    iconSize:     [26, 26], // size of the icon
+    iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -15] // point from which the popup should open relative to the iconAnchor
+});
+
+var birdhideShelter = L.icon({
+    iconUrl: 'resources/birdshelter.png',
 
     iconSize:     [26, 26], // size of the icon
     iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
@@ -126,10 +142,39 @@ function imageFunction(tags){
 
 function infoBoardText(tags){
 	let text=  "<h1>Informatiebord</h1>";
-	text += "<img 'src='"+tags.image+"' alt='"+tags.image+"' height=\"400\">";
+	text += "<img src='"+tags.image+"' alt='"+tags.image+"' height=\"400\"/>";
 	return text;
 }
 
+function birdHideImage(tags){
+    if(tags.building){
+        return birdhideShelter;
+    }
+    return birdhide;
+}
+
+function birdHideText(tags){
+    var text = "<h1>";
+    if(tags.building){
+        text += "Vogelkijkhut"
+    }else{
+        text += "Vogelkijkwand"
+    }
+    
+    if(tags.name){
+        text += " <i>"+tags.name+"</i>";
+    }
+    text+="</h1>"
+    
+    if(tags.opening_hours){
+        text += "Openingsuren: "+tags.opening_hours    
+    }
+    if(tags.access){
+        text += "Toegang: "+tags.access;
+    }
+    
+    return text;
+}
 
 function imageBoardFunction(tags){
 	return info;

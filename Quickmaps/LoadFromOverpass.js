@@ -101,9 +101,10 @@ function addPopup(pin, area, textFunction){
 			if(area.wasRelation){
 				type = "relation";
 			}
-			text += "<a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a>"
+			text += "<p><a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a>"
 			text += "  <a href='https://openstreetmap.org/edit?"+type+"="+area.id+"#map=17/"+area.lat+"/"+area.lon+"' target='_blank'>Wijzig kaart</a> "
 			text += wikilink;
+			text+="</p>"
 
 		}else{
 			text += "<p>Zoom verder in om te bekijken op OSM</p>"
@@ -499,22 +500,20 @@ function queryOverpass(tags,relId){
 /*
 Creates an overpass-query, executes it and gives the result to 'renderQuery'
 */
-function searchAndRender(tags, searchIn, textGenerator, imageFunction, highLevelOnly, continuation){
+function searchAndRender(tags, searchIn, textGenerator, imageFunction, highLevelOnly, options){
 	console.log("Running query... Hang on")
 	var nominatimQuery = "https://nominatim.openstreetmap.org/search.php?q="+searchIn+"&format=json";
 	$.getJSON(nominatimQuery, function(nomJson){
 	var firstRel = nomJson[0];
 	var liveQuery  = queryOverpass(tags, firstRel.osm_id);
 	$.getJSON(liveQuery, 
-	    function(json) {renderQuery(json.elements, textGenerator, imageFunction, highLevelOnly, continuation);});	
+	    function(json) {renderQuery(json.elements, textGenerator, imageFunction, highLevelOnly, options);});	
 	
 	})
 }
 
 
-function CachedFirstRender(tags, searchIn, textGenerator, imageFunction, highLevelOnly, continuation){
-    console.log("Loading from github cache... Hang on");
-    
+function CachedFirstRender(tags, searchIn, textGenerator, imageFunction, options){
     
 	var filter = "";
 	for(var i = 0; i < tags.length; i++){
@@ -522,51 +521,89 @@ function CachedFirstRender(tags, searchIn, textGenerator, imageFunction, highLev
 	}
     
     let staleQuery = "https://raw.githubusercontent.com/pietervdvn/pietervdvn.github.io/master/Quickmaps/cache/"+searchIn+"/"+filter+".json"
+    console.log("Attempting to load cache from github", staleQuery);
     $.getJSON(staleQuery, 
-        function(json) {renderQuery(json.elements, textGenerator, imageFunction, highLevelOnly, continuation);}
+        function(json) {renderQuery(json.elements, textGenerator, imageFunction, options);}
         ).fail(function(){  
-            searchAndRender(tags, searchIn, textGenerator, imageFunction, highLevelOnly, continuation);
+            console.log("Cache missing, falling back to overpass");
+            searchAndRender(tags, searchIn, textGenerator, imageFunction, options);
             } )
 
 }
 
+
+// This function is called whenever the map zoom level is changed
+// Every time another known action is added, we chain it to this function
+
+let onZoomChanged = [];
+function addZoomChangeCall(f){
+    onZoomChanged.push(f);
+}
+
+var i = 0;
+
+function makeZoomFunction(json, highLevelOnly, highZoomLayer, midZoomLayer, lowZoomLayer){
+    if(highLevelOnly){
+	    return function(){
+	        if(map.getZoom() >= 14){
+			    map.addLayer(highZoomLayer);
+		    }else{
+		        map.removeLayer(highZoomLayer);
+		    }
+	    }
+	}else{
+	    return function(){
+		    map.removeLayer(highZoomLayer);
+		    map.removeLayer(midZoomLayer);
+		    map.removeLayer(lowZoomLayer);
+		    if(map.getZoom() < 12){
+			    map.addLayer(lowZoomLayer);
+		    }else if(map.getZoom() < 14){
+			    map.addLayer(midZoomLayer);
+		    }else{
+			    map.addLayer(highZoomLayer);
+		    }
+	    };
+	}
+}
+
 /*
-Renders the data. You can feed a retrieved cache file here too
+Renders the data. You can feed a retrieved cache file here too.
+
+Options-object:
+highLevelOnly: only show this layer at high zoom levels (default: false)
+continuation: execute this function when loading is done (default: undefined)
+iconsOnly: do not render surfaces, only show the icon (default: false)
+
 */
-function renderQuery(json, textGenerator, imageFunction, highLevelOnly, continuation){
+function renderQuery(json, textGenerator, imageFunction, options){
 	console.log("Got data, starting rendering of: ", json)
+	if(options === undefined){
+	    options = {};
+	}
 	let ids = idMap(json);
 	let areas = extractAreas(json, ids);
 
 	let lowZoomLayer = makeOverviewLayer(mergeByName(areas), textGenerator, imageFunction);
-	let midZoomLayer=  makeOverviewLayer(areas, textGenerator, imageFunction);
-	let highZoomLayer = makeDrawnLayer(areas, textGenerator, imageFunction);
-	map.on('zoomend', function(){
-		map.removeLayer(highZoomLayer);
-		map.removeLayer(midZoomLayer);
-		map.removeLayer(lowZoomLayer);
-		if(highLevelOnly){
-			if(map.getZoom >= 14){
-				map.addLayer(highZoomLayer);
-			}
-		}else if(map.getZoom() < 12){
-			map.addLayer(lowZoomLayer);
-		}else if(map.getZoom() < 14){
-			map.addLayer(midZoomLayer);
-		}else{
-			map.addLayer(highZoomLayer);
-		}
-	});
-
-	map.addLayer(lowZoomLayer);
-	if(highLevelOnly){
-		return;
+	let midZoomLayer = makeOverviewLayer(areas, textGenerator, imageFunction);
+	let highZoomLayer;
+	if(options.iconsOnly){
+        highZoomLayer = midZoomLayer;	
+	}else{
+        highZoomLayer = makeDrawnLayer(areas, textGenerator, imageFunction);
 	}
-		
-	map.fitBounds(highZoomLayer.getBounds(), {padding: L.point(50,50)});
+	let zoomF = makeZoomFunction(json, options.highLevelOnly, highZoomLayer, midZoomLayer, lowZoomLayer)
+	addZoomChangeCall(zoomF);
+	zoomF();
 
-	if(continuation){
-		continuation();
+    if(options.highLevelOnly){
+        console.log("Not zooming to this layer")
+    }else{
+    	map.fitBounds(highZoomLayer.getBounds(), {padding: L.point(50,50)});
+    }
+
+	if(options.continuation){
+		options.continuation();
 	}
 
 }
@@ -608,8 +645,15 @@ function initializeMap(tileLayer){
 	map = L.map('map', {
 		center: [50.9, 3.9],
 		zoom:9,
-		layers: [osmLayer]			
+		layers: [osmBeLayer]			
 		});
+
+    map.on('zoomend', function(){
+        for(i=0; i < onZoomChanged.length; i++){
+            onZoomChanged[i]();
+        }
+    });
+
 
 	var baseLayers = {
 		"OpenStreetMap Be": osmBeLayer,

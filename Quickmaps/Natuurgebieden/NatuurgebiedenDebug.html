@@ -141,8 +141,10 @@ if(searchIn == undefined){
 }
 
 //*
-searchAndRender(['"operator"~"'+afd+'"', '"leisure"="nature_reserve"'], searchIn, addDebugText, imageFunction, false, addTotals);
-searchAndRender(['"operator"~"'+afd+'"', '"tourism"="information"'], searchIn, infoBoardText, imageBoardFunction, true);
+searchAndRender(['"operator"~"'+afd+'"', '"leisure"="nature_reserve"'], searchIn, addDebugText, imageFunction, false, {continuation: addTotals});
+searchAndRender(['"operator"~"'+afd+'"', '"tourism"="information"'], searchIn, infoBoardText, imageBoardFunction, {iconsOnly : true, highLevelOnly : true});
+searchAndRender(['"operator"~"'+afd+'"', '"leisure"="bird_hide"'], searchIn, birdHideText, birdHideImage, {iconsOnly : true, highLevelOnly : true});
+
 /*/
 $.getJSON("https://raw.githubusercontent.com/pietervdvn/pietervdvn.github.io/master/cache/Natuurgebieden.json",
 	function(json){renderQuery(json.elements, popupText, imageFunction, false, addTotals)});

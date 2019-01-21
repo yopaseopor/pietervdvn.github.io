@@ -29,6 +29,8 @@ console.log("Getting started...");
 map = initializeMap();
 map.setView([51.222, 3.227], 12);
 CachedFirstRender(['"leisure"="nature_reserve"','"operator"="Natuurpunt Brugge"'],"Brugge", popupText, imageFunction);
+CachedFirstRender(['"tourism"="information"','"operator"="Natuurpunt Brugge"'], "Brugge", infoBoardText, imageBoardFunction, {iconsOnly : true, highLevelOnly : true});
+CachedFirstRender(['"leisure"="bird_hide"','"operator"="Natuurpunt Brugge"'], "Brugge", birdHideText, birdHideImage, {iconsOnly : true, highLevelOnly : true});
 
 
 </script>
