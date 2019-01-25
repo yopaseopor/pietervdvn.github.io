@@ -588,7 +588,7 @@ function renderQuery(json, textGenerator, imageFunction, options){
 	let midZoomLayer = makeOverviewLayer(areas, textGenerator, imageFunction);
 	let highZoomLayer;
 	if(options.iconsOnly){
-        highZoomLayer = midZoomLayer;	
+        highZoomLayer = makeIconLayer(areas, textGenerator, imageFunction);	
 	}else{
         highZoomLayer = makeDrawnLayer(areas, textGenerator, imageFunction);
 	}
@@ -608,7 +608,16 @@ function renderQuery(json, textGenerator, imageFunction, options){
 
 }
 
-
+/*Simply a function that shows all tags*/
+function debugTagsText(tags){
+    let text = "";
+    console.log(tags);
+    for(k in tags){
+        text += k+"="+tags[k]+"<br />";
+        console.log(text);
+    }
+    return text;
+}
 
 /*
 
@@ -627,8 +636,7 @@ function initializeMap(tileLayer){
 		maxZoom: 21,
 		minZoom: 1
 		});
-
-	var osmBeLayer = L.tileLayer("https://tile.openstreetmap.be/osmbe/{z}/{x}/{y}.png",
+	var osmBeLayer = L.tileLayer("https://tile.osm.be/osmbe/{z}/{x}/{y}.png",
 		{
 		attribution: 'Map Data and background © <a href="osm.org">OpenStreetMap</a> | <a href="https://geo6.be/">Tiles by Geo6</a>',
 		maxZoom: 21,
