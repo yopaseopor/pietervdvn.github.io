@@ -75,6 +75,28 @@ function loadWikipedia(area){
 		});
 }
 
+
+function bindText(pin, area, textFunction){
+
+	var text = textFunction(area.tags, area.area);
+	if(area.type){
+		var type = area.type;
+		if(area.wasRelation){
+			type = "relation";
+		}
+		text += "<p><a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a>"
+		text += "  <a href='https://openstreetmap.org/edit?"+type+"="+area.id+"#map=17/"+area.lat+"/"+area.lon+"' target='_blank'>Wijzig kaart</a> "
+		text += area.tags.wikilink;
+		text += "<br /><a href='https://www.openstreetmap.org/changeset/"+area.tags.meta.timestamp+"'>"+
+			"Laatst aangepast door "+area.tags.meta.user+" op "+area.tags.meta.timestamp+"</a>";
+		text+="</p>"
+
+	}else{
+		text += "<p>Zoom verder in om te bekijken op OSM</p>"
+	}
+	pin.bindPopup(L.popup().setContent(text), {maxWidth:600, minWidth: 600 });
+}
+
 /*
 Adds a popup to a map element, with the given text function
 */
@@ -82,34 +104,24 @@ function addPopup(pin, area, textFunction){
 
 	var trailingFunction = function(ar){ return; };
 
+
 	if(area.tags){
-		var wikilink = "";
+		area.tags.wikilink = "";
 		if(area.tags.wikipedia){
 			var lang = area.tags.wikipedia.split(':')[0];
 			var page = area.tags.wikipedia.split(':')[1];
-			wikilink = " <a href='https://"+lang+".wikipedia.org/wiki/"+page+"'>Bekijk op wikipedia</a>";				
+			area.tags.wikilink = " <a href='https://"+lang+".wikipedia.org/wiki/"+page+"'>Bekijk op wikipedia</a>";				
 
 			area.tags.wikipedia_contents = "<div id='"+'wikipedia_'+lang+"_"+page+"'/>";
 
 			
 			trailingFunction = function(ar) {loadWikipedia(ar)};
-					
 		}
-		var text = textFunction(area.tags, area.area);
-		if(area.type){
-			var type = area.type;
-			if(area.wasRelation){
-				type = "relation";
-			}
-			text += "<p><a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a>"
-			text += "  <a href='https://openstreetmap.org/edit?"+type+"="+area.id+"#map=17/"+area.lat+"/"+area.lon+"' target='_blank'>Wijzig kaart</a> "
-			text += wikilink;
-			text+="</p>"
+		getMeta(area.tags.type, area.tags.id, function (meta) {
+			area.tags.meta = meta;			
+			bindText(pin, area, textFunction)});
 
-		}else{
-			text += "<p>Zoom verder in om te bekijken op OSM</p>"
-		}
-		pin.bindPopup(L.popup().setContent(text), {maxWidth:600, minWidth: 600 });
+
 	}
 	return trailingFunction;
 }
@@ -118,24 +130,25 @@ function addPopup(pin, area, textFunction){
 
 /********************** UTILITY FUNCTIONS **************************/
 
-function getMeta(type, id){
+function getMeta(type, id, whenDone){
 
 	var url = "https://www.openstreetmap.org/api/0.6/"+type+"/"+id;
 
-	$.ajax({
-	    type: "GET",
-	    url: url,
-	    dataType: "xml",
-	    success: function (xml) {
-
-		// Parse the xml file and get data
-		var xmlDoc = $.parseXML(xml),
-		    $xml = $(xmlDoc);
-		var ele = $xml.find('osm').find(type);
-		console.log(ele);
-// <node id="6156051610" visible="true" version="3" changeset="65748731" timestamp="2018-12-24T19:14:53Z" user="Arickx" uid="9282195" lat="51.2057076" lon="3.1962513">
-	    }
+	$.ajax({ 
+	    type : "GET", 
+	    url : url, 
+	    dataType : "xml",
+	    success : function(service_data) { 
+		console.log("OK");
+	  	$xml = $( service_data ),
+	  	$attrs = $xml.find('osm').find(type)[0].attributes;
+		var meta = {user: $attrs.user.value, timestamp: $attrs.timestamp.value, changeset: $attrs.changeset.value}
+		whenDone(meta)
+	    },
 	});
+
+	
+	// return {changeset: meta.getNamedItem("changeset"), user: meta.getNamedItem("user"), timestamp: meta.getNamedItem("timestamp")};
 }
 
 function surfaceArea(nodes, allowNegative){
