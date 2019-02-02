@@ -11,6 +11,9 @@ function update { # search area, relId, tags
 
 cd cache
 #update Name    Relation-ID, prefixed with 3600 (should be equal length)
+update "West-Vlaanderen" "3600416271" '["name"="De Leiemeersen"]["leisure"="nature_reserve"]'
+
+update "De Leiemeersen", "3609118029" '["natural"]'
 update "Brugge" "3600562654" '["amenity"="public_bookcase"]'
 
 update "Brugge" "3600562654" '["leisure"="nature_reserve"]["operator"="Natuurpunt Brugge"]'

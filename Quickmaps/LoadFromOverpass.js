@@ -380,6 +380,7 @@ function extractAreas(jsonEls, idMap){
 	return areas;
 }
 
+
 function makeOverviewLayer(elements, textFunction, imageFunction){
     if(elements.length > 100){
         return heatLayer(elements);
@@ -411,6 +412,77 @@ function makeIconLayer(elements, textFunction, imageFunction){
 	return layer;
 }
 
+// line intercept math by Paul Bourke http://paulbourke.net/geometry/pointlineplane/
+// Determine the intersection point of two line segments
+// Return FALSE if the lines don't intersect
+function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
+
+  // Check if none of the lines are of length 0
+	if ((x1 === x2 && y1 === y2) || (x3 === x4 && y3 === y4)) {
+		return false
+	}
+
+	denominator = ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1))
+
+  // Lines are parallel
+	if (denominator === 0) {
+		return false
+	}
+
+	let ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denominator
+	let ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denominator
+
+  // is the intersection along the segments
+	if (ua < 0 || ua > 1 || ub < 0 || ub > 1) {
+		return false
+	}
+
+  // Return a object with the x and y coordinates of the intersection
+	let x = x1 + ua * (x2 - x1)
+	let y = y1 + ua * (y2 - y1)
+
+	return {x, y}
+}
+
+
+function inside(point, vs) {
+    // ray-casting algorithm based on
+    // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+
+    var x = point[0], y = point[1];
+
+    var inside = false;
+    for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+        var xi = vs[i][0], yi = vs[i][1];
+        var xj = vs[j][0], yj = vs[j][1];
+
+        var intersect = ((yi > y) != (yj > y))
+            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+
+    return inside;
+};
+
+
+// Clips polyA so that it does not get out of 'outerbound'
+function PolygonClip(polyA, outerbound){
+
+	console.log(polyA, outerbound);
+
+	// Polygon intersection 
+	// We start at a random point and walk along the polygon
+	// For each edge, we check if it intersects with the outerBound
+	// If that is the case, we insert an intersection point
+
+
+
+	// Then, we iterate the polygon again and remove all points not part of the bounds
+
+	throw new Exception("abc");
+
+	return polyA;
+}
 
 function heatLayer(elements){
     var points = [];
@@ -507,7 +579,9 @@ function searchAndRender(tags, searchIn, textGenerator, imageFunction, highLevel
 	var firstRel = nomJson[0];
 	var liveQuery  = queryOverpass(tags, firstRel.osm_id);
 	$.getJSON(liveQuery, 
-	    function(json) {renderQuery(json.elements, textGenerator, imageFunction, highLevelOnly, options);});	
+	    function(json) {
+		renderQuery(json.elements, textGenerator, imageFunction, highLevelOnly, options);
+	});	
 	
 	})
 }
@@ -572,17 +646,22 @@ Renders the data. You can feed a retrieved cache file here too.
 
 Options-object:
 highLevelOnly: only show this layer at high zoom levels (default: false)
-continuation: execute this function when loading is done (default: undefined)
+preprocessing: execute this function on the extracted areas, if defined
+continuation: execute this function when loading is done, with the resulting areas/data (default: undefined)
 iconsOnly: do not render surfaces, only show the icon (default: false)
 
 */
 function renderQuery(json, textGenerator, imageFunction, options){
-	console.log("Got data, starting rendering of: ", json)
+	console.log("Got data, starting rendering of: ", json, "; ", "Options are", options);
 	if(options === undefined){
 	    options = {};
 	}
 	let ids = idMap(json);
 	let areas = extractAreas(json, ids);
+
+	if(options.preprocessing){
+		areas = options.preprocessing(areas);
+	}
 
 	let lowZoomLayer = makeOverviewLayer(mergeByName(areas), textGenerator, imageFunction);
 	let midZoomLayer = makeOverviewLayer(areas, textGenerator, imageFunction);
@@ -602,8 +681,9 @@ function renderQuery(json, textGenerator, imageFunction, options){
     	map.fitBounds(highZoomLayer.getBounds(), {padding: L.point(50,50)});
     }
 
+	console.log("Continuation is ",options.continuation);
 	if(options.continuation){
-		options.continuation();
+		options.continuation(areas);
 	}
 
 }
