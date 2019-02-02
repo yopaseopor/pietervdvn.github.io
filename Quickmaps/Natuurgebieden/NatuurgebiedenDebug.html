@@ -150,24 +150,23 @@ function clipAreas(bounds){
 	for (var i in bounds){
 		for(var j in areas){
 			var clipI = PolygonClip(areas[j], bounds[i]);
-			if(clipI){
-				clipped.push(clipI);
-			}
+			clipped = clipped.concat(clipI);
 		}
 	}
-	return areas;}
+	return clipped;}
 }
 
 function continuation(bounds){
 	addTotals();
 	console.log("Got data: ", bounds);
 
-	CachedFirstRender(['"natural"'], "De Leiemeersen", addDebugText, undefined, {preprocessing: clipAreas(bounds)});
+	CachedFirstRender(['"landuse"'], "De Leiemeersen", addDebugText, undefined, {preprocessing: clipAreas(bounds)});
 
 
 }
+var options =  {continuation: continuation, hidden : true};
 
-CachedFirstRender(['"name"="De Leiemeersen"', '"leisure"="nature_reserve"'], "West-Vlaanderen", addDebugText, imageFunction, {continuation: continuation});
+CachedFirstRender(['"name"="De Leiemeersen"', '"leisure"="nature_reserve"'], "West-Vlaanderen", addDebugText, imageFunction, options);
 
 
 /*/

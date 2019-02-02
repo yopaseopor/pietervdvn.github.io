@@ -118,9 +118,27 @@ function addPopup(pin, area, textFunction){
 
 /********************** UTILITY FUNCTIONS **************************/
 
+function getMeta(type, id){
 
+	var url = "https://www.openstreetmap.org/api/0.6/"+type+"/"+id;
 
-function surfaceArea(nodes){
+	$.ajax({
+	    type: "GET",
+	    url: url,
+	    dataType: "xml",
+	    success: function (xml) {
+
+		// Parse the xml file and get data
+		var xmlDoc = $.parseXML(xml),
+		    $xml = $(xmlDoc);
+		var ele = $xml.find('osm').find(type);
+		console.log(ele);
+// <node id="6156051610" visible="true" version="3" changeset="65748731" timestamp="2018-12-24T19:14:53Z" user="Arickx" uid="9282195" lat="51.2057076" lon="3.1962513">
+	    }
+	});
+}
+
+function surfaceArea(nodes, allowNegative){
 
 	var minLat = 360;
 	var minLon = 360;
@@ -173,7 +191,12 @@ function surfaceArea(nodes){
 		surface += (nodes[i].x * nodes[i+1].y) - (nodes[i+1].x * nodes[i].y);
 	}
 
-	return Math.floor(Math.abs(surface/2) * 100) / 100;
+	if(allowNegative){
+		surface = surface / 2;
+	}else{
+		surface = Math.abs(surface) / 2;
+	}
+	return Math.floor(surface * 100) / 100;
 }
 
 
@@ -414,12 +437,20 @@ function makeIconLayer(elements, textFunction, imageFunction){
 
 // line intercept math by Paul Bourke http://paulbourke.net/geometry/pointlineplane/
 // Determine the intersection point of two line segments
-// Return FALSE if the lines don't intersect
+// Return FALSE if the lines don't intersect or fall at the end/start of the segment
 function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
 
   // Check if none of the lines are of length 0
 	if ((x1 === x2 && y1 === y2) || (x3 === x4 && y3 === y4)) {
 		return false
+	}
+
+	if((x1 === x3 && y1 === y3) 
+		|| (x2 === x4 && y2 === y4)
+		|| (x1 === x4 && y1 === y4)
+ 		|| (x2 === x3 && y2 === y3)){
+		// End of start point are the same
+		return false;
 	}
 
 	denominator = ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1))
@@ -441,7 +472,7 @@ function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
 	let x = x1 + ua * (x2 - x1)
 	let y = y1 + ua * (y2 - y1)
 
-	return {x, y}
+	return {lat: x, lon: y, type: "node"}
 }
 
 
@@ -449,12 +480,12 @@ function inside(point, vs) {
     // ray-casting algorithm based on
     // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
-    var x = point[0], y = point[1];
+    var x = point.lat, y = point.lon;
 
     var inside = false;
     for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
-        var xi = vs[i][0], yi = vs[i][1];
-        var xj = vs[j][0], yj = vs[j][1];
+        var xi = vs[i].lat, yi = vs[i].lon;
+        var xj = vs[j].lat, yj = vs[j].lon;
 
         var intersect = ((yi > y) != (yj > y))
             && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
@@ -468,20 +499,140 @@ function inside(point, vs) {
 // Clips polyA so that it does not get out of 'outerbound'
 function PolygonClip(polyA, outerbound){
 
+	if(polyA.type === "node" || polyA.nodes.length==0){
+		if(inside([polyA.lat, polyA.lon], outerbound.nodes)){
+			return polyA;		
+		}else{
+			return undefined;
+		}
+	}
+
+	if(surfaceArea(polyA.nodes, true) < 0) {
+		polyA.nodes.reverse();
+	}
+
+	if(surfaceArea(outerbound.nodes, true) < 0){
+		outerbound.nodes.reverse();
+	}
+
 	console.log(polyA, outerbound);
 
 	// Polygon intersection 
 	// We start at a random point and walk along the polygon
 	// For each edge, we check if it intersects with the outerBound
 	// If that is the case, we insert an intersection point
+	var n = polyA.nodes.length
+	var bn = outerbound.nodes.length;
+	var i;
+	var allIntersections = {};
+	for(i in polyA.nodes){
+		var nodeA = polyA.nodes[i];
+		var nodeB = polyA.nodes[(i+1) % n];
+
+		for(var j in outerbound.nodes){
+			var boundA = outerbound.nodes[j];
+			var boundB = outerbound.nodes[(j+1) % bn];
+			var intersection = intersect(
+				nodeA.lat, nodeA.lon,
+				nodeB.lat, nodeB.lon,
+				boundA.lat, boundA.lon,
+				boundB.lat, boundB.lon);
+			if(intersection){
+				// Is the next element inside the bounds?
+				var goingIn = inside(polyA.nodes[(i+1) % polyA.nodes.length], outerbound.nodes);
+				intersection.boundIndex = j;
+				allIntersections[j] = {index: i, gettingIn :goingIn};
+				polyA.nodes.splice(i, 0, intersection);
+			}
+
+		}
+	}
 
 
+	// Small helper function to construct a new poly with the same properties but empty shape
+	function newPoly(){
+		var poly = {};
+		for(var prop in polyA){
+			// Copy all properties
+			poly[prop] = polyA[prop];
+		}
+		poly.nodes = [];
+		return poly;
+	}
 
-	// Then, we iterate the polygon again and remove all points not part of the bounds
 
-	throw new Exception("abc");
+	// We have all intersection points; 
+	// We use these to construct all resulting polygons, and use the indices as starting points
 
-	return polyA;
+	if(Object.keys(allIntersections) == 0){
+		// Special case: either all or no points lie in the bounds
+		if(inside(polyA.nodes[0], outerbound.nodes)){
+			// All is inside
+			return [polyA];
+		}else{
+			// Nothing is inside
+			if(inside(outerbound.nodes[0], polyA.nodes)){
+				// The bound could is completely contained in polyA
+				// We create a new polygon with polyA's properties and bounds shape				
+				var merged = newPoly();
+				merged.nodes = outerbound.nodes;
+				return [merged];
+			}
+			return [];
+		}
+	}
+	
+	// We could have multiple polygons as result
+	// Hence, we keep a list
+	var results =  [];
+
+	// Alright! Lets get started constructing intersected polygons
+	// Remember that allIntersections maps bounds_index onto polyA_index
+	console.log("Intersections: ",allIntersections);
+	var j, poly;
+	while(Object.keys(allIntersections).length > 0){
+		for(j in allIntersections){
+			if(!allIntersections[j].goingIn){
+				break;
+			}
+		}
+		// Alright: we have an index on the outer bound where we can start walking along the bounds
+		allIntersections[j] = undefined;
+		poly = newPoly();
+
+		var follow = outerbound.nodes;
+		console.log("Starting, outer, ",j);
+		do{
+			poly.nodes.push(follow[j]);
+			if(follow[j].boundIndex !== undefined){
+				// We are on polyA and reached an intersection
+				follow = outerbound.nodes;
+				if(allIntersections[j]){
+					console.log("Finished subpoly");
+					// We already used this intersection
+					results.push(poly);
+					break;
+				}else{
+					console.log("Switchout ",j);
+					allIntersections[j] = undefined;
+				}
+				j = follow[j].boundIndex;
+			}
+
+			if(allIntersections[j]){
+				// We are on the outer polygon and reached an intersection
+				follow = polyA.nodes;
+				j = allIntersections[j].index;
+				console.log("Switch in", j);
+				allIntersections[j]=undefined;
+			}
+			j ++;
+		}while(true);
+	
+
+	}
+
+	return results;
 }
 
 function heatLayer(elements){
@@ -616,11 +767,11 @@ function addZoomChangeCall(f){
 
 var i = 0;
 
-function makeZoomFunction(json, highLevelOnly, highZoomLayer, midZoomLayer, lowZoomLayer){
-    if(highLevelOnly){
+function makeZoomFunction(json, options, highZoomLayer, midZoomLayer, lowZoomLayer){
+    if(options.highLevelOnly){
 	    return function(){
-	        if(map.getZoom() >= 14){
-			    map.addLayer(highZoomLayer);
+	        if(options.hidden && map.getZoom() >= 14){
+			map.addLayer(highZoomLayer);
 		    }else{
 		        map.removeLayer(highZoomLayer);
 		    }
@@ -630,6 +781,9 @@ function makeZoomFunction(json, highLevelOnly, highZoomLayer, midZoomLayer, lowZ
 		    map.removeLayer(highZoomLayer);
 		    map.removeLayer(midZoomLayer);
 		    map.removeLayer(lowZoomLayer);
+		    if(options.hidden){
+			return;
+		    }
 		    if(map.getZoom() < 12){
 			    map.addLayer(lowZoomLayer);
 		    }else if(map.getZoom() < 14){
@@ -671,7 +825,7 @@ function renderQuery(json, textGenerator, imageFunction, options){
 	}else{
         highZoomLayer = makeDrawnLayer(areas, textGenerator, imageFunction);
 	}
-	let zoomF = makeZoomFunction(json, options.highLevelOnly, highZoomLayer, midZoomLayer, lowZoomLayer)
+	let zoomF = makeZoomFunction(json, options, highZoomLayer, midZoomLayer, lowZoomLayer)
 	addZoomChangeCall(zoomF);
 	zoomF();
 
