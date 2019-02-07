@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2019-02-02T22:07:02Z",
-    "timestamp_areas_base": "2019-02-02T21:10:02Z",
+    "timestamp_osm_base": "2019-02-07T17:57:02Z",
+    "timestamp_areas_base": "2019-02-07T17:36:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -2263,19 +2263,18 @@
   }
 },
 {
-  "type": "relation",
-  "id": 6343230,
-  "members": [
-    {
-      "type": "way",
-      "ref": 377875712,
-      "role": "outer"
-    }
+  "type": "way",
+  "id": 668439688,
+  "nodes": [
+    3812824112,
+    3812824111,
+    3812824109,
+    3812824110,
+    3812824112
   ],
   "tags": {
     "landuse": "orchard",
-    "leisure": "dog_park",
-    "type": "multipolygon"
+    "leisure": "dog_park"
   }
 },
 {
@@ -6354,12 +6353,6 @@
 },
 {
   "type": "node",
-  "id": 4258036063,
-  "lat": 51.1483387,
-  "lon": 3.4622531
-},
-{
-  "type": "node",
   "id": 1886728203,
   "lat": 50.9923698,
   "lon": 3.5663605
@@ -9849,18 +9842,6 @@
   "id": 586663509,
   "lat": 51.2107843,
   "lon": 3.9353077
-},
-{
-  "type": "way",
-  "id": 377875712,
-  "nodes": [
-    3812824109,
-    3812824111,
-    3812824112,
-    3812824110,
-    4258036063,
-    3812824109
-  ]
 }
 
   ]
