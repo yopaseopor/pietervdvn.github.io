@@ -509,7 +509,7 @@ function inside(point, vs) {
 };
 
 
-// Clips polyA so that it does not get out of 'outerbound'
+// clips polyA so that it does not get out of 'outerbound'
 function PolygonClip(polyA, outerbound){
 
 	if(polyA.type === "node" || polyA.nodes.length==0){
@@ -602,32 +602,45 @@ function PolygonClip(polyA, outerbound){
 	// Alright! Lets get started constructing intersected polygons
 	// Remember that allIntersections maps bounds_index onto polyA_index
 	console.log("Intersections: ",allIntersections);
-	var j, poly;
-	while(Object.keys(allIntersections).length > 0){
+	var j, poly, follow;
+	while(true){
+		console.log(allIntersections, Object.keys(allIntersections).length);
+		j = -1;
 		for(j in allIntersections){
+
 			if(!allIntersections[j].goingIn){
 				break;
 			}
 		}
-		// Alright: we have an index on the outer bound where we can start walking along the bounds
-		allIntersections[j] = undefined;
-		poly = newPoly();
+		
+		if(j == -1){
+			break; // no index found, we are through
+		}
 
-		var follow = outerbound.nodes;
+
+		// Alright: we have an index on the outer bound where we can start walking along the bounds
+		delete allIntersections[j];
+		poly = newPoly();
+		follow = outerbound.nodes;
 		console.log("Starting, outer, ",j);
 		do{
+			if(follow[j] === undefined){
+				console.log("WUT?");
+				return results;
+			}
+
 			poly.nodes.push(follow[j]);
 			if(follow[j].boundIndex !== undefined){
 				// We are on polyA and reached an intersection
 				follow = outerbound.nodes;
 				if(allIntersections[j]){
+					console.log("Switchout ",j);
+					delete allIntersections[j];
+				}else{
 					console.log("Finished subpoly");
 					// We already used this intersection
 					results.push(poly);
 					break;
-				}else{
-					console.log("Switchout ",j);
-					allIntersections[j] = undefined;
 				}
 				j = follow[j].boundIndex;
 			}
@@ -637,7 +650,7 @@ function PolygonClip(polyA, outerbound){
 				follow = polyA.nodes;
 				j = allIntersections[j].index;
 				console.log("Switch in", j);
-				allIntersections[j]=undefined;
+				delete allIntersections[j];
 			}
 			j ++;
 		}while(true);
