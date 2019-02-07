@@ -23,7 +23,11 @@
 
 function popupText(tags){
 	let text = "";
-	text += "<h1>"+tags.name+"</h1>";
+	if(tags.name){
+		text += "<h1>"+tags.name+"</h1>";
+	}else{
+		text += "<h1>Naamloze boekenruilkast</h1>";
+	}
 	text += "<table><tr><td width=50%>"
 
     	if(tags.operator){
@@ -47,15 +51,15 @@ function popupText(tags){
 	}
 
 
-	text+="<h2>Beschrijving door de uitbater</h2>"
-	text+="<p>"
 	if(tags.description){
+		text+="<h2>Beschrijving door de uitbater</h2>"
+		text+="<p>"
 	    	text+= tags.description
+		if(tags.description_1){
+		    	text+= tags.description_1
+		}
+		text+="</p><br/>"
 	}
-	if(tags.description_1){
-	    	text+= tags.description_1
-	}
-	text+="</p><br/>"
 	
 	if(tags.image){
 	    text += "</td><table><tr><td><img width=300px src='"+tags.image+"' /></td>"
