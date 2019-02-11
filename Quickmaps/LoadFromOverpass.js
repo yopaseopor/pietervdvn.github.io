@@ -75,6 +75,28 @@ function loadWikipedia(area){
 		});
 }
 
+
+function bindText(pin, area, textFunction){
+
+	var text = textFunction(area.tags, area.area);
+	if(area.type){
+		var type = area.type;
+		if(area.wasRelation){
+			type = "relation";
+		}
+		text += "<p><a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a>"
+		text += "  <a href='https://openstreetmap.org/edit?"+type+"="+area.id+"#map=17/"+area.lat+"/"+area.lon+"' target='_blank'>Wijzig kaart</a> "
+		text += area.tags.wikilink;
+		text += "<br /><a href='https://www.openstreetmap.org/changeset/"+area.tags.meta.timestamp+"'>"+
+			"Laatst aangepast door "+area.tags.meta.user+" op "+area.tags.meta.timestamp+"</a>";
+		text+="</p>"
+
+	}else{
+		text += "<p>Zoom verder in om te bekijken op OSM</p>"
+	}
+	pin.bindPopup(L.popup().setContent(text), {maxWidth:600, minWidth: 600 });
+}
+
 /*
 Adds a popup to a map element, with the given text function
 */
@@ -82,34 +104,24 @@ function addPopup(pin, area, textFunction){
 
 	var trailingFunction = function(ar){ return; };
 
+
 	if(area.tags){
-		var wikilink = "";
+		area.tags.wikilink = "";
 		if(area.tags.wikipedia){
 			var lang = area.tags.wikipedia.split(':')[0];
 			var page = area.tags.wikipedia.split(':')[1];
-			wikilink = " <a href='https://"+lang+".wikipedia.org/wiki/"+page+"'>Bekijk op wikipedia</a>";				
+			area.tags.wikilink = " <a href='https://"+lang+".wikipedia.org/wiki/"+page+"'>Bekijk op wikipedia</a>";				
 
 			area.tags.wikipedia_contents = "<div id='"+'wikipedia_'+lang+"_"+page+"'/>";
 
 			
 			trailingFunction = function(ar) {loadWikipedia(ar)};
-					
 		}
-		var text = textFunction(area.tags, area.area);
-		if(area.type){
-			var type = area.type;
-			if(area.wasRelation){
-				type = "relation";
-			}
-			text += "<p><a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a>"
-			text += "  <a href='https://openstreetmap.org/edit?"+type+"="+area.id+"#map=17/"+area.lat+"/"+area.lon+"' target='_blank'>Wijzig kaart</a> "
-			text += wikilink;
-			text+="</p>"
+		getMeta(area.tags.type, area.tags.id, function (meta) {
+			area.tags.meta = meta;			
+			bindText(pin, area, textFunction)});
 
-		}else{
-			text += "<p>Zoom verder in om te bekijken op OSM</p>"
-		}
-		pin.bindPopup(L.popup().setContent(text), {maxWidth:600, minWidth: 600 });
+
 	}
 	return trailingFunction;
 }
@@ -118,9 +130,28 @@ function addPopup(pin, area, textFunction){
 
 /********************** UTILITY FUNCTIONS **************************/
 
+function getMeta(type, id, whenDone){
 
+	var url = "https://www.openstreetmap.org/api/0.6/"+type+"/"+id;
 
-function surfaceArea(nodes){
+	$.ajax({ 
+	    type : "GET", 
+	    url : url, 
+	    dataType : "xml",
+	    success : function(service_data) { 
+		console.log("OK");
+	  	$xml = $( service_data ),
+	  	$attrs = $xml.find('osm').find(type)[0].attributes;
+		var meta = {user: $attrs.user.value, timestamp: $attrs.timestamp.value, changeset: $attrs.changeset.value}
+		whenDone(meta)
+	    },
+	});
+
+	
+	// return {changeset: meta.getNamedItem("changeset"), user: meta.getNamedItem("user"), timestamp: meta.getNamedItem("timestamp")};
+}
+
+function surfaceArea(nodes, allowNegative){
 
 	var minLat = 360;
 	var minLon = 360;
@@ -173,7 +204,12 @@ function surfaceArea(nodes){
 		surface += (nodes[i].x * nodes[i+1].y) - (nodes[i+1].x * nodes[i].y);
 	}
 
-	return Math.floor(Math.abs(surface/2) * 100) / 100;
+	if(allowNegative){
+		surface = surface / 2;
+	}else{
+		surface = Math.abs(surface) / 2;
+	}
+	return Math.floor(surface * 100) / 100;
 }
 
 
@@ -380,6 +416,7 @@ function extractAreas(jsonEls, idMap){
 	return areas;
 }
 
+
 function makeOverviewLayer(elements, textFunction, imageFunction){
     if(elements.length > 100){
         return heatLayer(elements);
@@ -411,6 +448,218 @@ function makeIconLayer(elements, textFunction, imageFunction){
 	return layer;
 }
 
+// line intercept math by Paul Bourke http://paulbourke.net/geometry/pointlineplane/
+// Determine the intersection point of two line segments
+// Return FALSE if the lines don't intersect or fall at the end/start of the segment
+function intersect(x1, y1, x2, y2, x3, y3, x4, y4) {
+
+  // Check if none of the lines are of length 0
+	if ((x1 === x2 && y1 === y2) || (x3 === x4 && y3 === y4)) {
+		return false
+	}
+
+	if((x1 === x3 && y1 === y3) 
+		|| (x2 === x4 && y2 === y4)
+		|| (x1 === x4 && y1 === y4)
+ 		|| (x2 === x3 && y2 === y3)){
+		// End of start point are the same
+		return false;
+	}
+
+	denominator = ((y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1))
+
+  // Lines are parallel
+	if (denominator === 0) {
+		return false
+	}
+
+	let ua = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denominator
+	let ub = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denominator
+
+  // is the intersection along the segments
+	if (ua < 0 || ua > 1 || ub < 0 || ub > 1) {
+		return false
+	}
+
+  // Return a object with the x and y coordinates of the intersection
+	let x = x1 + ua * (x2 - x1)
+	let y = y1 + ua * (y2 - y1)
+
+	return {lat: x, lon: y, type: "node"}
+}
+
+
+function inside(point, vs) {
+    // ray-casting algorithm based on
+    // http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
+
+    var x = point.lat, y = point.lon;
+
+    var inside = false;
+    for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+        var xi = vs[i].lat, yi = vs[i].lon;
+        var xj = vs[j].lat, yj = vs[j].lon;
+
+        var intersect = ((yi > y) != (yj > y))
+            && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+        if (intersect) inside = !inside;
+    }
+
+    return inside;
+};
+
+
+// clips polyA so that it does not get out of 'outerbound'
+function PolygonClip(polyA, outerbound){
+
+	if(polyA.type === "node" || polyA.nodes.length==0){
+		if(inside([polyA.lat, polyA.lon], outerbound.nodes)){
+			return polyA;		
+		}else{
+			return undefined;
+		}
+	}
+
+	if(surfaceArea(polyA.nodes, true) < 0) {
+		polyA.nodes.reverse();
+	}
+
+	if(surfaceArea(outerbound.nodes, true) < 0){
+		outerbound.nodes.reverse();
+	}
+
+	console.log(polyA, outerbound);
+
+	// Polygon intersection 
+	// We start at a random point and walk along the polygon
+	// For each edge, we check if it intersects with the outerBound
+	// If that is the case, we insert an intersection point
+	var n = polyA.nodes.length
+	var bn = outerbound.nodes.length;
+	var i;
+	var allIntersections = {};
+	for(i in polyA.nodes){
+		var nodeA = polyA.nodes[i];
+		var nodeB = polyA.nodes[(i+1) % n];
+
+		for(var j in outerbound.nodes){
+			var boundA = outerbound.nodes[j];
+			var boundB = outerbound.nodes[(j+1) % bn];
+			var intersection = intersect(
+				nodeA.lat, nodeA.lon,
+				nodeB.lat, nodeB.lon,
+				boundA.lat, boundA.lon,
+				boundB.lat, boundB.lon);
+			if(intersection){
+				// Is the next element inside the bounds?
+				var goingIn = inside(polyA.nodes[(i+1) % polyA.nodes.length], outerbound.nodes);
+				intersection.boundIndex = j;
+				allIntersections[j] = {index: i, gettingIn :goingIn};
+				polyA.nodes.splice(i, 0, intersection);
+			}
+
+		}
+	}
+
+
+	// Small helper function to construct a new poly with the same properties but empty shape
+	function newPoly(){
+		var poly = {};
+		for(var prop in polyA){
+			// Copy all properties
+			poly[prop] = polyA[prop];
+		}
+		poly.nodes = [];
+		return poly;
+	}
+
+
+	// We have all intersection points; 
+	// We use these to construct all resulting polygons, and use the indices as starting points
+
+	if(Object.keys(allIntersections) == 0){
+		// Special case: either all or no points lie in the bounds
+		if(inside(polyA.nodes[0], outerbound.nodes)){
+			// All is inside
+			return [polyA];
+		}else{
+			// Nothing is inside
+			if(inside(outerbound.nodes[0], polyA.nodes)){
+				// The bound could is completely contained in polyA
+				// We create a new polygon with polyA's properties and bounds shape				
+				var merged = newPoly();
+				merged.nodes = outerbound.nodes;
+				return [merged];
+			}
+			return [];
+		}
+	}
+	
+	// We could have multiple polygons as result
+	// Hence, we keep a list
+	var results =  [];
+
+	// Alright! Lets get started constructing intersected polygons
+	// Remember that allIntersections maps bounds_index onto polyA_index
+	console.log("Intersections: ",allIntersections);
+	var j, poly, follow;
+	while(true){
+		console.log(allIntersections, Object.keys(allIntersections).length);
+		j = -1;
+		for(j in allIntersections){
+
+			if(!allIntersections[j].goingIn){
+				break;
+			}
+		}
+		
+		if(j == -1){
+			break; // no index found, we are through
+		}
+
+
+		// Alright: we have an index on the outer bound where we can start walking along the bounds
+		delete allIntersections[j];
+		poly = newPoly();
+		follow = outerbound.nodes;
+		console.log("Starting, outer, ",j);
+		do{
+			if(follow[j] === undefined){
+				console.log("WUT?");
+				return results;
+			}
+
+			poly.nodes.push(follow[j]);
+			if(follow[j].boundIndex !== undefined){
+				// We are on polyA and reached an intersection
+				follow = outerbound.nodes;
+				if(allIntersections[j]){
+					console.log("Switchout ",j);
+					delete allIntersections[j];
+				}else{
+					console.log("Finished subpoly");
+					// We already used this intersection
+					results.push(poly);
+					break;
+				}
+				j = follow[j].boundIndex;
+			}
+
+			if(allIntersections[j]){
+				// We are on the outer polygon and reached an intersection
+				follow = polyA.nodes;
+				j = allIntersections[j].index;
+				console.log("Switch in", j);
+				delete allIntersections[j];
+			}
+			j ++;
+		}while(true);
+	
+
+	}
+
+	return results;
+}
 
 function heatLayer(elements){
     var points = [];
@@ -507,7 +756,9 @@ function searchAndRender(tags, searchIn, textGenerator, imageFunction, highLevel
 	var firstRel = nomJson[0];
 	var liveQuery  = queryOverpass(tags, firstRel.osm_id);
 	$.getJSON(liveQuery, 
-	    function(json) {renderQuery(json.elements, textGenerator, imageFunction, highLevelOnly, options);});	
+	    function(json) {
+		renderQuery(json.elements, textGenerator, imageFunction, highLevelOnly, options);
+	});	
 	
 	})
 }
@@ -542,11 +793,11 @@ function addZoomChangeCall(f){
 
 var i = 0;
 
-function makeZoomFunction(json, highLevelOnly, highZoomLayer, midZoomLayer, lowZoomLayer){
-    if(highLevelOnly){
+function makeZoomFunction(json, options, highZoomLayer, midZoomLayer, lowZoomLayer){
+    if(options.highLevelOnly){
 	    return function(){
-	        if(map.getZoom() >= 14){
-			    map.addLayer(highZoomLayer);
+	        if(options.hidden && map.getZoom() >= 14){
+			map.addLayer(highZoomLayer);
 		    }else{
 		        map.removeLayer(highZoomLayer);
 		    }
@@ -556,6 +807,9 @@ function makeZoomFunction(json, highLevelOnly, highZoomLayer, midZoomLayer, lowZ
 		    map.removeLayer(highZoomLayer);
 		    map.removeLayer(midZoomLayer);
 		    map.removeLayer(lowZoomLayer);
+		    if(options.hidden){
+			return;
+		    }
 		    if(map.getZoom() < 12){
 			    map.addLayer(lowZoomLayer);
 		    }else if(map.getZoom() < 14){
@@ -572,17 +826,22 @@ Renders the data. You can feed a retrieved cache file here too.
 
 Options-object:
 highLevelOnly: only show this layer at high zoom levels (default: false)
-continuation: execute this function when loading is done (default: undefined)
+preprocessing: execute this function on the extracted areas, if defined
+continuation: execute this function when loading is done, with the resulting areas/data (default: undefined)
 iconsOnly: do not render surfaces, only show the icon (default: false)
 
 */
 function renderQuery(json, textGenerator, imageFunction, options){
-	console.log("Got data, starting rendering of: ", json)
+	console.log("Got data, starting rendering of: ", json, "; ", "Options are", options);
 	if(options === undefined){
 	    options = {};
 	}
 	let ids = idMap(json);
 	let areas = extractAreas(json, ids);
+
+	if(options.preprocessing){
+		areas = options.preprocessing(areas);
+	}
 
 	let lowZoomLayer = makeOverviewLayer(mergeByName(areas), textGenerator, imageFunction);
 	let midZoomLayer = makeOverviewLayer(areas, textGenerator, imageFunction);
@@ -592,7 +851,7 @@ function renderQuery(json, textGenerator, imageFunction, options){
 	}else{
         highZoomLayer = makeDrawnLayer(areas, textGenerator, imageFunction);
 	}
-	let zoomF = makeZoomFunction(json, options.highLevelOnly, highZoomLayer, midZoomLayer, lowZoomLayer)
+	let zoomF = makeZoomFunction(json, options, highZoomLayer, midZoomLayer, lowZoomLayer)
 	addZoomChangeCall(zoomF);
 	zoomF();
 
@@ -602,8 +861,9 @@ function renderQuery(json, textGenerator, imageFunction, options){
     	map.fitBounds(highZoomLayer.getBounds(), {padding: L.point(50,50)});
     }
 
+	console.log("Continuation is ",options.continuation);
 	if(options.continuation){
-		options.continuation();
+		options.continuation(areas);
 	}
 
 }

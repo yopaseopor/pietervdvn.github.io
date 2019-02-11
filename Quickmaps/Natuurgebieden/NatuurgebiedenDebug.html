@@ -142,9 +142,32 @@ if(searchIn == undefined){
 }
 
 //*
-searchAndRender(['"operator"~"'+afd+'"', '"leisure"="nature_reserve"'], searchIn, addDebugText, imageFunction, false, {continuation: addTotals});
-searchAndRender(['"tourism"="information"'], searchIn, debugTagsText, imageBoardFunction, {iconsOnly : true, highLevelOnly : true});
-searchAndRender(['"leisure"="bird_hide"'], searchIn, debugTagsText, birdHideImage, {iconsOnly : true, highLevelOnly : true});
+
+
+function clipAreas(bounds){
+	return function (areas){
+	var clipped = [];
+	for (var i in bounds){
+		for(var j in areas){
+			var clipI = PolygonClip(areas[j], bounds[i]);
+			clipped = clipped.concat(clipI);
+		}
+	}
+	return clipped;}
+}
+
+function continuation(bounds){
+	addTotals();
+	console.log("Got data: ", bounds);
+
+	CachedFirstRender(['"landuse"'], "De Leiemeersen", addDebugText, undefined, {preprocessing: clipAreas(bounds)});
+
+
+}
+var options =  {continuation: continuation, hidden : true};
+
+CachedFirstRender(['"name"="De Leiemeersen"', '"leisure"="nature_reserve"'], "West-Vlaanderen", addDebugText, imageFunction, options);
+
 
 /*/
 $.getJSON("https://raw.githubusercontent.com/pietervdvn/pietervdvn.github.io/master/cache/Natuurgebieden.json",

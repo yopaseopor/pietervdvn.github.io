@@ -23,47 +23,63 @@
 
 function popupText(tags){
 	let text = "";
-	text += "<h1>"+tags.name+"</h1>";
-	text += "<table><tr><td width=50%>"
-	text+="<p>"
-	if(tags.description)
-    	text+= tags.description+"</p><br /><p>"
-    if(tags.description_1)
-    	text+= tags.description_1+"</p><br /><p>"
-	if(tags.brand){
-    	text+= "Deel van het netwerk "+tags.brand
-    	if(tags.ref)
-    	    text+=" (referentienummer "+tags.ref+")"
-    	text+="<br />"
+	if(tags.name){
+		text += "<h1>"+tags.name+"</h1>";
+	}else{
+		text += "<h1>Naamloze boekenruilkast</h1>";
 	}
-    if(tags.start_date)
-        text+= "Geplaatst op "+tags.start_date+"<br />"
-    if(tags.operator)
-        text+="Uitgebaat door <strong>"+tags.operator+"</strong><br/>"
-    if(tags.capacity)
-        text += "Plaats voor ongeveer <strong>"+tags.capacity+"</strong> boeken<br/>"
-    if(tags.website)
-        text += "Meer informatie op <a href='"+tags.website+"'>"+tags.website+"</a>"
-	text+="</p><br/>"
+	text += "<table><tr><td width=50%>"
+
+    	if(tags.operator){
+        	text+="Uitgebaat door <strong>"+tags.operator+"</strong><br/>"
+	}
+	if (tags.website){
+        	text += "Meer informatie op <a href='"+tags.website+"'>"+tags.website+"</a><br/>"
+    	}
+	if(tags.capacity){
+	        text += "Plaats voor ongeveer <strong>"+tags.capacity+"</strong> boeken<br/>"
+	}
+	if(tags.start_date){
+        	text+= "Geplaatst op "+tags.start_date+"<br />"
+	}
+	if(tags.brand){
+    		text+= "Deel van het netwerk "+tags.brand
+	    	if(tags.ref){
+	    	    text+=" (referentienummer "+tags.ref+")"
+		}
+		text += "<br />"
+	}
+
+
+	if(tags.description){
+		text+="<h2>Beschrijving door de uitbater</h2>"
+		text+="<p>"
+	    	text+= tags.description
+		if(tags.description_1){
+		    	text+= tags.description_1
+		}
+		text+="</p><br/>"
+	}
 	
 	if(tags.image){
 	    text += "</td><table><tr><td><img width=300px src='"+tags.image+"' /></td>"
 	
 	    if(tags.image_0){
 	        text += "<br /></td><td><img width=300px src='"+tags.image_0+"' /></td>"
+		}
+	    
+		if(tags.image_1){
+	    	    text += "</tr><tr></td><td><img width=300px src='"+tags.image_1+"' /></td>"
 	    }
 	    
-        if(tags.image_1){
-	        text += "</tr><tr></td><td><img width=300px src='"+tags.image_1+"' /></td>"
-	    }
-	    
-       if(tags.image_2){
+       		if(tags.image_2){
 	        text += "</tr><tr></td><td><img width=300px src='"+tags.image_2+"' /></td>"
 	    }
 	    text += "</tr></table></td>"
 	}
 	
 	text +="</tr></table>"
+
 	return text;
 }
 
@@ -81,9 +97,16 @@ function image(tags){
 }
 
 console.log("Getting started...");
-map = initializeMap();
-map.setView([51.222, 3.227], 12);
-CachedFirstRender(['"amenity"="public_bookcase"'],"brugge" ,popupText, image);
+initializeMap();
+
+var urlParams = new URLSearchParams(window.location.search);
+
+let searchIn = urlParams.get('area')
+if(searchIn === undefined || searchIn === null || searchIn === ""){
+	searchIn = "Brugge";
+}
+
+CachedFirstRender(['"amenity"="public_bookcase"'],searchIn ,popupText, image);
 
 
 </script>
