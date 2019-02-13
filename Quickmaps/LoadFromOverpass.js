@@ -29,13 +29,23 @@ function color(poly){
 	}
 }
 
+
+
+
 var cachedWikipedia = {};
+
 /*Loads and caches the requested wikipedia article. Puts the article at the element with id 'wikipedia_lang_page''*/
 function loadWikipedia(area){
 	var lang = area.tags.wikipedia.split(':')[0];
 	var page = area.tags.wikipedia.split(':')[1];
 			
 	var element =  document.getElementById('wikipedia_'+lang+"_"+page);
+	
+	if(element === undefined){
+        console.log("Aborted loading the wikipedia article: no such element")	
+        return;
+	}
+	
 	if(cachedWikipedia[lang] == undefined){
 		cachedWikipedia[lang] = {};
 	}
@@ -44,7 +54,7 @@ function loadWikipedia(area){
 		if(element.innerHTML){
 			return;
 		}
-		if(cachedWikipedia[lang][page] != undefined){
+		if(cachedWikipedia[lang][page] !== undefined){
 			element.innerHTML = cachedWikipedia[lang][page];
 			return;
 		}
@@ -57,80 +67,44 @@ function loadWikipedia(area){
 	$.ajax({
 		url: "https://"+lang+".wikipedia.org/api/rest_v1/page/html/"+page,
 		timeout: 5000,
-		    success: function(html){
-			var element =  document.getElementById('wikipedia_'+lang+"_"+page);
+	    success: function(html){
+		    var element =  document.getElementById('wikipedia_'+lang+"_"+page);
 
-				if(element === null){
-					console.log("No placeholder for wikipedia element "+'wikipedia_'+lang+"_"+page);
-					return;
-				}
-				cachedWikipedia[lang][page] = html;
-				element.innerHTML= html;
-			},
-			fail: function(xhr, textStatus, errorThrown){
-				console.log("Request FAILED");
-				var element =  document.getElementById('wikipedia_'+lang+"_"+page);
-				element.innerHTML = null;
+			if(element === null){
+				console.log("No placeholder for wikipedia element "+'wikipedia_'+lang+"_"+page);
+				return;
 			}
+			cachedWikipedia[lang][page] = html;
+			area.tags.wikipedia_contents = html;
+			element.innerHTML= html;
+		},
+		error: function(xhr, textStatus, errorThrown){
+			console.log("Request FAILED");
+			var element =  document.getElementById('wikipedia_'+lang+"_"+page);
+			element.innerHTML = "Wikipedia-artikel kon niet worden geladen. Misschien is de pagina verwijdered of hernoemd?";
+		}
 		});
 }
 
+var cachedMeta = {};
+function loadMeta(area){
 
-function bindText(pin, area, textFunction){
-
-	var text = textFunction(area.tags, area.area);
-	if(area.type){
-		var type = area.type;
-		if(area.wasRelation){
-			type = "relation";
-		}
-		text += "<p><a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a>"
-		text += "  <a href='https://openstreetmap.org/edit?"+type+"="+area.id+"#map=17/"+area.lat+"/"+area.lon+"' target='_blank'>Wijzig kaart</a> "
-		text += area.tags.wikilink;
-		text += "<br /><a href='https://www.openstreetmap.org/changeset/"+area.tags.meta.timestamp+"'>"+
-			"Laatst aangepast door "+area.tags.meta.user+" op "+area.tags.meta.timestamp+"</a>";
-		text+="</p>"
-
-	}else{
-		text += "<p>Zoom verder in om te bekijken op OSM</p>"
+    let id = area.tags.id;
+    let type = area.type;
+	if(area.wasRelation){
+		type = "relation";
 	}
-	pin.bindPopup(L.popup().setContent(text), {maxWidth:600, minWidth: 600 });
-}
-
-/*
-Adds a popup to a map element, with the given text function
-*/
-function addPopup(pin, area, textFunction){
-
-	var trailingFunction = function(ar){ return; };
-
-
-	if(area.tags){
-		area.tags.wikilink = "";
-		if(area.tags.wikipedia){
-			var lang = area.tags.wikipedia.split(':')[0];
-			var page = area.tags.wikipedia.split(':')[1];
-			area.tags.wikilink = " <a href='https://"+lang+".wikipedia.org/wiki/"+page+"'>Bekijk op wikipedia</a>";				
-
-			area.tags.wikipedia_contents = "<div id='"+'wikipedia_'+lang+"_"+page+"'/>";
-
-			
-			trailingFunction = function(ar) {loadWikipedia(ar)};
-		}
-		getMeta(area.tags.type, area.tags.id, function (meta) {
-			area.tags.meta = meta;			
-			bindText(pin, area, textFunction)});
-
-
+    if(cachedMeta[area.tags.id]){
+        return;
+    }
+    cachedMeta[area.tags.id] = true;
+    
+    var element =  document.getElementById("meta_"+area.tags.id);
+	
+	if(element === undefined){
+        console.log("Aborted loading the metadata: no such element")	
+        return;
 	}
-	return trailingFunction;
-}
-
-
-
-/********************** UTILITY FUNCTIONS **************************/
-
-function getMeta(type, id, whenDone){
 
 	var url = "https://www.openstreetmap.org/api/0.6/"+type+"/"+id;
 
@@ -139,17 +113,78 @@ function getMeta(type, id, whenDone){
 	    url : url, 
 	    dataType : "xml",
 	    success : function(service_data) { 
-		console.log("OK");
-	  	$xml = $( service_data ),
-	  	$attrs = $xml.find('osm').find(type)[0].attributes;
-		var meta = {user: $attrs.user.value, timestamp: $attrs.timestamp.value, changeset: $attrs.changeset.value}
-		whenDone(meta)
-	    },
+	      	$xml = $( service_data ),
+	      	$attrs = $xml.find('osm').find(type)[0].attributes;
+		    let meta = {user: $attrs.user.value, timestamp: $attrs.timestamp.value, changeset: $attrs.changeset.value}
+		    let text = "<a href='https://www.openstreetmap.org/changeset/"+meta.changeset+"'>"+
+			    "Laatst aangepast door "+meta.user+" op "+meta.timestamp+"</a>";
+			element.innerHTML = text;
+	    }
 	});
-
-	
-	// return {changeset: meta.getNamedItem("changeset"), user: meta.getNamedItem("user"), timestamp: meta.getNamedItem("timestamp")};
 }
+
+// Executes the text functions, gathers the wikipedia article, gathers the last changeset
+function createText(area, textFunction){
+
+    
+    
+    // Get the wikipedia link
+    area.tags.wikilink = "";
+    area.tags.meta=  "<div id='meta_"+area.tags.id+"'>Loading last editor...</div>";
+	if(area.tags.wikipedia){
+	    var lang = area.tags.wikipedia.split(':')[0];
+	    var page = area.tags.wikipedia.split(':')[1];
+	    area.tags.wikilink = " <a href='https://"+lang+".wikipedia.org/wiki/"+page+"'>Bekijk op wikipedia</a>";				
+	    area.tags.wikipedia_contents = "<div id='wikipedia_"+lang+"_"+page+"'/>";
+    }
+    
+    var text = textFunction(area.tags, area.area);
+    
+    // Create the fixed text at the bottom
+    var footer = "";
+	if(area.type){
+		var type = area.type;
+		if(area.wasRelation){
+			type = "relation";
+		}
+		footer += "<p><a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a>"
+		footer += "<a href='https://openstreetmap.org/edit?"+type+"="+area.id+"#map=17/"+area.lat+"/"+area.lon+"' target='_blank'>Wijzig</a> "
+		footer += area.tags.wikilink;
+		footer += area.tags.meta;
+		footer+="</p>"
+	}
+
+
+    return text + footer;
+
+}
+
+
+/*
+Adds a popup to a map element, with the given text function
+*/
+function addPopup(pin, area, textFunction){
+
+
+
+    if(area.tags === undefined){
+        return;
+    }
+
+    let contents = createText(area, textFunction);
+
+    pin.bindPopup(L.popup().setContent(contents), {maxWidth:800, minWidth: 600 });
+    pin.on('popupopen', function(){
+        loadWikipedia(area);
+        loadMeta(area); 
+    });
+}
+
+
+
+/********************** UTILITY FUNCTIONS **************************/
+
+
 
 function surfaceArea(nodes, allowNegative){
 
@@ -441,8 +476,8 @@ function makeIconLayer(elements, textFunction, imageFunction){
 		let pin = L.marker([parseFloat(area.lat), parseFloat(area.lon)], options);
 		
 		pin.addTo(layer);
-		let trailing = addPopup(pin, area, textFunction);
-		pin.on('popupopen', function(){trailing(area)});
+		addPopup(pin, area, textFunction);
+		
 		
 	}
 	return layer;
@@ -704,8 +739,8 @@ function makeDrawnLayer(areas, textFunction, imageFunction){
 	for(i in areas){
 		let area = areas[i];
 		let poly = drawArea(area, imageFunction)
-		let trailing = addPopup(poly, area, textFunction);
-		poly.on('popupopen', function(){trailing(area)});		
+	    addPopup(poly, area, textFunction);
+	    
 		poly.addTo(raw);
 		poly.tags = area.tags;
 		poly.tags.selected = false;
