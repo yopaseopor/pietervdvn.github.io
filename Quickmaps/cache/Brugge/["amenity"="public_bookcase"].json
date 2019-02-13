@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2019-02-13T00:10:02Z",
-    "timestamp_areas_base": "2019-02-12T23:20:02Z",
+    "timestamp_osm_base": "2019-02-13T00:34:03Z",
+    "timestamp_areas_base": "2019-02-13T00:23:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -17,10 +17,12 @@
     "amenity": "public_bookcase",
     "brand": "Little Free Library",
     "capacity": "100",
-    "description": "Dit boekenruilkastje op het pleintje in de Ontmijnerslaan  is een initiatief van de wijkvereniging. Naast het boekenkastje werd een leesbank geplaatst zodat je er op een zonnige dag rustig in de boeken kan snuisteren.",
+    "description": "Dit boekenruilkastje op het pleintje in de Ontmijnerslaan is een initiatief van de wijkvereniging. Naast het boekenkastje werd een leesbank geplaatst zodat je er op een zonnige dag rustig in de boeken kan snuisteren.",
     "image": "https://littlefreelibrary.secure.force.com/servlet/servlet.FileDownload?file=00Pd000000ekd8PEAQ",
     "name": "Little Free Library Sanderkwartier",
+    "opening_hours": "24/7",
     "operator": "Sanderskwartier",
+    "public_bookcase:type": "reading_box",
     "ref": "40403",
     "start_date": "2016-09-04",
     "website": "http://sanderkwartier.brugsebuurten.be/OnsLittleFreeLibrary"
@@ -36,7 +38,9 @@
     "capacity": "25",
     "description": "Deze boekenruilkast vindt je recht tegenover de Pim Pam Poem",
     "image": "https://upload.wikimedia.org/wikipedia/commons/3/32/Ruilboekenkast_Stubbekwartier.jpg",
-    "name": "Stubbekwartier-buurtbibliotheek"
+    "name": "Stubbekwartier-buurtbibliotheek",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box"
   }
 },
 {
@@ -48,10 +52,12 @@
     "amenity": "public_bookcase",
     "brand": "Little Free Library",
     "capacity": "150",
-    "description": "Sinds 2014 vindt je een boekenruilkastje in Hoeve Hangerijn. Het kastje is te vinden in de stallen en werd gerealiseerd met de steun van   de Brugse buurtcheques.",
+    "description": "Sinds 2014 vindt je een boekenruilkastje in Hoeve Hangerijn. Het kastje is te vinden in de stallen en werd gerealiseerd met de steun van de Brugse buurtcheques.",
     "image": "https://littlefreelibrary.secure.force.com/servlet/servlet.FileDownload?file=00Pd000000R03iTEAR",
     "name": "Little Free Library Hoeve Hangerijn",
+    "opening_hours": "24/7",
     "operator": "Hoeve Hangerijn",
+    "public_bookcase:type": "woorden_closet",
     "start_date": "2014"
   }
 },
@@ -66,6 +72,7 @@
     "capacity": "40",
     "description": "In 2018 we started a facebook-like city district-wide community IT platform and someone suggested there to place a little free library. Another person offered to build it and a third person had connection to the city council .",
     "name": "Little Free Library Sint-Anna",
+    "opening_hours": "24/7",
     "public_bookcase:type": "reading_box",
     "ref": "81342",
     "start_date": "2018"
@@ -83,6 +90,7 @@
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Boekenkast_Sint-Lodewijks.jpg/1024px-Boekenkast_Sint-Lodewijks.jpg",
     "mapillary": "wweALGY5g8_T8UjGkcWCfw",
     "name": "Little Free Library Sint-Lodewijks",
+    "opening_hours": "24/7",
     "operator": "Sint-Lodewijkscollege",
     "public_bookcase:type": "reading_box",
     "ref": "48318",
@@ -98,11 +106,13 @@
     "amenity": "public_bookcase",
     "brand": "Little Free Library",
     "capacity": "25",
-    "description": "I came up with the idea of a Little Free Library in our street because I know many people here (especialy women) like to read. We recommend and lend books to each other. I also love the idea of sharing things with each other. ",
+    "description": "I came up with the idea of a Little Free Library in our street because I know many people here (especialy women) like to read. We recommend and lend books to each other. I also love the idea of sharing things with each other.",
     "description_1": "My husband made the library all by himself. He painted it yellow and green, the Brazilian Fifa World Cup colours :-). A lot of people from other streets pass by here while jogging or walking with their dog, we intend to reach them too.",
     "image": "https://littlefreelibrary.secure.force.com/servlet/servlet.FileDownload?file=00Pd000000IisiiEAB",
     "name": "Little Free Library Hertsvelde",
+    "opening_hours": "24/7",
     "operator": "Manon Billiet",
+    "public_bookcase:type": "reading_box",
     "ref": "13695"
   }
 },
@@ -118,7 +128,9 @@
     "capacity:children_books": "30",
     "description": "De kast bestaat uit 2 delen. In het ene deel vindt je boeken voor volwassenen, in het onderste deel vinden kinderen hun gading.",
     "image": "https://i1.wp.com/www.brugsalternatiefforum.be/wp-content/uploads/2018/12/boekenruilkastMoutstraat7.jpg",
-    "name": "Boekenruilkast Moutstraat"
+    "name": "Boekenruilkast Moutstraat",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box"
   }
 },
 {
@@ -130,10 +142,12 @@
     "amenity": "public_bookcase",
     "brand": "Little Free Library",
     "capacity": "40",
-    "description": "De eigenaar van dit kastje vindt in deze drukke tijden zelfzorg erg belangrijk. Zelfzorg betekent voor haar in alle rust een boek lezen, zich helemaal inleven in het verhaal en even de realiteit vergeten. ",
+    "description": "De eigenaar van dit kastje vindt in deze drukke tijden zelfzorg erg belangrijk. Zelfzorg betekent voor haar in alle rust een boek lezen, zich helemaal inleven in het verhaal en even de realiteit vergeten.",
     "description_1": "Met deze little free library hoopt ze mensen te kunnen aanzetten om terug meer te lezen (en te ontspannen).",
     "image": "https://littlefreelibrary.secure.force.com/servlet/servlet.FileDownload?file=00P0W000011VJGjUAO",
     "name": "Minibib Sint-Michiels",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box",
     "ref": "65231",
     "start_date": "2018-07-27"
   }
@@ -148,7 +162,9 @@
     "capacity": "35",
     "description": "In samenwerking met het OCMW dienstencentrum ’t Werftje werd tijdens de Kattefeesten het project “Little Free Library” officieel in gebruik genomen. Een wijkbibliotheekje waar iedereen van de buurt samen zorg voor draagt.",
     "image": "https://i2.wp.com/www.stubbekwartier.be/wp-content/uploads/2016/03/bibliotheekhuisje.jpg?zoom=2&resize=682%2C351",
-    "name": "Boekenruilkastje Werfplein"
+    "name": "Boekenruilkastje Werfplein",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box"
   }
 },
 {
