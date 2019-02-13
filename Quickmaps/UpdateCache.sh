@@ -11,18 +11,9 @@ function update { # search area, relId, tags
 }
 
 
-echo "Updating map..." > log.txt
-date >> log.txt
+echo "Updating map..."
+date
 
-UP=`cat /proc/uptime | sed "s/\..//"`
-if [ "$UP" -gt "180" ]; then
-    # This machine is only just awake
-    # We wait a few minutes to make sure that we have internet and such
-    echo "Snoozing for three more minutes" > log.txt
-    sleep 180
-fi
-
-cd ~/git/pietervdvn.github.io/Quickmaps/
 cd cache
 #update Name    Relation-ID, prefixed with 3600 (should be equal length)
 update "West-Vlaanderen" "3600416271" '["name"="De Leiemeersen"]["leisure"="nature_reserve"]'

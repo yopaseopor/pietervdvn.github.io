@@ -49,6 +49,13 @@ function popupText(tags){
 		}
 		text += "<br />"
 	}
+	if(tags.opening_hours){
+	    if(tags.opening_hours == "24/7"){
+	        text += "Altijd open<br />"
+	    }else{
+	        text += "Geopend op "+tags.opening_hours;
+	    }
+	}
 
 
 	if(tags.description){

@@ -24,8 +24,10 @@ function color(poly){
 				}
 			}catch(e){}			
 		}
-		poly.setStyle({color: '#FF0000'});
-		poly.tags.selected = false;
+		try{
+    		poly.setStyle({color: '#FF0000'});
+	    	poly.tags.selected = false;
+		}catch(e){}
 	}
 }
 
@@ -36,6 +38,11 @@ var cachedWikipedia = {};
 
 /*Loads and caches the requested wikipedia article. Puts the article at the element with id 'wikipedia_lang_page''*/
 function loadWikipedia(area){
+
+    if(area.tags.wikipedia === undefined){
+        return;
+    }
+
 	var lang = area.tags.wikipedia.split(':')[0];
 	var page = area.tags.wikipedia.split(':')[1];
 			
@@ -933,7 +940,7 @@ function initializeMap(tileLayer){
 		});
 	var osmBeLayer = L.tileLayer("https://tile.osm.be/osmbe/{z}/{x}/{y}.png",
 		{
-		attribution: 'Map Data and background © <a href="osm.org">OpenStreetMap</a> | <a href="https://geo6.be/">Tiles by Geo6</a>',
+		attribution: 'Map Data and background © <a href="osm.org">OpenStreetMap</a> | <a href="https://geo6.be/">Tiles courtesy of Geo6</a>',
 		maxZoom: 21,
 		minZoom: 1
 		});
@@ -948,7 +955,7 @@ function initializeMap(tileLayer){
 	map = L.map('map', {
 		center: [50.9, 3.9],
 		zoom:9,
-		layers: [osmBeLayer]			
+		layers: [osmLayer]			
 		});
 
     map.on('zoomend', function(){

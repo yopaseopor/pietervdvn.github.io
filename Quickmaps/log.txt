@@ -1,2 +1,14 @@
 Updating map...
-Di Feb 12 21:31:12 CET 2019
+Mi Feb 13 01:35:18 CET 2019
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/West-Vlaanderen
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/De Leiemeersen
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Brugge
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Belgie
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Brugge
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Brugge
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Brugge
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Gent
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Gent
+/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Gent
+[master 09c1765] Update of the cache
+ 10 files changed, 66 insertions(+), 34 deletions(-)
