@@ -947,19 +947,39 @@ function initializeMap(tileLayer){
 		minZoom: 1
 		});
 
-	var grbLayer = L.tileLayer.wms('https://geoservices.informatievlaanderen.be/raadpleegdiensten/OGW/wms?', 
-		{layers:"grb_bsk",
-		 attribution: "Kaartachtergrond: Grootschalig Referentie Bestand (GRB) van © AIV Vlaanderen | Data van OpenStreetMap"});
+var grbLayer = L.tileLayer("https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=grb_bsk&STYLE=&FORMAT=image/png&tileMatrixSet=GoogleMapsVL&tileMatrix={z}&tileCol={x}&tileRow={y}",
+		{
+		attribution: 'Map Data   <a href="osm.org">OpenStreetMap</a> | Background <i>Grootschalig ReferentieBestand</i>(GRB) © AGIV',
+		maxZoom: 21,
+		minZoom: 1,
+		wmts:true
+		});
+	//	Object.defineProperty(document, "referrer", {get : function(){ return "https://tile.informatievlaanderen.be"; }});
 
 
 
+    let defaultLayer = osmLayer;
+    var baseLayers = {
+		"OpenStreetMap Be": osmBeLayer,
+		"OpenStreetMap": osmLayer,
+		"Luchtfoto AIV Vlaanderen": wmsLayer,
+		"GRB Vlaanderen": grbLayer
+	};
+    
+    var urlParams = new URLSearchParams(window.location.search);
+    let selectedLayerName = urlParams.get('layer')
+
+    if(baseLayers[selectedLayerName]){
+        defaultLayer = baseLayers[selectedLayerName];
+    }
 
 	map = L.map('map', {
 		center: [50.9, 3.9],
 		zoom:9,
-		layers: [osmLayer]			
+		layers: [defaultLayer]			
 		});
 
+	L.control.layers(baseLayers).addTo(map);
     map.on('zoomend', function(){
         for(i=0; i < onZoomChanged.length; i++){
             onZoomChanged[i]();
@@ -967,15 +987,10 @@ function initializeMap(tileLayer){
     });
 
 
-	var baseLayers = {
-		"OpenStreetMap Be": osmBeLayer,
-		"OpenStreetMap": osmLayer,
-		"Luchtfoto AIV Vlaanderen": wmsLayer
-		// "GRB Vlaanderen ('Kadasterkaart')": grbLayer
-	};
-
 	
-	L.control.layers(baseLayers).addTo(map);
+
+    
+	
 
 	return map;
 }
