@@ -1,10 +1,4 @@
 
-// Bounding box of Belgium
-var min_lon_be = 2.367;
-var max_lon_be = 6.400 ;
-var min_lat_be = 49.500;
-var max_lat_be = 51.683 ;
-
 /********************* UI and TEXT POPUP FUNCTIONS *********************/
 
 
@@ -97,7 +91,7 @@ var cachedMeta = {};
 function loadMeta(area){
 
     let id = area.tags.id;
-    let type = area.type;
+    let type = area.tags.type;
 	if(area.wasRelation){
 		type = "relation";
 	}
@@ -137,12 +131,12 @@ function createText(area, textFunction){
     
     // Get the wikipedia link
     area.tags.wikilink = "";
-    area.tags.meta=  "<div id='meta_"+area.tags.id+"'>Loading last editor...</div>";
+    area.tags.meta = "<span id='meta_"+area.tags.id+"' />";
 	if(area.tags.wikipedia){
 	    var lang = area.tags.wikipedia.split(':')[0];
 	    var page = area.tags.wikipedia.split(':')[1];
 	    area.tags.wikilink = " <a href='https://"+lang+".wikipedia.org/wiki/"+page+"'>Bekijk op wikipedia</a>";				
-	    area.tags.wikipedia_contents = "<div id='wikipedia_"+lang+"_"+page+"'/>";
+	    area.tags.wikipedia_contents = "<span id='wikipedia_"+lang+"_"+page+"'/>";
     }
     
     var text = textFunction(area.tags, area.area);
@@ -153,10 +147,12 @@ function createText(area, textFunction){
 		var type = area.type;
 		if(area.wasRelation){
 			type = "relation";
+
 		}
-		footer += "<p><a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a>"
-		footer += "<a href='https://openstreetmap.org/edit?"+type+"="+area.id+"#map=17/"+area.lat+"/"+area.lon+"' target='_blank'>Wijzig</a> "
+		footer += "<p>"
 		footer += area.tags.wikilink;
+		footer += " <a href='https://openstreetmap.org/"+type+"/"+area.id+"' target='_blank'>Bekijk op OSM</a> "
+		footer += "<a href='https://openstreetmap.org/edit?"+type+"="+area.id+"#map=17/"+area.lat+"/"+area.lon+"' target='_blank'>Wijzig</a> "
 		footer += area.tags.meta;
 		footer+="</p>"
 	}
