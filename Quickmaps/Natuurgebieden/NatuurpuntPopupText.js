@@ -130,12 +130,14 @@ var birdhideShelter = L.icon({
 });
 
 function imageFunction(tags){
-	if(tags.operator.startsWith("Natuurpunt") || tags.operator.startsWith("natuurpunt")){
-		return natuurpuntIcon;
-	}
-	if(tags.operator.startsWith("Agentschap Natuur") || tags.operator.startsWith("Agentschap voor Natuur")){
-		return anbIcon;	
-	}
+    if(tags.operator){
+        if(tags.operator.startsWith("Natuurpunt") || tags.operator.startsWith("natuurpunt")){
+	        return natuurpuntIcon;
+        }
+        if(tags.operator.startsWith("Agentschap Natuur") || tags.operator.startsWith("Agentschap voor Natuur")){
+	        return anbIcon;	
+        }
+    }
 	console.log("No image for ", tags.operator);
 }
 

@@ -1,14 +1,141 @@
 Updating map...
-Mi Feb 13 01:35:18 CET 2019
+Sa Feb 16 12:52:10 CET 2019
+mkdir: cannot create directory ‘West-Vlaanderen’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/West-Vlaanderen
+--2019-02-16 12:52:10--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3600416271)-%3E.searchArea;(node[%22name%22=%22De%20Leiemeersen%22][%22leisure%22=%22nature_reserve%22](area.searchArea);way[%22name%22=%22De%20Leiemeersen%22][%22leisure%22=%22nature_reserve%22](area.searchArea);relation[%22name%22=%22De%20Leiemeersen%22][%22leisure%22=%22nature_reserve%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.48.217, 178.63.11.215, 2a01:4f8:120:6464::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.48.217|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘["name"="De Leiemeersen"]["leisure"="nature_reserve"].json’
+
+     0K .......... .                                            805K=0,01s
+
+2019-02-16 12:52:12 (805 KB/s) - ‘["name"="De Leiemeersen"]["leisure"="nature_reserve"].json’ saved [11972]
+
+mkdir: cannot create directory ‘De Leiemeersen’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/De Leiemeersen
+--2019-02-16 12:52:12--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3609118029)-%3E.searchArea;(node[%22natural%22](area.searchArea);way[%22natural%22](area.searchArea);relation[%22natural%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.11.215, 178.63.48.217, 2a01:4f8:110:502c::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.11.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘["natural"].json’
+
+     0K .......... .......... .......... .......... .......... 54,1K
+    50K .......... .......... .......... .......... ..........  103K
+   100K .......... .......... .......... .......... .......... 75,5K
+   150K .......... .......... .....                            1,08M=2,1s
+
+2019-02-16 12:52:19 (83,8 KB/s) - ‘["natural"].json’ saved [179830]
+
+mkdir: cannot create directory ‘Brugge’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Brugge
+--2019-02-16 12:52:19--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3600562654)-%3E.searchArea;(node[%22amenity%22=%22public_bookcase%22](area.searchArea);way[%22amenity%22=%22public_bookcase%22](area.searchArea);relation[%22amenity%22=%22public_bookcase%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.11.215, 178.63.48.217, 2a01:4f8:110:502c::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.11.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘["amenity"="public_bookcase"].json’
+
+     0K ........                                               56,4K=0,2s
+
+2019-02-16 12:52:26 (56,4 KB/s) - ‘["amenity"="public_bookcase"].json’ saved [9050]
+
+mkdir: cannot create directory ‘Belgie’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Belgie
+--2019-02-16 12:52:26--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3600052411)-%3E.searchArea;(node[%22amenity%22=%22public_bookcase%22](area.searchArea);way[%22amenity%22=%22public_bookcase%22](area.searchArea);relation[%22amenity%22=%22public_bookcase%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.11.215, 178.63.48.217, 2a01:4f8:110:502c::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.11.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘["amenity"="public_bookcase"].json’
+
+     0K .......... .......... .                                 198K=0,1s
+
+2019-02-16 12:52:50 (198 KB/s) - ‘["amenity"="public_bookcase"].json’ saved [21898]
+
+mkdir: cannot create directory ‘Brugge’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Brugge
+--2019-02-16 12:52:50--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3600562654)-%3E.searchArea;(node[%22leisure%22=%22nature_reserve%22][%22operator%22=%22Natuurpunt%20Brugge%22](area.searchArea);way[%22leisure%22=%22nature_reserve%22][%22operator%22=%22Natuurpunt%20Brugge%22](area.searchArea);relation[%22leisure%22=%22nature_reserve%22][%22operator%22=%22Natuurpunt%20Brugge%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.11.215, 178.63.48.217, 2a01:4f8:110:502c::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.11.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘["leisure"="nature_reserve"]["operator"="Natuurpunt Brugge"].json’
+
+     0K .......... .......... .......... ..                     174K=0,2s
+
+2019-02-16 12:53:05 (174 KB/s) - ‘["leisure"="nature_reserve"]["operator"="Natuurpunt Brugge"].json’ saved [32807]
+
+mkdir: cannot create directory ‘Brugge’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Brugge
+--2019-02-16 12:53:05--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3600562654)-%3E.searchArea;(node[%22tourism%22=%22information%22][%22operator%22=%22Natuurpunt%20Brugge%22](area.searchArea);way[%22tourism%22=%22information%22][%22operator%22=%22Natuurpunt%20Brugge%22](area.searchArea);relation[%22tourism%22=%22information%22][%22operator%22=%22Natuurpunt%20Brugge%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.11.215, 178.63.48.217, 2a01:4f8:110:502c::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.11.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 676 [application/json]
+Saving to: ‘["tourism"="information"]["operator"="Natuurpunt Brugge"].json’
+
+     0K                                                       100% 50,2M=0s
+
+2019-02-16 12:53:11 (50,2 MB/s) - ‘["tourism"="information"]["operator"="Natuurpunt Brugge"].json’ saved [676/676]
+
+mkdir: cannot create directory ‘Brugge’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Brugge
+--2019-02-16 12:53:11--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3600562654)-%3E.searchArea;(node[%22leisure%22=%22bird_hide%22][%22operator%22=%22Natuurpunt%20Brugge%22](area.searchArea);way[%22leisure%22=%22bird_hide%22][%22operator%22=%22Natuurpunt%20Brugge%22](area.searchArea);relation[%22leisure%22=%22bird_hide%22][%22operator%22=%22Natuurpunt%20Brugge%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.11.215, 178.63.48.217, 2a01:4f8:110:502c::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.11.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘["leisure"="bird_hide"]["operator"="Natuurpunt Brugge"].json’
+
+     0K                                                        61,6M=0s
+
+2019-02-16 12:53:15 (61,6 MB/s) - ‘["leisure"="bird_hide"]["operator"="Natuurpunt Brugge"].json’ saved [870]
+
+mkdir: cannot create directory ‘Gent’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Gent
+--2019-02-16 12:53:15--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3602524008)-%3E.searchArea;(node[%22natural%22=%22tree%22][%22species%22](area.searchArea);way[%22natural%22=%22tree%22][%22species%22](area.searchArea);relation[%22natural%22=%22tree%22][%22species%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.11.215, 178.63.48.217, 2a01:4f8:110:502c::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.11.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘["natural"="tree"]["species"].json’
+
+     0K .......... .......... ..........                        208K=0,1s
+
+2019-02-16 12:53:21 (208 KB/s) - ‘["natural"="tree"]["species"].json’ saved [31554]
+
+mkdir: cannot create directory ‘Gent’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Gent
+--2019-02-16 12:53:21--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3602524008)-%3E.searchArea;(node[%22natural%22=%22tree%22][%22species:nl%22](area.searchArea);way[%22natural%22=%22tree%22][%22species:nl%22](area.searchArea);relation[%22natural%22=%22tree%22][%22species:nl%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.11.215, 178.63.48.217, 2a01:4f8:110:502c::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.11.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘["natural"="tree"]["species:nl"].json’
+
+     0K ..                                                      139M=0s
+
+2019-02-16 12:53:26 (139 MB/s) - ‘["natural"="tree"]["species:nl"].json’ saved [2102]
+
+mkdir: cannot create directory ‘Gent’: File exists
 /home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Gent
-[master 09c1765] Update of the cache
- 10 files changed, 66 insertions(+), 34 deletions(-)
+--2019-02-16 12:53:26--  https://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area(3602524008)-%3E.searchArea;(node[%22landuse%22=%22orchard%22](area.searchArea);way[%22landuse%22=%22orchard%22](area.searchArea);relation[%22landuse%22=%22orchard%22](area.searchArea););out%20body;%3E;out%20skel%20qt;
+Resolving overpass-api.de (overpass-api.de)... 178.63.11.215, 178.63.48.217, 2a01:4f8:110:502c::2, ...
+Connecting to overpass-api.de (overpass-api.de)|178.63.11.215|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [application/json]
+Saving to: ‘["landuse"="orchard"].json’
+
+     0K .......... .......... .......... .......... ..........  313K
+    50K .......... .......... .......... .......... ..........  760K
+   100K .......... .......... .......... ...                   1,64M=0,2s
+
+2019-02-16 12:53:37 (545 KB/s) - ‘["landuse"="orchard"].json’ saved [136833]
+
+[master fa12b40] Update of the cache
+ 10 files changed, 22 insertions(+), 20 deletions(-)
+To github.com:pietervdvn/pietervdvn.github.io.git
+   b0c4349..fa12b40  master -> master

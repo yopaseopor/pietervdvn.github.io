@@ -460,9 +460,11 @@ function extractAreas(jsonEls, idMap){
 
 
 function makeOverviewLayer(elements, textFunction, imageFunction){
-    if(elements.length > 100){
-        return heatLayer(elements);
-    }
+    try{
+        if(elements.length > 100){
+            return heatLayer(elements);
+        }
+    }catch(e){}
     return makeIconLayer(elements, textFunction, imageFunction)
 }
 
@@ -838,8 +840,8 @@ var i = 0;
 function makeZoomFunction(json, options, highZoomLayer, midZoomLayer, lowZoomLayer){
     if(options.highLevelOnly){
 	    return function(){
-	        if(options.hidden && map.getZoom() >= 14){
-			map.addLayer(highZoomLayer);
+	        if(!options.hidden && map.getZoom() >= 14){
+			    map.addLayer(highZoomLayer);
 		    }else{
 		        map.removeLayer(highZoomLayer);
 		    }

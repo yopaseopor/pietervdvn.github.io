@@ -5,6 +5,7 @@ function update { # search area, relId, tags
     cd "$1"
     pwd
     QUERY="[out:json][timeout:25];area($2)->.searchArea;(node$3(area.searchArea);way$3(area.searchArea);relation$3(area.searchArea););out body;>;out skel qt;"
+    # wget -O "$3.json" "https://overpass-api.de/api/interpreter?data=$QUERY"
     wget -O "$3.json" "https://overpass-api.de/api/interpreter?data=$QUERY"
     cd ..
 
@@ -29,6 +30,8 @@ update "Brugge" "3600562654" '["leisure"="bird_hide"]["operator"="Natuurpunt Bru
 update "Gent"   "3602524008" '["natural"="tree"]["species"]'
 update "Gent"   "3602524008" '["natural"="tree"]["species:nl"]'
 update "Gent"   "3602524008" '["landuse"="orchard"]'
+
+update "Belgie" "3600052411" '["religion"="muslim"]'
 
 git add .
 git commit -m "Update of the cache"
