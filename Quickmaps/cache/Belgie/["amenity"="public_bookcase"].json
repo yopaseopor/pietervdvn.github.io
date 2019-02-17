@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2019-02-16T15:06:02Z",
-    "timestamp_areas_base": "2019-02-16T14:40:02Z",
+    "timestamp_osm_base": "2019-02-17T10:54:02Z",
+    "timestamp_areas_base": "2019-02-17T09:50:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -933,6 +933,18 @@
     "image": "https://i.pinimg.com/564x/ee/46/88/ee4688e255bb96f7f7efe4f84192102e.jpg",
     "name": "Minibib",
     "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box"
+  }
+},
+{
+  "type": "node",
+  "id": 6283063833,
+  "lat": 51.0867836,
+  "lon": 3.4874163,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://i.pinimg.com/564x/ba/ab/bd/baabbdab7b1354457c7a803c467c6632.jpg",
+    "name": "Boekenruilkast",
     "public_bookcase:type": "reading_box"
   }
 }
