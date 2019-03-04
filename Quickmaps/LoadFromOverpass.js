@@ -943,15 +943,13 @@ function initializeMap(tileLayer){
 		minZoom: 1
 		});
 
-var grbLayer = L.tileLayer("https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=grb_bsk&STYLE=&FORMAT=image/png&tileMatrixSet=GoogleMapsVL&tileMatrix={z}&tileCol={x}&tileRow={y}",
+    var grbLayer = L.tileLayer("https://tile.informatievlaanderen.be/ws/raadpleegdiensten/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=grb_bsk&STYLE=&FORMAT=image/png&tileMatrixSet=GoogleMapsVL&tileMatrix={z}&tileCol={x}&tileRow={y}",
 		{
 		attribution: 'Map Data   <a href="osm.org">OpenStreetMap</a> | Background <i>Grootschalig ReferentieBestand</i>(GRB) © AGIV',
 		maxZoom: 21,
 		minZoom: 1,
 		wmts:true
 		});
-	//	Object.defineProperty(document, "referrer", {get : function(){ return "https://tile.informatievlaanderen.be"; }});
-
 
 
     let defaultLayer = osmLayer;
