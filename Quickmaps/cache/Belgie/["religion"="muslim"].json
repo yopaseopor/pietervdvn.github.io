@@ -1,0 +1,2264 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.55.5 2ca3f387",
+  "osm3s": {
+    "timestamp_osm_base": "2019-03-11T11:04:02Z",
+    "timestamp_areas_base": "2019-03-11T10:17:02Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 302349982,
+  "lat": 50.8555536,
+  "lon": 4.3456011,
+  "tags": {
+    "amenity": "place_of_worship",
+    "created_by": "Potlatch 0.10f",
+    "name": "Mosquée Omar Ben Khatab",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346178687,
+  "lat": 50.8524448,
+  "lon": 4.3313681,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Al-Khalil",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346179405,
+  "lat": 50.8548660,
+  "lon": 4.3321268,
+  "tags": {
+    "amenity": "place_of_worship",
+    "created_by": "Potlatch 0.10f",
+    "name": "Mosquée Al Imrane",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346180597,
+  "lat": 50.8545331,
+  "lon": 4.3272317,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "ASBL Annajah",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346180871,
+  "lat": 50.8564087,
+  "lon": 4.3311478,
+  "tags": {
+    "addr:city": "Molenbeek-Saint-Jean - Sint-Jans-Molenbeek",
+    "addr:housenumber": "36",
+    "addr:postcode": "1080",
+    "addr:street": "Rue des Étangs Noirs - Zwarte Vijversstraat",
+    "amenity": "place_of_worship",
+    "name": "Mosquée Attadamoun",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346182562,
+  "lat": 50.8561176,
+  "lon": 4.3412850,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée El Mostakbal",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346185661,
+  "lat": 50.8575942,
+  "lon": 4.3427987,
+  "tags": {
+    "addr:housenumber": "20",
+    "addr:street": "Rue des Ateliers - Werkhuizenstraat",
+    "amenity": "place_of_worship",
+    "created_by": "Potlatch 0.10f",
+    "name": "Dar Ulum Camia Causia",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346290403,
+  "lat": 50.8414556,
+  "lon": 4.3421494,
+  "tags": {
+    "addr:housenumber": "181",
+    "amenity": "place_of_worship",
+    "created_by": "Potlatch 0.10f",
+    "name": "Mosquée El Jadid",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346293091,
+  "lat": 50.8696181,
+  "lon": 4.3605082,
+  "tags": {
+    "amenity": "place_of_worship",
+    "created_by": "Potlatch 0.10f",
+    "name": "Mosquée Arrahma",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346568380,
+  "lat": 50.8685410,
+  "lon": 4.3752076,
+  "tags": {
+    "addr:street": "Rue des Ailes - Vleugelsstraat",
+    "amenity": "place_of_worship",
+    "name": "Mosquée de la Foi albanaise",
+    "name:ku": "Mizgefta",
+    "name:tr": "Camii",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346650863,
+  "lat": 50.8462155,
+  "lon": 4.3422687,
+  "tags": {
+    "addr:city": "Bruxelles - Brussel",
+    "addr:housenumber": "6",
+    "addr:postcode": "1000",
+    "addr:street": "Rue de la Buanderie - Washuisstraat",
+    "amenity": "place_of_worship",
+    "name": "Pakistan Muslim Center",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346652120,
+  "lat": 50.8425249,
+  "lon": 4.3334977,
+  "tags": {
+    "addr:housenumber": "16",
+    "addr:street": "Rue Bissé - Bisséstraat",
+    "amenity": "place_of_worship",
+    "created_by": "Potlatch 0.10f",
+    "name": "Mosquée Assouna",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346653003,
+  "lat": 50.8537532,
+  "lon": 4.3423928,
+  "tags": {
+    "addr:housenumber": "8",
+    "addr:street": "Boulevard de Nieuport - Nieuwpoortlaan",
+    "amenity": "place_of_worship",
+    "created_by": "Potlatch 0.10f",
+    "name": "Mosquée Hamza",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346653577,
+  "lat": 50.8604792,
+  "lon": 4.3417755,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Badr",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346654889,
+  "lat": 50.8630022,
+  "lon": 4.3666863,
+  "tags": {
+    "addr:housenumber": "122",
+    "addr:street": "Rue des Palais - Paleizenstraat",
+    "amenity": "place_of_worship",
+    "created_by": "Potlatch 0.10f",
+    "name": "Mosquée Zaid Ibn Haritha",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346656536,
+  "lat": 50.8754386,
+  "lon": 4.3774483,
+  "tags": {
+    "addr:housenumber": "9",
+    "addr:street": "Rue Georges Garnir - Georges Garnirstraat",
+    "amenity": "place_of_worship",
+    "name": "Mosquée Ahl Allah",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346657486,
+  "lat": 50.8570980,
+  "lon": 4.3729388,
+  "tags": {
+    "addr:housenumber": "39",
+    "addr:street": "Rue Josaphat - Josafatstraat",
+    "amenity": "place_of_worship",
+    "name": "Mosquée blanche turque",
+    "name:ku": "Mizgeft",
+    "name:tr": "Camii",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346659070,
+  "lat": 50.8618842,
+  "lon": 4.3750789,
+  "tags": {
+    "addr:housenumber": "50",
+    "addr:street": "Rue de l'Est - Ooststraat",
+    "amenity": "place_of_worship",
+    "created_by": "Potlatch 0.10f",
+    "name": "Mosquée Schaerbeek",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346881199,
+  "lat": 50.8330524,
+  "lon": 4.3348464,
+  "tags": {
+    "addr:housenumber": "81",
+    "addr:street": "Avenue Fonsny - Fonsnylaan",
+    "amenity": "place_of_worship",
+    "name": "Mosquée Assalam",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 346881915,
+  "lat": 50.8337383,
+  "lon": 4.3388206,
+  "tags": {
+    "addr:city": "Saint-Gilles - Sint-Gillis",
+    "addr:housenumber": "42",
+    "addr:postcode": "1060",
+    "addr:street": "Rue de Suède - Zwedenstraat",
+    "amenity": "place_of_worship",
+    "name": "Centre Islamique El Mouhsinine",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 417830048,
+  "lat": 50.8366310,
+  "lon": 4.3317382,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Zembili Ali Efendi Camii",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 420279959,
+  "lat": 50.8376175,
+  "lon": 4.3296525,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Islam Cemiyeti Camii",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427872669,
+  "lat": 50.8426021,
+  "lon": 4.3356218,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Rida",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427873053,
+  "lat": 50.8430165,
+  "lon": 4.3127436,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée El Ghofrane",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427873391,
+  "lat": 50.8698865,
+  "lon": 4.3725066,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Kouba",
+    "name:ku": "Mizgefta Kuba",
+    "name:tr": "Kuba Camii",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427873529,
+  "lat": 50.8719186,
+  "lon": 4.3544181,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Zaouiya / Si Lahcen",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427873623,
+  "lat": 50.8398204,
+  "lon": 4.3443260,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Attawhid",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427874052,
+  "lat": 50.8618835,
+  "lon": 4.3461876,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Yougoslave",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427874121,
+  "lat": 50.8762132,
+  "lon": 4.3985819,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Attaouba",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427875763,
+  "lat": 50.8599774,
+  "lon": 4.3387369,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Mohamed Ali",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427877506,
+  "lat": 50.8453463,
+  "lon": 4.3339003,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Al Fath",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427877932,
+  "lat": 50.8375036,
+  "lon": 4.3279093,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Arrahmane",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427878637,
+  "lat": 50.8310591,
+  "lon": 4.3735175,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée El Mouhagirine",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427879244,
+  "lat": 50.8568564,
+  "lon": 4.3738632,
+  "tags": {
+    "addr:housenumber": "6",
+    "addr:street": "Rue Massaux - Massauxstraat",
+    "amenity": "place_of_worship",
+    "name": "Mosquée Annour",
+    "name:ku": "Mizgefta",
+    "name:tr": "Camii",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427880185,
+  "lat": 50.8681086,
+  "lon": 4.3417980,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Maison du Devoir et du Culte",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427880607,
+  "lat": 50.8578364,
+  "lon": 4.3393980,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Mevlana",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427881097,
+  "lat": 50.8575976,
+  "lon": 4.3370691,
+  "tags": {
+    "addr:city": "Molenbeek-Saint-Jean - Sint-Jans-Molenbeek",
+    "addr:housenumber": "54",
+    "addr:street": "Chaussée de Merchtem - Steenweg op Merchtem",
+    "amenity": "place_of_worship",
+    "name": "Mosquée El Moutakine",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 427881288,
+  "lat": 50.8668348,
+  "lon": 4.3417899,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Al Aziz",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 470962226,
+  "lat": 50.8358381,
+  "lon": 4.3783042,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Bangladesh Islamic Cultural Centre",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 1625352934,
+  "lat": 51.0674490,
+  "lon": 4.0383910,
+  "tags": {
+    "amenity": "place_of_worship",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 1735521786,
+  "lat": 50.4263959,
+  "lon": 4.5534836,
+  "tags": {
+    "amenity": "place_of_worship",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 1849526881,
+  "lat": 51.0081284,
+  "lon": 3.8836548,
+  "tags": {
+    "amenity": "place_of_worship",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 1888748597,
+  "lat": 50.8847114,
+  "lon": 4.6950234,
+  "tags": {
+    "addr:city": "Leuven",
+    "addr:housenumber": "33",
+    "addr:postcode": "3000",
+    "addr:street": "Penitentienenstraat",
+    "amenity": "place_of_worship",
+    "name": "Moskee Al Fath",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 2232155556,
+  "lat": 50.8725249,
+  "lon": 4.3535697,
+  "tags": {
+    "amenity": "place_of_worship",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 2825796855,
+  "lat": 51.2060173,
+  "lon": 4.3985066,
+  "tags": {
+    "amenity": "place_of_worship",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 3015995397,
+  "lat": 51.2231287,
+  "lon": 4.4312082,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "El Mouslimine",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 3370717226,
+  "lat": 50.6725798,
+  "lon": 5.6253227,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Ertugrul Gazi Camii - Centre Culturel Turc d'Herstal",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 3423376187,
+  "lat": 50.4705209,
+  "lon": 4.8613447,
+  "tags": {
+    "addr:city": "Namur",
+    "addr:housenumber": "13",
+    "addr:postcode": "5000",
+    "addr:street": "Rue Denis-Georges Bayar",
+    "amenity": "place_of_worship",
+    "name": "Mosquée Turque",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 3931135057,
+  "lat": 51.0613824,
+  "lon": 3.7023878,
+  "tags": {
+    "name": "Moskee Al Fath",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 4335995208,
+  "lat": 50.4704217,
+  "lon": 4.8583846,
+  "tags": {
+    "addr:city": "Namur",
+    "addr:housenumber": "9",
+    "addr:postcode": "5000",
+    "addr:street": "Rue Marie Henriette",
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Mosquée Marocaine",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 4453463839,
+  "lat": 50.8764032,
+  "lon": 4.6968623,
+  "tags": {
+    "amenity": "place_of_worship",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 4533742979,
+  "lat": 50.6425925,
+  "lon": 5.5944491,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée El Itissam",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 4564143431,
+  "lat": 50.6290686,
+  "lon": 5.5879188,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Attakwa",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473563,
+  "lat": 51.2088780,
+  "lon": 4.3906943,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee Taoubat",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473564,
+  "lat": 51.1846526,
+  "lon": 4.3761263,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee Al Fath",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473565,
+  "lat": 51.2107011,
+  "lon": 4.4330528,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee Masjid Assalam",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473566,
+  "lat": 51.1739332,
+  "lon": 4.3517627,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee El Ouahda",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473567,
+  "lat": 51.2131499,
+  "lon": 4.4234779,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee Al Iman",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473568,
+  "lat": 51.2103535,
+  "lon": 4.4284683,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee Hamza",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473569,
+  "lat": 51.2141416,
+  "lon": 4.4296303,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee En Nassr",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473570,
+  "lat": 51.2113521,
+  "lon": 4.4252096,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "El Nour",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473572,
+  "lat": 51.2392825,
+  "lon": 4.4453564,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee Essalam",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473573,
+  "lat": 51.1713572,
+  "lon": 4.3377006,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee van Hoboken",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473574,
+  "lat": 51.2265821,
+  "lon": 4.4246198,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5032473575,
+  "lat": 51.2274543,
+  "lon": 4.4479642,
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Ikc Gazi Husrev-beg Antwerpen",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5092060505,
+  "lat": 51.3565801,
+  "lon": 4.3407252,
+  "tags": {
+    "addr:housenumber": "95",
+    "addr:postcode": "2040",
+    "addr:street": "Steenovenstraat",
+    "alt_name": "Het Gezin",
+    "amenity": "community_centre",
+    "contact:facebook": "https://www.facebook.com/pg/hetgezin/",
+    "disused:amenity": "school",
+    "email": "het.gezin@telenet.be",
+    "name": "Islamitisch Sociaal en Cultureel Centrum",
+    "old_name": "Bosschool",
+    "operator": "Het Gezin vzw",
+    "phone": "+32 495 47 42 68",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5195941594,
+  "lat": 51.2144819,
+  "lon": 4.4444456,
+  "tags": {
+    "addr:housenumber": "11",
+    "addr:postcode": "2140",
+    "addr:street": "Stenenbrug",
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "email": "info@de-koepel.be",
+    "name": "De-Koepel moskee",
+    "religion": "muslim",
+    "website": "http://www.de-koepel.be/",
+    "wikidata": "Q18039995"
+  }
+},
+{
+  "type": "node",
+  "id": 5195949990,
+  "lat": 51.2314338,
+  "lon": 4.4452140,
+  "tags": {
+    "addr:housenumber": "35",
+    "addr:street": "Van Duyststraat",
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee Attaqwa",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5295684352,
+  "lat": 50.8763535,
+  "lon": 4.3984433,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée Attaouba",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5663442791,
+  "lat": 50.9804060,
+  "lon": 5.0600935,
+  "tags": {
+    "addr:city": "Diest",
+    "addr:housenumber": "17",
+    "addr:postcode": "3290",
+    "addr:street": "Vervoortplaats",
+    "amenity": "place_of_worship",
+    "name": "Beraat",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5663444023,
+  "lat": 50.9818382,
+  "lon": 5.0494472,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Ennasr",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5663444841,
+  "lat": 50.9774446,
+  "lon": 5.0591343,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "B.I.F. Takwa",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5700712703,
+  "lat": 51.0226048,
+  "lon": 5.3989760,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Marokaanse moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5700712710,
+  "lat": 51.0233753,
+  "lon": 5.3962947,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Turkse moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5740687433,
+  "lat": 51.0694010,
+  "lon": 5.1293479,
+  "tags": {
+    "addr:city": "Tessenderlo",
+    "addr:housenumber": "8",
+    "addr:postcode": "3980",
+    "addr:street": "Tushoekstraat",
+    "amenity": "place_of_worship",
+    "name": "Diyanet Tessenderlo",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5740687434,
+  "lat": 51.0725739,
+  "lon": 5.1356534,
+  "tags": {
+    "addr:city": "Tessenderlo",
+    "addr:housenumber": "25",
+    "addr:postcode": "3980",
+    "addr:street": "Kanaalweg",
+    "amenity": "place_of_worship",
+    "name": "Essalam",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 5907215419,
+  "lat": 50.6829986,
+  "lon": 5.6700538,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mimar Sinan Camii",
+    "name:fr": "Mosquée Mimar Sinan",
+    "name:tr": "Diyanet Mimar Sinan Camii",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 6324816111,
+  "lat": 51.0431131,
+  "lon": 5.3067320,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Sultan Ahmed moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 23216211,
+  "nodes": [
+    5599352195,
+    5599352196,
+    5599352197,
+    5599352198,
+    5599352199,
+    5599352200,
+    5599352201,
+    251131782,
+    5599352193,
+    5599352194,
+    251131831,
+    251131784,
+    251131832,
+    251131785,
+    251131786,
+    5599352195
+  ],
+  "tags": {
+    "addr:city": "Bruxelles - Brussel",
+    "addr:housenumber": "14",
+    "addr:postcode": "1000",
+    "addr:street": "Parc du Cinquantenaire - Jubelpark",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "denomination": "sunni",
+    "name": "Grande mosquée de Bruxelles - Grote Moskee van Brussel",
+    "name:fr": "Grande mosquée de Bruxelles",
+    "name:nl": "Grote Moskee van Brussel",
+    "religion": "muslim",
+    "wikidata": "Q1548310",
+    "wikipedia": "fr:Grande mosquée de Bruxelles"
+  }
+},
+{
+  "type": "way",
+  "id": 48565699,
+  "nodes": [
+    616896239,
+    616896240,
+    616896216,
+    616896217,
+    616896218,
+    616896241,
+    616896246,
+    616896248,
+    616896247,
+    616896249,
+    616896245,
+    616896242,
+    616896243,
+    616896244,
+    616896257,
+    616896258,
+    616896259,
+    616896260,
+    616896261,
+    616896262,
+    616896263,
+    616896250,
+    616896251,
+    616896252,
+    616896253,
+    616896254,
+    616896255,
+    616896256,
+    616896229,
+    616896237,
+    616896238,
+    616896215,
+    616896230,
+    616896231,
+    616896232,
+    616896233,
+    616896234,
+    616896235,
+    616896236,
+    616896219,
+    616896220,
+    616896221,
+    616896222,
+    616896223,
+    616896224,
+    616896225,
+    616896226,
+    616896227,
+    616896228,
+    616896239
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Yunus Emre-moskee",
+    "religion": "muslim",
+    "wikidata": "Q15884160"
+  }
+},
+{
+  "type": "way",
+  "id": 77762294,
+  "nodes": [
+    914488796,
+    914488795,
+    914488793,
+    914488797,
+    914488796
+  ],
+  "tags": {
+    "addr:housenumber": "45",
+    "addr:postcode": "3012",
+    "addr:street": "Kolonel begaultlaan",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "denomination": "sunni",
+    "name": "Moskee Al Ihsaan",
+    "religion": "muslim",
+    "website": "http://alihsaan.be/"
+  }
+},
+{
+  "type": "way",
+  "id": 95800466,
+  "nodes": [
+    4963750441,
+    1110316390,
+    1110316524,
+    4963750439,
+    4963750440,
+    4963750438,
+    4963750446,
+    4963750429,
+    1110316429,
+    1110316426,
+    4963750444,
+    4963750443,
+    4963750442,
+    4963750441
+  ],
+  "tags": {
+    "addr:city": "Lebbeke",
+    "addr:housenumber": "28",
+    "addr:postcode": "9280",
+    "addr:street": "Konkelgoedstraat",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "name": "Moskee Al Hoedah",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 104011807,
+  "nodes": [
+    1200373366,
+    1200373079,
+    1200373038,
+    1200372989,
+    1200373423,
+    1200373377,
+    1200373341,
+    1200373290,
+    1200373366
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Ahmadia gemeenschap",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 111490293,
+  "nodes": [
+    1270106724,
+    1270106825,
+    1270106816,
+    1270106832,
+    1270106724
+  ],
+  "tags": {
+    "addr:city": "bastogne",
+    "addr:housenumber": "100",
+    "addr:street": "avenue de l'independence",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 133031638,
+  "nodes": [
+    1463867148,
+    4964371551,
+    4964371550,
+    1463867163,
+    1463867172,
+    1463867165,
+    4964371549,
+    4964371402,
+    4964371400,
+    4964371401,
+    4964371398,
+    4964371399,
+    4964371397,
+    4964371396,
+    1463867156,
+    1463867157,
+    1463867147,
+    4964371404,
+    4964371403,
+    1463867168,
+    1463867148
+  ],
+  "tags": {
+    "addr:housename": "Al Hidaya",
+    "addr:housenumber": "31",
+    "addr:postcode": "3680",
+    "addr:street": "Sportlaan",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "name": "Al Hidaya",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 158419706,
+  "nodes": [
+    1706142211,
+    1706142153,
+    1706142287,
+    1706142095,
+    1706142211
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "denomination": "alevi",
+    "name": "Centre Culturel Alévi de Verviers",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 166654484,
+  "nodes": [
+    1781006922,
+    1781006921,
+    1781006920,
+    1781006923,
+    1781006922
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Mosquée de Nivelles",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 192569373,
+  "nodes": [
+    2031193338,
+    2031193330,
+    2031193336,
+    2031193337,
+    2031193341,
+    2031193345,
+    2031193338
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "denomination": "Turks Diyanet",
+    "image": "Zolder Lindeman Turkse Moskee.jpg",
+    "name": "Selimiye Moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 202040276,
+  "nodes": [
+    2120218266,
+    2120218275,
+    2120218267,
+    2120218261,
+    2120218266
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Turkse moskee Winterslag",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 208922993,
+  "nodes": [
+    2191773603,
+    2191773607,
+    2191773604,
+    2191773605,
+    2191773609,
+    2191773602,
+    2191773600,
+    2191773606,
+    2191773601,
+    2191773599,
+    2191773608,
+    2191773610,
+    2191773598,
+    2191773603
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Alaadin Camii",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 208925423,
+  "nodes": [
+    2191789197,
+    2191789204,
+    2191789198,
+    2191789199,
+    2191789205,
+    2191789201,
+    2191789200,
+    2191789203,
+    2191789202,
+    2191789197
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 220214532,
+  "nodes": [
+    2293459669,
+    2293459679,
+    2293459696,
+    2293459693,
+    2293459669
+  ],
+  "tags": {
+    "addr:housenumber": "130",
+    "addr:street": "Leysestraat",
+    "amenity": "place_of_worship",
+    "building": "house",
+    "religion": "muslim",
+    "source": "AGIV"
+  }
+},
+{
+  "type": "way",
+  "id": 228246949,
+  "nodes": [
+    2368784212,
+    2368784226,
+    2368784219,
+    2368784215,
+    2368784208,
+    2368784201,
+    2368784197,
+    2368784191,
+    2368784184,
+    2368784182,
+    2368784170,
+    2368784149,
+    2368784212
+  ],
+  "tags": {
+    "addr:city": "Schaerbeek - Schaarbeek",
+    "addr:housenumber": "88",
+    "addr:postcode": "1030",
+    "addr:street": "Chaussée de Haecht - Haachtsesteenweg",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "name": "Moskee Fatih Camii",
+    "name:fr": "Mosquée Fatih Camii",
+    "name:ku": "Mizgefta Fatîh",
+    "name:tr": "Fatih Camii",
+    "ref:UrbIS": "8409759",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 240904579,
+  "nodes": [
+    2485985165,
+    2485985170,
+    2485985171,
+    2485985173,
+    2485985166,
+    2485985167,
+    2485985165
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Mosque Tevhid Camii",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 242846762,
+  "nodes": [
+    2502959693,
+    2502959687,
+    2502959692,
+    2502959694,
+    2502959693
+  ],
+  "tags": {
+    "addr:city": "Mons",
+    "addr:housenumber": "14",
+    "addr:postcode": "7000",
+    "addr:street": "Rue François Fetis",
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "An Nour",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 245005631,
+  "nodes": [
+    2522686301,
+    2522686303,
+    2522686297,
+    2522686296,
+    2522686298,
+    2522686299,
+    2522686300,
+    2522686302,
+    2522686301
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Islamitische moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 254079399,
+  "nodes": [
+    2599625597,
+    2599056234,
+    2599056217,
+    2599056227,
+    2599056248,
+    2599625598,
+    2599056251,
+    2599056247,
+    2599056264,
+    2599056269,
+    2599056257,
+    2599056256,
+    2599625597
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "house",
+    "building:levels": "3",
+    "name": "Turkse moskee Waterschei",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 260437686,
+  "nodes": [
+    2653483437,
+    2659254377,
+    2659254379,
+    2659254380,
+    2659254378,
+    2659254381,
+    2644574737,
+    2644574719,
+    2644574716,
+    2653483446,
+    2653483452,
+    2653483450,
+    2653483448,
+    2653483437
+  ],
+  "tags": {
+    "addr:city": "Anderlecht",
+    "addr:country": "BE",
+    "addr:housenumber": "11",
+    "addr:postcode": "1070",
+    "addr:street": "Rue du Libre Examen - Vrij-Onderzoekstraat",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "name": "Mosquée Al Amal - Al Amal Moskee",
+    "name:fr": "Mosquée Al Amal",
+    "name:nl": "Al Amal Moskee",
+    "phone": "+32 2 522 05 43",
+    "religion": "muslim",
+    "url": "http://www.alamal.be"
+  }
+},
+{
+  "type": "way",
+  "id": 260729754,
+  "nodes": [
+    2662931102,
+    2662931103,
+    2662931104,
+    2662931101,
+    2662931100,
+    2662931093,
+    2662931091,
+    2662931102
+  ],
+  "tags": {
+    "addr:city": "Hechtel-Eksel",
+    "addr:country": "BE",
+    "addr:housenumber": "29",
+    "addr:postcode": "3940",
+    "addr:street": "Hasseltsebaan",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "name": "Moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 313528268,
+  "nodes": [
+    4128970107,
+    4128970110,
+    4128970108,
+    4128970194,
+    4129053389,
+    3195272868,
+    3195272865,
+    3195272839,
+    3195272837,
+    3195272836,
+    4129053093,
+    4128970104,
+    4128970103,
+    4128970102,
+    3195272790,
+    6207358253,
+    6207358255,
+    6207358254,
+    3195272787,
+    3195272794,
+    3195272798,
+    3195272833,
+    3195272832,
+    3195272840,
+    3195272842,
+    4128970193,
+    3213742551,
+    3213744962,
+    4128970107
+  ],
+  "tags": {
+    "addr:city": "Beringen",
+    "addr:country": "BE",
+    "addr:housenumber": "6",
+    "addr:postcode": "3581",
+    "addr:street": "Kerkstraat",
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "denomination": "sufi",
+    "name": "Semersah Vakfi Beringen",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 314953159,
+  "nodes": [
+    4347737878,
+    4347737879,
+    3210358314,
+    4347737881,
+    4347737880,
+    3210358329,
+    3210358313,
+    4347737877,
+    4347737876,
+    4347737875,
+    4347737874,
+    4347737873,
+    4347737872,
+    4347737869,
+    4347737867,
+    4347737868,
+    4347737870,
+    4347737871,
+    3210358304,
+    4347737878
+  ],
+  "tags": {
+    "addr:city": "Beringen",
+    "addr:country": "BE",
+    "addr:housenumber": "1",
+    "addr:postcode": "3582",
+    "addr:street": "Klimopstraat",
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Fatih Moskee",
+    "religion": "muslim",
+    "source:geometry:date": "2009-11-10",
+    "source:geometry:entity": "Gbg",
+    "source:geometry:oidn": "1806282",
+    "source:geometry:uidn": "2072471",
+    "wikipedia:nl": "Fatih-moskee (Beringen)"
+  }
+},
+{
+  "type": "way",
+  "id": 336741438,
+  "nodes": [
+    3438112149,
+    3438112150,
+    3438112151,
+    3438112152,
+    3438112149
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 344731728,
+  "nodes": [
+    3514753678,
+    4003012778,
+    4003012777,
+    3514753679,
+    4003012786,
+    4003012782,
+    3514753680,
+    3514753681,
+    3514753678
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 377194570,
+  "nodes": [
+    3805738413,
+    3805738414,
+    3805738415,
+    6174764040,
+    6174764039,
+    5362036579,
+    6174764045,
+    4262702293,
+    6174764029,
+    6174764044,
+    6174764043,
+    6174764042,
+    6174764041,
+    3805738417,
+    3805738418,
+    6174764046,
+    3805738413
+  ],
+  "tags": {
+    "addr:housenumber": "6A",
+    "addr:street": "Spinnersstraat",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "name": "El Nour",
+    "religion": "muslim",
+    "website": "http://www.vzwelnour.be/"
+  }
+},
+{
+  "type": "way",
+  "id": 402413624,
+  "nodes": [
+    4048260615,
+    4048260614,
+    4048260609,
+    4048260613,
+    4048260615
+  ],
+  "tags": {
+    "addr:city": "Liège",
+    "addr:country": "BE",
+    "addr:housenumber": "39",
+    "addr:postcode": "4020",
+    "addr:street": "Rue de Pitteurs",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 426608603,
+  "nodes": [
+    4258876411,
+    5270572944,
+    5270572936,
+    5270572937,
+    5270572943,
+    5270572940,
+    5270572939,
+    5270572938,
+    5270572941,
+    5270572942,
+    5270572954,
+    5270572953,
+    5270572952,
+    5270572951,
+    5270572950,
+    5270572949,
+    5270572948,
+    5270572947,
+    5270572946,
+    5270572945,
+    5270572955,
+    4258876413,
+    5270572958,
+    5270572957,
+    5270572956,
+    5270572959,
+    4258876414,
+    5270572929,
+    5270572934,
+    5270572930,
+    5270572931,
+    5270572932,
+    5270572933,
+    5270572935,
+    4258876411
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "denomination": "Marokaans",
+    "name": "Moskee Hassan Ebno Tabit",
+    "religion": "muslim",
+    "wikipedia": "nl:Hassan Ibn Tabet moskee"
+  }
+},
+{
+  "type": "way",
+  "id": 442649261,
+  "nodes": [
+    4403235581,
+    4403235582,
+    4403235583,
+    4403235584,
+    4403235585,
+    4403235586,
+    4403235587,
+    4403235588,
+    4403235589,
+    4403235590,
+    4403235591,
+    4403235581
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "denomination": "sunni",
+    "name": "Mosquée Yavuz Sultan Selim",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 445805229,
+  "nodes": [
+    4431549826,
+    4431549827,
+    1709244351,
+    4431549828,
+    4431549829,
+    4431549826
+  ],
+  "tags": {
+    "addr:city": "Verviers",
+    "addr:housenumber": "39",
+    "addr:postcode": "4800",
+    "addr:street": "Rue Lucien Defays",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "denomination": "sunni",
+    "name": "Mosquée Sultan Ahmet",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 445810208,
+  "nodes": [
+    4431592359,
+    4431592360,
+    4431592361,
+    4431592362,
+    4431592359
+  ],
+  "tags": {
+    "addr:city": "Verviers",
+    "addr:housenumber": "3",
+    "addr:postcode": "4800",
+    "addr:street": "Rue du Chat Volant",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "denomination": "sunni",
+    "name": "Mosquée El Fath",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 447847427,
+  "nodes": [
+    3599036104,
+    4449129182,
+    4449129183,
+    3599035829,
+    3599036104
+  ],
+  "tags": {
+    "addr:city": "Arlon",
+    "addr:housenumber": "1",
+    "addr:postcode": "6700",
+    "addr:street": "Place de l'Yser",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "name": "Association des Musulmans d’Arlon - AMA",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 456230699,
+  "nodes": [
+    4525112818,
+    4525112817,
+    4525112816,
+    4525112815,
+    4525112814,
+    4525112813,
+    4525112812,
+    4525112811,
+    4525112810,
+    4525112818
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "house",
+    "religion": "muslim",
+    "source": "GRB",
+    "source:geometry": "GRB",
+    "source:geometry:date": "2015-09-05",
+    "source:geometry:entity": "Gbg",
+    "source:geometry:oidn": "5293900",
+    "source:geometry:uidn": "6345607"
+  }
+},
+{
+  "type": "way",
+  "id": 475890731,
+  "nodes": [
+    4695732133,
+    4695732134,
+    4695732135,
+    4695732136,
+    4695732133
+  ],
+  "tags": {
+    "addr:city": "Verviers",
+    "addr:housenumber": "30",
+    "addr:postcode": "4800",
+    "addr:street": "Rue du Peignage",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "Mosquée Errhama",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 503965925,
+  "nodes": [
+    4941948446,
+    4941948440,
+    4941948449,
+    4941948450,
+    4941948451,
+    4941948520,
+    4941948521,
+    4941948535,
+    4941948536,
+    4941948538,
+    4941948439,
+    4941928369,
+    4941948438,
+    4941948437,
+    4941948427,
+    4941948436,
+    4941948434,
+    4941948435,
+    4941948445,
+    4941948446
+  ],
+  "tags": {
+    "addr:housenumber": "26,26B",
+    "addr:street": "Ieperstraat",
+    "alt_name": "Huzur - Vrede",
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "email": "info@huzur.be",
+    "name": "Huzur",
+    "operator": "Huzur vzw",
+    "religion": "muslim",
+    "website": "http://huzur.be/"
+  }
+},
+{
+  "type": "way",
+  "id": 506992650,
+  "nodes": [
+    4965946931,
+    4965946926,
+    4965946925,
+    4965946924,
+    4965946923,
+    4965946922,
+    4965946921,
+    4965946720,
+    4965946719,
+    4965946718,
+    4965946717,
+    4965946716,
+    4965946715,
+    4965946714,
+    4965946713,
+    4965946712,
+    4965946711,
+    4965946710,
+    4965946709,
+    4966505069,
+    4965946708,
+    4966505347,
+    4965946707,
+    4966505330,
+    4965946706,
+    4965946705,
+    4965946704,
+    4965946930,
+    4965946931
+  ],
+  "tags": {
+    "addr:housenumber": "87-89",
+    "addr:street": "Van Kerckhovenstraat",
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Noor-Ul-Haram moskee",
+    "operator": "Antwerp Islamic Association vzw",
+    "religion": "muslim",
+    "website": "http://www.noorulharam.be/"
+  }
+},
+{
+  "type": "way",
+  "id": 518736653,
+  "nodes": [
+    5059604034,
+    5059604035,
+    5059604036,
+    5059604037,
+    5059604038,
+    5059604039,
+    5059604034
+  ],
+  "tags": {
+    "addr:city": "Sint-Andries",
+    "addr:housenumber": "169",
+    "addr:postcode": "8200",
+    "addr:street": "Diksmuidse Heerweg",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "email": "aziz.rajput@telenet.be",
+    "phone": "+32 50 81 30 95",
+    "religion": "muslim",
+    "website": "http://dehelewereldinbrugge.be/cultureel%20islamitisch%20centrum.html"
+  }
+},
+{
+  "type": "way",
+  "id": 561872640,
+  "nodes": [
+    5417259327,
+    5651283027,
+    5651283028,
+    5651283029,
+    5417259334,
+    5417259328,
+    5417259337,
+    5417259329,
+    5651283033,
+    5651283032,
+    5417259338,
+    5651283031,
+    5651283030,
+    5417259336,
+    5417259330,
+    5417259335,
+    5417259331,
+    5417259332,
+    5417259333,
+    5417259339,
+    5417259327
+  ],
+  "tags": {
+    "addr:city": "Ottignies-Louvain-la-Neuve",
+    "addr:postcode": "1348",
+    "addr:street": "Avenue Georges Lemaître",
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Centre Culturel Islamique d’Ottignies Louvain-la-Neuve",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 595925057,
+  "nodes": [
+    5678406366,
+    5678406367,
+    5678406368,
+    5678406369,
+    5678406370,
+    5678406371,
+    5678406372,
+    5678406373,
+    5678406374,
+    5678406375,
+    5678406366
+  ],
+  "tags": {
+    "addr:city": "Verviers",
+    "addr:housenumber": "28",
+    "addr:postcode": "4800",
+    "addr:street": "Rue des Fabriques",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "name": "Mosquée Kobaa",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 619167019,
+  "nodes": [
+    1751171836,
+    5851390174,
+    5851390175,
+    5851390176,
+    5851390177,
+    1751171821,
+    1751171790,
+    567046359,
+    567046358,
+    567046357,
+    567046356,
+    5851390178,
+    1751171834,
+    5851390179,
+    1751171836
+  ],
+  "tags": {
+    "landuse": "cemetery",
+    "name": "Cimetière de Verviers - Parcelle multiconfessionnelle",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 619459728,
+  "nodes": [
+    5853859677,
+    5853859678,
+    5853859679,
+    5853859680,
+    5853859677
+  ],
+  "tags": {
+    "landuse": "religious",
+    "name": "Mosquée de la rue d'Othée",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 622314901,
+  "nodes": [
+    5878310954,
+    5878310964,
+    5878310965,
+    5878310966,
+    5878310963,
+    5878310960,
+    5878310956,
+    5878310958,
+    5878310959,
+    5878310955,
+    5878310957,
+    5878310961,
+    5878310962,
+    5878310954
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Diyanet moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 622314908,
+  "nodes": [
+    5878311527,
+    5878311526,
+    5878311525,
+    5878311528,
+    5878311529,
+    5878311530,
+    5878311527
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 622314909,
+  "nodes": [
+    5878311534,
+    5878311531,
+    5878311532,
+    5878311533,
+    5878311534
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 625515972,
+  "nodes": [
+    5905876934,
+    5903250388,
+    5905876947,
+    5905876935,
+    5907349318,
+    5905876936,
+    5151287379,
+    5151287375,
+    5905876937,
+    5905876938,
+    5905876939,
+    5905876940,
+    5905876934
+  ],
+  "tags": {
+    "addr:city": "Visé",
+    "addr:housenumber": "129",
+    "addr:postcode": "4602",
+    "addr:street": "Rue de Visé",
+    "addr:suburb": "Cheratte",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "building:levels": "2",
+    "religion": "muslim",
+    "roof:levels": "1",
+    "roof:shape": "gabled"
+  }
+},
+{
+  "type": "way",
+  "id": 638513984,
+  "nodes": [
+    6017699527,
+    6017699524,
+    6017699525,
+    6017699526,
+    6017699527
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Marokkaanse El Houda Moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 642975654,
+  "nodes": [
+    6051861044,
+    6051861054,
+    6051861057,
+    6051861046,
+    6051861053,
+    6051861052,
+    6051861047,
+    6051861056,
+    6051861055,
+    6051861045,
+    6051861051,
+    6051861042,
+    6051861049,
+    6051861048,
+    6051861043,
+    6051861050,
+    6051861044
+  ],
+  "tags": {
+    "amenity": "place_of_worship",
+    "building": "mosque",
+    "name": "Moskee",
+    "old_name": "Cinema",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "way",
+  "id": 647850238,
+  "nodes": [
+    6083367731,
+    6083367732,
+    6083367730,
+    6083367729,
+    6083367728,
+    6083367731
+  ],
+  "tags": {
+    "addr:city": "Namur",
+    "addr:housenumber": "9",
+    "addr:postcode": "5000",
+    "addr:street": "Rue Marie Henriette",
+    "amenity": "place_of_worship",
+    "building": "yes",
+    "name": "Mosquée de Namur - Centre culturel Marocain de Namur",
+    "religion": "muslim"
+  }
+}
+
+  ],
+"remark": "runtime error: Query timed out in \"print\" at line 1 after 27 seconds."
+}
