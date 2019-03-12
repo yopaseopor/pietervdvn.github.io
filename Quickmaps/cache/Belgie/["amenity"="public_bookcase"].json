@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2019-03-12T11:40:02Z",
-    "timestamp_areas_base": "2019-03-12T11:19:02Z",
+    "timestamp_osm_base": "2019-03-12T14:55:02Z",
+    "timestamp_areas_base": "2019-03-12T14:34:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -1091,6 +1091,41 @@
   "lon": 4.2319879,
   "tags": {
     "amenity": "public_bookcase"
+  }
+},
+{
+  "type": "node",
+  "id": 6333312360,
+  "lat": 50.7930426,
+  "lon": 3.1257577,
+  "tags": {
+    "amenity": "public_bookcase",
+    "description": "bevind zich in de bibliotheek",
+    "opening_hours": "Mo-Fr 09:00-19:00; Sa 09:00-12:00"
+  }
+},
+{
+  "type": "node",
+  "id": 6333356542,
+  "lat": 50.9721966,
+  "lon": 3.1386292,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://i.pinimg.com/564x/bc/79/06/bc79061538f4940756c8605356456e4b.jpg",
+    "name": "Mini bib",
+    "public_bookcase:type": "wooden_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 6333366726,
+  "lat": 50.9550564,
+  "lon": 3.1362311,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://i.pinimg.com/564x/ad/e4/59/ade459aec23afe0b69210cdb7da75740.jpg",
+    "name": "Boekenruilkast",
+    "public_bookcase:type": "wooden_cabinet"
   }
 }
 
