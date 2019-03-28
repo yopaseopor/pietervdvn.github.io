@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2019-03-24T20:04:02Z",
-    "timestamp_areas_base": "2019-03-24T19:44:02Z",
+    "timestamp_osm_base": "2019-03-28T20:54:02Z",
+    "timestamp_areas_base": "2019-03-28T09:52:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -1201,6 +1201,170 @@
   "lon": 4.9794904,
   "tags": {
     "amenity": "public_bookcase"
+  }
+},
+{
+  "type": "node",
+  "id": 6359988409,
+  "lat": 50.8096907,
+  "lon": 3.1840121,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/wR_UqJamtnw9xUvQ5E7n1A",
+    "mapillary": "wR_UqJamtnw9xUvQ5E7n1A",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6360015567,
+  "lat": 50.8179716,
+  "lon": 3.1872569,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/BIuA9VpRvuXniQvqTZgMbw",
+    "mapillary": "BIuA9VpRvuXniQvqTZgMbw",
+    "opening_hours": "24/7"
+  }
+},
+{
+  "type": "node",
+  "id": 6360027601,
+  "lat": 50.8187668,
+  "lon": 3.1673093,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/7U2CjHTs5TAYfmwyZ1fE3Q",
+    "mapillary": "7U2CjHTs5TAYfmwyZ1fE3Q",
+    "opening_hours": "24/7",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6360047792,
+  "lat": 50.8377686,
+  "lon": 3.1559344,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/VD263fcG99nssWbOYng6JA",
+    "mapillary": "VD263fcG99nssWbOYng6JA",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6360057232,
+  "lat": 50.8435219,
+  "lon": 3.1605066,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/VD263fcG99nssWbOYng6JA",
+    "mapillary": "VD263fcG99nssWbOYng6JA",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6360062023,
+  "lat": 50.8506157,
+  "lon": 3.1653533,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/cPb7pcvpPDh6hL4eF7BtdQ",
+    "mapillary": "cPb7pcvpPDh6hL4eF7BtdQ",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6360069589,
+  "lat": 50.8438683,
+  "lon": 3.2045256,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/Ga2qbcJwV8gagjaJaYVnCQ",
+    "mapillary": "Ga2qbcJwV8gagjaJaYVnCQ",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6360075740,
+  "lat": 50.8426971,
+  "lon": 3.2043801,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/qD21YEVclYFUjz4BsvXGTg",
+    "mapillary": "qD21YEVclYFUjz4BsvXGTg",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6360129475,
+  "lat": 50.8398262,
+  "lon": 3.2037404,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/hiB721_86ZILbAcWUsdm0Q",
+    "mapillary": "hiB721_86ZILbAcWUsdm0Q",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6360226624,
+  "lat": 50.8048796,
+  "lon": 3.1773327,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/aC53EZc80mPHh8jQEfp98Q",
+    "mapillary": "aC53EZc80mPHh8jQEfp98Q",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6360251298,
+  "lat": 50.8072217,
+  "lon": 3.1918790,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/ps3NPgFOniQpTwCs6DUayw",
+    "mapillary": "ps3NPgFOniQpTwCs6DUayw",
+    "opening_hours": "24/7",
+    "website": "https://www.wevelgem.be/ook-een-boekenruilkastje-jouw-buurt"
+  }
+},
+{
+  "type": "node",
+  "id": 6366335005,
+  "lat": 50.9358727,
+  "lon": 3.1524541,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://www.mapillary.com/map/im/3A90A_lJzDG6UzfY66ro7Q",
+    "mapillary": "3A90A_lJzDG6UzfY66ro7Q",
+    "name": "Boekenruilkastje",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "wooden_cabinet"
   }
 }
 

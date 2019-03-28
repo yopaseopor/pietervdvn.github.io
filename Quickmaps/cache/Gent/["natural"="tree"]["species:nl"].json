@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.5 2ca3f387",
   "osm3s": {
-    "timestamp_osm_base": "2019-03-24T20:05:02Z",
-    "timestamp_areas_base": "2019-03-24T19:44:02Z",
+    "timestamp_osm_base": "2019-03-28T20:55:02Z",
+    "timestamp_areas_base": "2019-03-28T09:52:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -31,7 +31,7 @@
     "species": "castanea sativa",
     "species:en": "sweet chestnut",
     "species:nl": "tamme kastanje",
-    "website": "http://www.monumentaltrees.com/nl/bel/oostvlaanderen/lovendegem/927_kasteelschouwbroek/"
+    "website": "https://www.monumentaltrees.com/nl/bel/oostvlaanderen/lovendegem/927_kasteelschouwbroek/"
   }
 },
 {
