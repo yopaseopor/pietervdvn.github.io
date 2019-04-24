@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.6 486819c8",
   "osm3s": {
-    "timestamp_osm_base": "2019-04-23T12:28:02Z",
-    "timestamp_areas_base": "2019-04-23T10:10:02Z",
+    "timestamp_osm_base": "2019-04-24T09:23:02Z",
+    "timestamp_areas_base": "2019-04-24T09:03:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -1770,7 +1770,10 @@
   "tags": {
     "amenity": "public_bookcase",
     "capacity": "50",
-    "name": "Ruilkast"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Ruilkast.jpg",
+    "name": "Ruilkast",
+    "opening_hours": "24/7",
+    "operator": "Brugge Plus - Uitwijken"
   }
 },
 {

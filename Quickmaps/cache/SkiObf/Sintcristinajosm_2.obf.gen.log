@@ -1,116 +1,116 @@
-Tue Apr 23 14:30:38 CEST 2019
+Wed Apr 24 11:24:12 CEST 2019
 OsmAndMapCreator 3.0 
-Apr 23, 2019 2:30:38 PM net.osmand.osm.MapRenderingTypes init
-INFO: Time to init 313
-Apr 23, 2019 2:30:38 PM net.osmand.obf.preparation.IndexCreator getDatabaseConnection
+Apr 24, 2019 11:24:13 AM net.osmand.osm.MapRenderingTypes init
+INFO: Time to init 553
+Apr 24, 2019 11:24:13 AM net.osmand.obf.preparation.IndexCreator getDatabaseConnection
 INFO: SQLITE running in native mode
-Apr 23, 2019 2:30:38 PM net.osmand.obf.preparation.IndexPoiCreator getDatabaseConnection
+Apr 24, 2019 11:24:13 AM net.osmand.obf.preparation.IndexPoiCreator getDatabaseConnection
 INFO: SQLITE running in native mode
-Apr 23, 2019 2:30:38 PM net.osmand.obf.preparation.IndexCreator getDatabaseConnection
+Apr 24, 2019 11:24:13 AM net.osmand.obf.preparation.IndexCreator getDatabaseConnection
 INFO: SQLITE running in native mode
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 90177536 free : 45205160
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 98566144 free : 58009696
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
 INFO: loading_file/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Ski/SintCristinaJOSM.osm started - -1
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation startWorkLong
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startWorkLong
 INFO: Task loading_file/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Ski/SintCristinaJOSM.osm: work total has changed to -1
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation startWorkLong
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startWorkLong
 INFO: Task loading_file/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Ski/SintCristinaJOSM.osm: work total has changed to 2608716
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation printIfNeeded
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation printIfNeeded
 INFO: Done 7.537 %.
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation finishTask
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation finishTask
 INFO: Task loading_file/home/pietervdvn/git/pietervdvn.github.io/Quickmaps/cache/Ski/SintCristinaJOSM.osm is finished 
-Apr 23, 2019 2:30:38 PM net.osmand.obf.preparation.IndexCreator extractOsmToNodesDB
-INFO: File parsed : 294
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation finishTask
+Apr 24, 2019 11:24:13 AM net.osmand.obf.preparation.IndexCreator extractOsmToNodesDB
+INFO: File parsed : 444
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation finishTask
 INFO: Task null is finished 
-Apr 23, 2019 2:30:38 PM net.osmand.obf.preparation.IndexCreator extractOsmToNodesDB
-INFO: File indexed : 295
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 126877696 free : 94860440
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-INFO: preindex_boundaries_relations started after 295 ms - 20
-Apr 23, 2019 2:30:38 PM net.osmand.impl.ConsoleProgressImplementation startWorkLong
+Apr 24, 2019 11:24:13 AM net.osmand.obf.preparation.IndexCreator extractOsmToNodesDB
+INFO: File indexed : 445
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 136314880 free : 110798864
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+INFO: preindex_boundaries_relations started after 446 ms - 20
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startWorkLong
 INFO: Task preindex_boundaries_relations: work total has changed to 20
-Apr 23, 2019 2:30:39 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 126877696 free : 90666136
-Apr 23, 2019 2:30:39 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-INFO: process_osm_nodes started after 228 ms - 642
-Apr 23, 2019 2:30:39 PM net.osmand.impl.ConsoleProgressImplementation startWorkLong
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 136314880 free : 106774480
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+INFO: process_osm_nodes started after 241 ms - 642
+Apr 24, 2019 11:24:13 AM net.osmand.impl.ConsoleProgressImplementation startWorkLong
 INFO: Task process_osm_nodes: work total has changed to 642
-Apr 23, 2019 2:30:39 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 126877696 free : 73888920
-Apr 23, 2019 2:30:39 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-INFO: process_osm_ways started after 293 ms - 1045
-Apr 23, 2019 2:30:39 PM net.osmand.impl.ConsoleProgressImplementation startWorkLong
+Apr 24, 2019 11:24:14 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 136314880 free : 89997264
+Apr 24, 2019 11:24:14 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+INFO: process_osm_ways started after 353 ms - 1045
+Apr 24, 2019 11:24:14 AM net.osmand.impl.ConsoleProgressImplementation startWorkLong
 INFO: Task process_osm_ways: work total has changed to 1045
-Apr 23, 2019 2:30:39 PM net.osmand.impl.ConsoleProgressImplementation printIfNeeded
-INFO: Done 8.421 %.
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 126877696 free : 102944184
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-INFO: process_osm_rel started after 639 ms - 20
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startWorkLong
+Apr 24, 2019 11:24:14 AM net.osmand.impl.ConsoleProgressImplementation printIfNeeded
+INFO: Done 1.053 %.
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 136314880 free : 60909360
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+INFO: process_osm_rel started after 762 ms - 20
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startWorkLong
 INFO: Task process_osm_rel: work total has changed to 20
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 126877696 free : 101895608
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-INFO: index_lo_level_ways started after 155 ms - 2425
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startWorkLong
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 136314880 free : 59860784
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+INFO: index_lo_level_ways started after 161 ms - 2425
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startWorkLong
 INFO: Task index_lo_level_ways: work total has changed to 2425
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startWorkLong
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startWorkLong
 INFO: Task index_lo_level_ways: work total has changed to -1
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 126877696 free : 90361272
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-INFO: pack_rtree_map started after 68 ms - -1
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 126877696 free : 83019176
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-INFO: Writing map index to binary file... started after 31 ms - -1
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapLevelIndex
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 136314880 free : 113763392
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+INFO: pack_rtree_map started after 129 ms - -1
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 136314880 free : 106421296
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+INFO: Writing map index to binary file... started after 81 ms - -1
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapLevelIndex
 INFO: MAP level SIZE : 81362
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapLevelIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapLevelIndex
 INFO: MAP level SIZE : 57686
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapLevelIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapLevelIndex
 INFO: MAP level SIZE : 24245
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapLevelIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapLevelIndex
 INFO: MAP level SIZE : 17143
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteMapIndex
 INFO: MAP INDEX SIZE : 182711
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 126877696 free : 75158968
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-INFO: Writing route index to binary file... started after 77 ms - -1
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter simulateWriteEndRouteIndex
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 136314880 free : 98561088
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+INFO: Writing route index to binary file... started after 191 ms - -1
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter simulateWriteEndRouteIndex
 INFO: PREROUTE INDEX SIZE : 77385
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
 INFO: - ROUTE TYPE SIZE SIZE 17986
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
 INFO: - ROUTE COORDINATES SIZE 92422 COUNT 25946
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
 INFO: - ROUTE POINTS SIZE 0
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
 INFO: - ROUTE STRING SIZE 16568
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
 INFO: - ROUTE ID SIZE 4164
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
 INFO: -- ROUTE_DATA 150272
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWriteRouteIndex
 INFO: ROUTE INDEX SIZE : 77385
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-FINE: Memory before task exec: 126877696 free : 67292600
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startTaskLong
-INFO: Writing poi index to binary file... started after 46 ms - -1
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation startWorkLong
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+FINE: Memory before task exec: 136314880 free : 90694720
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startTaskLong
+INFO: Writing poi index to binary file... started after 113 ms - -1
+Apr 24, 2019 11:24:15 AM net.osmand.impl.ConsoleProgressImplementation startWorkLong
 INFO: Task null: work total has changed to 1000000
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.IndexPoiCreator processPOIIntoTree
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.IndexPoiCreator processPOIIntoTree
 INFO: Poi processing finished
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.IndexPoiCreator writeBinaryPoiIndex
+Apr 24, 2019 11:24:15 AM net.osmand.obf.preparation.IndexPoiCreator writeBinaryPoiIndex
 INFO: Poi box processing finished
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.BinaryMapIndexWriter endWritePoiIndex
+Apr 24, 2019 11:24:16 AM net.osmand.obf.preparation.BinaryMapIndexWriter endWritePoiIndex
 INFO: POI INDEX SIZE : 88047
-Apr 23, 2019 2:30:40 PM net.osmand.impl.ConsoleProgressImplementation finishTask
+Apr 24, 2019 11:24:16 AM net.osmand.impl.ConsoleProgressImplementation finishTask
 INFO: Task Writing poi index to binary file... is finished 
-Apr 23, 2019 2:30:40 PM net.osmand.obf.preparation.IndexCreator generateIndexes
+Apr 24, 2019 11:24:16 AM net.osmand.obf.preparation.IndexCreator generateIndexes
 INFO: Finish writing binary file
