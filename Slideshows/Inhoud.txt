@@ -1,0 +1,25 @@
+0. Intro: what is openstreetmap: high level overview
+1. Start to contribute
+2a. Using OSM: overview of tools
+2b. Using OSM: webtools
+    - Slippy maps, leaflet
+    - Overpass
+2c. On your phone
+    - Maps.Me
+    - Magic Earth
+    - OsmAnd
+3. Osmand Hacking
+
+
+# 0. Intro
+
+'What is OSM'
+    A boring website
+    A GIS-database
+    Freedom to add data
+    Crowdsourced => everyone adds their needs => Saving lives
+    Freedom to use (ODBL) => Tons of apps, websites & research
+    Not: profit-oriented, expensive, privacy-infringing
+    Community
+    Working together
+
