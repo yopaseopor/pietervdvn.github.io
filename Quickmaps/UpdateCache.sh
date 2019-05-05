@@ -11,32 +11,11 @@ function update { # search area, relId, tags
 }
 
 
-function updateXML { # search area, relId, tags
-    mkdir "$5"
-    cd "$5"
-    pwd
-    QUERY="[out:json][timeout:25];area($2)->.searchArea;(node$3(area.searchArea);way$3(area.searchArea);relation$3(area.searchArea);node$4(area.searchArea);way$4(area.searchArea);relation$4(area.searchArea););out body;>;out skel qt;"
-    wget -O "$1.osm" "https://overpass-api.de/api/interpreter?data=$QUERY"
-    cd ..
-
-}
-
 
 echo "Updating map..."
 date
 
 cd cache
-
-
-# SKI RESORTS
-#         NAME        RELATION  (should start with '36', have 10 digits and end with the relation number )
-updateXML "France - Bourg-Saint-Maurice" "3603914986" '["aerialway"]' '["piste:type"]' "Ski"
-
-
-cd ~/osmand/OsmAndMapCreator-1.1.3/
-java -Djava.util.logging.config.file=logging.properties -Xms64M -Xmx6300M -cp "./OsmAndMapCreator.jar:lib/OsmAnd-core.jar:./lib/*.jar" net.osmand.util.IndexBatchCreator batch.xml
-cd -
-
 
 #update Name    Relation-ID, prefixed with 3600 (should be equal length)
 update "West-Vlaanderen" "3600416271" '["name"="De Leiemeersen"]["leisure"="nature_reserve"]'
