@@ -33,6 +33,7 @@ var cachedWikipedia = {};
 /*Loads and caches the requested wikipedia article. Puts the article at the element with id 'wikipedia_lang_page''*/
 function loadWikipedia(area){
 
+
     if(area.tags.wikipedia === undefined){
         return;
     }
@@ -60,11 +61,11 @@ function loadWikipedia(area){
 			return;
 		}
 	
-		element.innerHTML= "Loading...";
 	}
 	
 	console.log("Loading wikipedia article...")
-
+	
+	
 	$.ajax({
 		url: "https://"+lang+".wikipedia.org/api/rest_v1/page/html/"+page,
 		timeout: 5000,
@@ -930,7 +931,7 @@ function initializeMap(tileLayer){
 		{layers:"OGWRGB13_15VL",
 		 attribution: "Luchtfoto's van © AIV Vlaanderen (2013-2015) | Data van OpenStreetMap"});
 
-	var osmLayer = L.tileLayer("https://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
+	var osmLayer = L.tileLayer("https://{a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png",
 		{
 		attribution: 'Map Data and background © <a href="osm.org">OpenStreetMap</a>',
 		maxZoom: 21,
@@ -952,7 +953,7 @@ function initializeMap(tileLayer){
 		});
 
 
-    let defaultLayer = osmLayer;
+    let defaultLayer = osmBeLayer;
     var baseLayers = {
 		"OpenStreetMap Be": osmBeLayer,
 		"OpenStreetMap": osmLayer,

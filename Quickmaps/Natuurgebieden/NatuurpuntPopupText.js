@@ -1,44 +1,97 @@
 
+function reJoin(arr){
+
+    var txt = arr[0];
+    var i;
+    for(i = 1; i < arr.length - 1; i++){
+        txt += ", "+arr[i]
+    }
+    
+    txt += " en "+arr[i];
+    return txt
+}
 
 function toHa(surface){
 	return Math.floor(surface/100)/100;
 }
 
-function popupText(tags, area){
- 	text = "";
-	if(tags.name){
-		text += "<h3>"+tags.name+"</h3>";
-	}
 
-	text += "<table><tr><td>";
-	text += toHa(tags.area)+" hectare"
-	if(tags.area != area && !isNaN(area)){
-		text += " - " + toHa(area)+" hectare geselecteerd";
+/*
+* Creates an image slider. Needs the Slideshow.js and Slideshow.css files imported
+imageInfo = [ { src = <some url>, caption = <some caption> } ]
+*/
+function pictureSlider(imageInfo){
+
+    var text = '<div class="slideshow-container">'  
+    var total = imageInfo.length;
+    console.log(imageInfo)
+    for(var i in imageInfo){
+        var img = imageInfo[i]
+        text += '<span class="mySlides fade"><div class="numbertext">'+i+' / '+total+'</div><img src="'+img.src+'" style="height:35%"><div class="text">'+img.caption+'</div></span>'
+    }
+  
+    text += '<a class="prev" onclick="plusSlides(-1)">&#10094;</a><a class="next" onclick="plusSlides(1)">&#10095;</a></div>'
+    return text;
+}
+
+
+function contactInfo(tags){
+    var text = "";
+    
+    text += "</p>"
+    if(tags.operator){
+		text += "Beheer door "+tags.operator;
 	}
-	if(tags.operator){
-		text += " - beheer door "+tags.operator;
+	if(tags.owner){
+	    text += " - in eigendom van "+reJoin(tags.operator.split(";"))
 	}
+	
 	text += "</p>";
-
-	if(tags.curator){
-		text += "<p>Conservator is <strong>"+tags.curator+"</strong>, telefoonnummer is "
+    
+    if(tags.curator.includes(';')){
+		    text += "<p>Conservatoren zijn <strong>"+reJoin(tags.curator.split(";"))+"</strong></p>"
+		}else{
+    		text += "<p>Conservator is <strong>"+tags.curator+"</strong></p>"
+		}
+		
+		
+		text += "<p>Telefoonnummer is "
 		if(tags.phone){
 			text += tags.phone
 		}else{
 			text += "niet gegeven"		
 		}
-		text += ", email is "
+		text += "</p><p>Email is "
 		if(tags.email){
-			text += "<a href='mailto:"+tags.email+"'>"+tags.email+"</a>"
+		    if(tags.email.includes(";")){
+                var mails = ""
+                var splitted = tags.email.split(";")
+                for(var i in splitted){
+                    mails +="<a href='mailto:"+splitted[i]+"'>"+splitted[i]+"</a>"
+                    if(i < splitted.length - 2 ){
+                        mails += ","
+                    }else if (i == splitted.length - 2){
+                        mails += " en "
+                    }
+                }
+                text += mails		    
+		    }else{
+			    text += "<a href='mailto:"+tags.email+"'>"+tags.email+"</a>"
+		    }
 		}else{
 			text += "niet gegeven"		
 		}
-	}
+		text += "</p>"
+	return text;
+}
 
-
+function accessInfo(tags){
+    var text = "";
+    
+    
 	if(tags.access){
 		if(tags.access == "no"){
-			text += "<p>Niet vrij toegankelijk</p>";
+			text += "<p><strong>Niet vrij toegankelijk<strong>. Enkel te bezoeken tijdens activiteiten.</p>";
 		}else if(tags.access == "yes"){
 			text += "<p>Toegankelijk op de paden</p>";
 		}else if(tags.access == "guided"){
@@ -61,6 +114,29 @@ function popupText(tags, area){
 		}
 
 	}
+	
+	return text;
+}
+
+function popupText(tags, area){
+ 	text = "";
+	if(tags.name){
+		text += "<h1>"+tags.name+"</h1>";
+	}
+
+	text += "<table><tr><td>";
+	text += toHa(tags.area)+" hectare"
+	if(tags.area != area && !isNaN(area)){
+		text += " - " + toHa(area)+" hectare geselecteerd";
+	}
+
+
+	if(tags.curator){
+        text += contactInfo(tags);
+		
+	}
+
+    text += accessInfo(tags)
 
 
 
@@ -89,7 +165,7 @@ function popupText(tags, area){
 
 
 var natuurpuntIcon = L.icon({
-    iconUrl: 'resources/Natuurpunt.jpg',
+    iconUrl: 'https://pietervdvn.github.io/Quickmaps/Natuurgebieden/resources/Natuurpunt.jpg',
 
     iconSize:     [50, 50], // size of the icon
     iconAnchor:   [25, 35], // point of the icon which will correspond to marker's location
@@ -97,7 +173,7 @@ var natuurpuntIcon = L.icon({
 });
 
 var anbIcon = L.icon({
-    iconUrl: 'resources/ANB.jpg',
+    iconUrl: 'https://pietervdvn.github.io/Quickmaps/Natuurgebieden/resources/ANB.jpg',
 
     iconSize:     [50, 50], // size of the icon
     iconAnchor:   [25, 35], // point of the icon which will correspond to marker's location
@@ -106,7 +182,7 @@ var anbIcon = L.icon({
 
 
 var info = L.icon({
-    iconUrl: 'resources/info.png',
+    iconUrl: 'https://pietervdvn.github.io/Quickmaps/Natuurgebieden/resources/info.png',
 
     iconSize:     [26, 26], // size of the icon
     iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
@@ -114,7 +190,7 @@ var info = L.icon({
 });
 
 var birdhide = L.icon({
-    iconUrl: 'resources/birdhide.png',
+    iconUrl: 'https://pietervdvn.github.io/Quickmaps/Natuurgebieden/resources/birdhide.png',
 
     iconSize:     [26, 26], // size of the icon
     iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
@@ -122,7 +198,7 @@ var birdhide = L.icon({
 });
 
 var birdhideShelter = L.icon({
-    iconUrl: 'resources/birdshelter.png',
+    iconUrl: 'https://pietervdvn.github.io/Quickmaps/Natuurgebieden/resources/birdshelter.png',
 
     iconSize:     [26, 26], // size of the icon
     iconAnchor:   [13, 13], // point of the icon which will correspond to marker's location
