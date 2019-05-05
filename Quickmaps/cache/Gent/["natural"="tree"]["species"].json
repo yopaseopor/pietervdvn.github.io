@@ -1,9 +1,9 @@
 {
   "version": 0.6,
-  "generator": "Overpass API 0.7.55.6 486819c8",
+  "generator": "Overpass API 0.7.55.7 8b86ff77",
   "osm3s": {
-    "timestamp_osm_base": "2019-04-24T22:42:02Z",
-    "timestamp_areas_base": "2019-04-24T22:22:03Z",
+    "timestamp_osm_base": "2019-05-05T23:19:02Z",
+    "timestamp_areas_base": "2019-05-05T18:42:01Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -1906,6 +1906,18 @@
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6434126680,
+  "lat": 51.0346347,
+  "lon": 3.4901309,
+  "tags": {
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "willow"
   }
 }
 
