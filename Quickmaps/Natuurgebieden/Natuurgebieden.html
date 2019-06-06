@@ -21,15 +21,28 @@
 
 
 <script>
+var urlParams = new URLSearchParams(window.location.search);
+
+let operator = urlParams.get('operator')
+let searchIn = urlParams.get('area')
+
+
+if(operator == undefined ){
+	operator = "Natuurpunt Brugge"
+}
+if(searchIn == undefined){
+    searchIn = "Brugge";
+}
 
 
 console.log("Getting started...");
 map = initializeMap();
 map.setView([51.222, 3.227], 12);
-CachedFirstRender(['"leisure"="nature_reserve"','"operator"="Natuurpunt Brugge"'],"Brugge", popupText, imageFunction);
-CachedFirstRender(['"tourism"="information"','"operator"="Natuurpunt Brugge"'], "Brugge", infoBoardText, imageBoardFunction, {iconsOnly : true, highLevelOnly : true});
-CachedFirstRender(['"leisure"="bird_hide"','"operator"="Natuurpunt Brugge"'], "Brugge", birdHideText, birdHideImage, {iconsOnly : true, highLevelOnly : true});
-
+CachedFirstRender(['"leisure"="nature_reserve"','"operator"~"'+operator+'"'],searchIn, popupText, imageFunction);
+if(operator == "Natuurpunt Brugge"){
+ CachedFirstRender(['"tourism"="information"','"operator"~"'+operator+'"'], searchIn, infoBoardText, imageBoardFunction, {iconsOnly : true, highLevelOnly : true});
+ CachedFirstRender(['"leisure"="bird_hide"','"operator"~"'+operator+'"'], searchIn, birdHideText, birdHideImage, {iconsOnly : true, highLevelOnly : true});
+}
 
 </script>
 
