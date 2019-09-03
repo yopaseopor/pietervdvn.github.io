@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.7 8b86ff77",
   "osm3s": {
-    "timestamp_osm_base": "2019-05-05T23:20:02Z",
-    "timestamp_areas_base": "2019-05-05T18:42:01Z",
+    "timestamp_osm_base": "2019-09-03T18:53:02Z",
+    "timestamp_areas_base": "2019-09-03T18:14:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -495,7 +495,11 @@
   "lat": 51.0674490,
   "lon": 4.0383910,
   "tags": {
+    "addr:housenumber": "17",
+    "addr:street": "Zwaanstraat",
     "amenity": "place_of_worship",
+    "denomination": "muslim",
+    "name": "Eyyub El-Ensari Moskee Zele",
     "religion": "muslim"
   }
 },
@@ -776,7 +780,7 @@
   "lon": 4.4246198,
   "tags": {
     "amenity": "place_of_worship",
-    "building": "mosque",
+    "name": "Islamitisch Cultuur Centrum van Republiek Bosnië Herzegovina",
     "religion": "muslim"
   }
 },
@@ -933,28 +937,16 @@
 {
   "type": "node",
   "id": 5740687434,
-  "lat": 51.0725739,
-  "lon": 5.1356534,
+  "lat": 51.0693412,
+  "lon": 5.1311643,
   "tags": {
     "addr:city": "Tessenderlo",
-    "addr:housenumber": "25",
+    "addr:housenumber": "28",
     "addr:postcode": "3980",
-    "addr:street": "Kanaalweg",
+    "addr:street": "Tushoekstraat",
+    "addr:unit": "001",
     "amenity": "place_of_worship",
-    "name": "Essalam",
-    "religion": "muslim"
-  }
-},
-{
-  "type": "node",
-  "id": 5907215419,
-  "lat": 50.6829986,
-  "lon": 5.6700538,
-  "tags": {
-    "amenity": "place_of_worship",
-    "name": "Mimar Sinan Camii",
-    "name:fr": "Mosquée Mimar Sinan",
-    "name:tr": "Diyanet Mimar Sinan Camii",
+    "name": "Essalaam",
     "religion": "muslim"
   }
 },
@@ -966,6 +958,28 @@
   "tags": {
     "amenity": "place_of_worship",
     "name": "Sultan Ahmed moskee",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 6708264171,
+  "lat": 51.2273522,
+  "lon": 4.4228418,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Khatim-Ul-Anbia",
+    "religion": "muslim"
+  }
+},
+{
+  "type": "node",
+  "id": 6708264172,
+  "lat": 51.2269376,
+  "lon": 4.4266615,
+  "tags": {
+    "amenity": "place_of_worship",
+    "name": "Omar Masjid",
     "religion": "muslim"
   }
 },
@@ -982,9 +996,10 @@
     5599352201,
     251131782,
     5599352193,
+    6685267823,
+    6685267824,
     5599352194,
     251131831,
-    251131784,
     251131832,
     251131785,
     251131786,
@@ -1628,9 +1643,7 @@
     "name": "Fatih Moskee",
     "religion": "muslim",
     "source:geometry:date": "2009-11-10",
-    "source:geometry:entity": "Gbg",
-    "source:geometry:oidn": "1806282",
-    "source:geometry:uidn": "2072471",
+    "source:geometry:ref": "Gbg/1806282",
     "wikipedia:nl": "Fatih-moskee (Beringen)"
   }
 },
@@ -1882,12 +1895,9 @@
     "amenity": "place_of_worship",
     "building": "house",
     "religion": "muslim",
-    "source": "GRB",
     "source:geometry": "GRB",
     "source:geometry:date": "2015-09-05",
-    "source:geometry:entity": "Gbg",
-    "source:geometry:oidn": "5293900",
-    "source:geometry:uidn": "6345607"
+    "source:geometry:ref": "Gbg/5293900"
   }
 },
 {
@@ -2212,8 +2222,11 @@
     "addr:street": "Rue de Visé",
     "addr:suburb": "Cheratte",
     "amenity": "place_of_worship",
-    "building": "yes",
+    "building": "mosque",
     "building:levels": "2",
+    "name": "Mimar Sinan Camii",
+    "name:fr": "Mosquée Mimar Sinan",
+    "name:tr": "Diyanet Mimar Sinan Camii",
     "religion": "muslim",
     "roof:levels": "1",
     "roof:shape": "gabled"
@@ -3137,92 +3150,98 @@
 {
   "type": "node",
   "id": 251131782,
-  "lat": 50.8431920,
-  "lon": 4.3879962
-},
-{
-  "type": "node",
-  "id": 251131784,
-  "lat": 50.8435587,
-  "lon": 4.3875191
+  "lat": 50.8432003,
+  "lon": 4.3879979
 },
 {
   "type": "node",
   "id": 251131785,
-  "lat": 50.8436474,
-  "lon": 4.3876432
+  "lat": 50.8436330,
+  "lon": 4.3876104
 },
 {
   "type": "node",
   "id": 251131786,
-  "lat": 50.8436681,
-  "lon": 4.3877324
+  "lat": 50.8436634,
+  "lon": 4.3877070
 },
 {
   "type": "node",
   "id": 251131831,
-  "lat": 50.8435003,
-  "lon": 4.3874975
+  "lat": 50.8435124,
+  "lon": 4.3875008
 },
 {
   "type": "node",
   "id": 251131832,
-  "lat": 50.8436096,
-  "lon": 4.3875695
+  "lat": 50.8435789,
+  "lon": 4.3875371
 },
 {
   "type": "node",
   "id": 5599352193,
-  "lat": 50.8433178,
-  "lon": 4.3874376
+  "lat": 50.8433148,
+  "lon": 4.3874465
 },
 {
   "type": "node",
   "id": 5599352194,
-  "lat": 50.8434406,
-  "lon": 4.3875070
+  "lat": 50.8434530,
+  "lon": 4.3875073
 },
 {
   "type": "node",
   "id": 5599352195,
-  "lat": 50.8436695,
-  "lon": 4.3878273
+  "lat": 50.8436696,
+  "lon": 4.3878210
 },
 {
   "type": "node",
   "id": 5599352196,
-  "lat": 50.8436512,
-  "lon": 4.3879185
+  "lat": 50.8436474,
+  "lon": 4.3879247
 },
 {
   "type": "node",
   "id": 5599352197,
-  "lat": 50.8436151,
-  "lon": 4.3879952
+  "lat": 50.8436001,
+  "lon": 4.3880091
 },
 {
   "type": "node",
   "id": 5599352198,
-  "lat": 50.8435652,
-  "lon": 4.3880491
+  "lat": 50.8435387,
+  "lon": 4.3880587
 },
 {
   "type": "node",
   "id": 5599352199,
-  "lat": 50.8435070,
-  "lon": 4.3880744
+  "lat": 50.8434804,
+  "lon": 4.3880635
 },
 {
   "type": "node",
   "id": 5599352200,
-  "lat": 50.8434467,
-  "lon": 4.3880682
+  "lat": 50.8434794,
+  "lon": 4.3880728
 },
 {
   "type": "node",
   "id": 5599352201,
-  "lat": 50.8434323,
-  "lon": 4.3881319
+  "lat": 50.8434697,
+  "lon": 4.3881401
+},
+{
+  "type": "node",
+  "id": 6685267823,
+  "lat": 50.8434075,
+  "lon": 4.3874921
+},
+{
+  "type": "node",
+  "id": 6685267824,
+  "lat": 50.8433977,
+  "lon": 4.3875459
 },
 {
   "type": "node",

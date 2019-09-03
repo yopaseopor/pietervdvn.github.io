@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.7 8b86ff77",
   "osm3s": {
-    "timestamp_osm_base": "2019-05-05T23:18:02Z",
-    "timestamp_areas_base": "2019-05-05T18:42:01Z",
+    "timestamp_osm_base": "2019-09-03T18:53:02Z",
+    "timestamp_areas_base": "2019-09-03T18:14:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -23,41 +23,6 @@
     "phone": "+32 50 38 21 50",
     "website": "https://natuurpuntbrugge.be/reservaat-domein-zevenkerken/",
     "wikipedia": "nl:Domein Zevenkerke"
-  }
-},
-{
-  "type": "way",
-  "id": 126696464,
-  "nodes": [
-    1038529522,
-    5520519010,
-    5520519013,
-    5520519012,
-    5520519011,
-    5520519009,
-    3100841207,
-    1038529393,
-    299546948,
-    1038529640,
-    1038529778,
-    1038529764,
-    1038529565,
-    1038529783,
-    5520519014,
-    1038529220,
-    1038529522
-  ],
-  "tags": {
-    "access": "guided",
-    "curator": "Karim Neirynck",
-    "email": "karim.neirynck@gmail.com",
-    "landuse": "forest",
-    "leisure": "nature_reserve",
-    "name": "Rode Dopheidereservaat",
-    "operator": "Natuurpunt Brugge",
-    "phone": "+32 50 67 59 29",
-    "website": "https://natuurpuntbrugge.be/rode-dopheidereservaat/",
-    "wikipedia": "nl:Rode dopheidereservaat"
   }
 },
 {
@@ -96,47 +61,6 @@
 },
 {
   "type": "way",
-  "id": 575276148,
-  "nodes": [
-    4038769535,
-    5520519823,
-    5536384832,
-    5520519018,
-    5520509126,
-    5520509125,
-    5520509124,
-    5520509123,
-    5520509131,
-    5520509130,
-    5520509129,
-    5520509128,
-    5520509127,
-    4038769908,
-    5941410107,
-    5941410108,
-    5520519015,
-    5520519016,
-    5520519020,
-    4038769587,
-    5520519019,
-    4038769535
-  ],
-  "tags": {
-    "access": "guided",
-    "alt_name": "Boekhoutebos",
-    "curator": "Karim Neirynck",
-    "email": "karim.neirynck@gmail.com",
-    "landuse": "forest",
-    "leisure": "nature_reserve",
-    "name": "Rode Dopheidereservaat",
-    "operator": "Natuurpunt Brugge",
-    "phone": "+32 50 67 59 29",
-    "website": "https://natuurpuntbrugge.be/rode-dopheidereservaat/",
-    "wikipedia": "nl:Rode dopheidereservaat"
-  }
-},
-{
-  "type": "way",
   "id": 575276692,
   "nodes": [
     1038529892,
@@ -167,16 +91,22 @@
   "id": 594164689,
   "nodes": [
     5548702658,
+    6735542777,
+    6735542776,
     5666323644,
     5666426696,
     5666426705,
+    3195835379,
+    6735564972,
     5666426702,
     5666426669,
     5666426667,
     5666323645,
     5666426671,
     5666323646,
+    6735542775,
     5666323647,
+    6735564703,
     5666426704,
     5548702658
   ],
@@ -305,6 +235,40 @@
   }
 },
 {
+  "type": "relation",
+  "id": 9996756,
+  "members": [
+    {
+      "type": "way",
+      "ref": 575276148,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 721708217,
+      "role": "outer"
+    },
+    {
+      "type": "way",
+      "ref": 126696464,
+      "role": "outer"
+    }
+  ],
+  "tags": {
+    "access": "guided",
+    "alt_name": "Boekhoutebos",
+    "curator": "Karim Neirynck",
+    "email": "karim.neirynck@gmail.com",
+    "leisure": "nature_reserve",
+    "name": "Rode Dopheidereservaat (Boekhoutebos)",
+    "operator": "Natuurpunt Brugge",
+    "phone": "+32 50 67 59 29",
+    "type": "multipolygon",
+    "website": "https://natuurpuntbrugge.be/rode-dopheidereservaat/",
+    "wikipedia": "nl:Rode dopheidereservaat"
+  }
+},
+{
   "type": "node",
   "id": 5520520058,
   "lat": 51.1642184,
@@ -396,9 +360,45 @@
 },
 {
   "type": "node",
+  "id": 4038769439,
+  "lat": 51.1741188,
+  "lon": 3.1344282
+},
+{
+  "type": "node",
+  "id": 4038769480,
+  "lat": 51.1742305,
+  "lon": 3.1350606
+},
+{
+  "type": "node",
+  "id": 4038769497,
+  "lat": 51.1743856,
+  "lon": 3.1371501
+},
+{
+  "type": "node",
+  "id": 4038769523,
+  "lat": 51.1745293,
+  "lon": 3.1337777
+},
+{
+  "type": "node",
   "id": 4038769535,
   "lat": 51.1745917,
   "lon": 3.1347935
+},
+{
+  "type": "node",
+  "id": 4038769560,
+  "lat": 51.1748960,
+  "lon": 3.1339670
+},
+{
+  "type": "node",
+  "id": 4038769576,
+  "lat": 51.1750959,
+  "lon": 3.1368228
 },
 {
   "type": "node",
@@ -415,8 +415,8 @@
 {
   "type": "node",
   "id": 5520509124,
-  "lat": 51.1749169,
-  "lon": 3.1379946
+  "lat": 51.1748630,
+  "lon": 3.1380508
 },
 {
   "type": "node",
@@ -507,6 +507,24 @@
   "id": 5941410108,
   "lat": 51.1756005,
   "lon": 3.1336717
+},
+{
+  "type": "node",
+  "id": 6770233956,
+  "lat": 51.1744246,
+  "lon": 3.1337237
+},
+{
+  "type": "node",
+  "id": 6770233957,
+  "lat": 51.1745077,
+  "lon": 3.1350352
+},
+{
+  "type": "node",
+  "id": 6770233960,
+  "lat": 51.1751618,
+  "lon": 3.1372243
 },
 {
   "type": "node",
@@ -1765,8 +1783,8 @@
 {
   "type": "node",
   "id": 5666323647,
-  "lat": 51.1991676,
-  "lon": 3.2799355
+  "lat": 51.1991588,
+  "lon": 3.2799706
 },
 {
   "type": "node",
@@ -1794,33 +1812,69 @@
 },
 {
   "type": "node",
+  "id": 6735542775,
+  "lat": 51.1985447,
+  "lon": 3.2800939
+},
+{
+  "type": "node",
+  "id": 6735564703,
+  "lat": 51.1995465,
+  "lon": 3.2818128
+},
+{
+  "type": "node",
+  "id": 3195835379,
+  "lat": 51.1994114,
+  "lon": 3.2851996
+},
+{
+  "type": "node",
   "id": 5666426696,
-  "lat": 51.1999180,
-  "lon": 3.2867715
+  "lat": 51.1999107,
+  "lon": 3.2867732
 },
 {
   "type": "node",
   "id": 5666426705,
-  "lat": 51.1995943,
-  "lon": 3.2857751
+  "lat": 51.1996238,
+  "lon": 3.2858785
+},
+{
+  "type": "node",
+  "id": 6735564972,
+  "lat": 51.1992393,
+  "lon": 3.2846827
 },
 {
   "type": "node",
   "id": 5548702658,
-  "lat": 51.2011727,
-  "lon": 3.2895053
+  "lat": 51.2011485,
+  "lon": 3.2893344
 },
 {
   "type": "node",
   "id": 5666323644,
-  "lat": 51.2007949,
-  "lon": 3.2894704
+  "lat": 51.2007901,
+  "lon": 3.2895145
 },
 {
   "type": "node",
   "id": 5666426704,
   "lat": 51.2002531,
   "lon": 3.2851151
+},
+{
+  "type": "node",
+  "id": 6735542776,
+  "lat": 51.2011143,
+  "lon": 3.2894610
+},
+{
+  "type": "node",
+  "id": 6735542777,
+  "lat": 51.2011440,
+  "lon": 3.2894081
 },
 {
   "type": "node",
@@ -1893,6 +1947,75 @@
   "id": 6221923982,
   "lat": 51.2919190,
   "lon": 3.2059141
+},
+{
+  "type": "way",
+  "id": 126696464,
+  "nodes": [
+    1038529522,
+    5520519010,
+    5520519013,
+    5520519012,
+    5520519011,
+    5520519009,
+    3100841207,
+    1038529393,
+    299546948,
+    1038529640,
+    1038529778,
+    1038529764,
+    1038529565,
+    1038529783,
+    5520519014,
+    1038529220,
+    1038529522
+  ]
+},
+{
+  "type": "way",
+  "id": 575276148,
+  "nodes": [
+    4038769535,
+    5520519823,
+    5536384832,
+    5520519018,
+    5520509126,
+    5520509125,
+    6770233960,
+    4038769576,
+    4038769497,
+    5520509124,
+    5520509123,
+    5520509131,
+    5520509130,
+    5520509129,
+    5520509128,
+    5520509127,
+    4038769908,
+    5941410107,
+    5941410108,
+    5520519015,
+    5520519016,
+    5520519020,
+    4038769587,
+    5520519019,
+    4038769535
+  ]
+},
+{
+  "type": "way",
+  "id": 721708217,
+  "nodes": [
+    6770233956,
+    4038769523,
+    4038769560,
+    5520519019,
+    4038769535,
+    6770233957,
+    4038769480,
+    4038769439,
+    6770233956
+  ]
 },
 {
   "type": "way",

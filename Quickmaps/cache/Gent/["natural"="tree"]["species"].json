@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.7 8b86ff77",
   "osm3s": {
-    "timestamp_osm_base": "2019-05-05T23:19:02Z",
-    "timestamp_areas_base": "2019-05-05T18:42:01Z",
+    "timestamp_osm_base": "2019-09-03T18:53:02Z",
+    "timestamp_areas_base": "2019-09-03T18:14:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -31,8 +31,8 @@
 {
   "type": "node",
   "id": 2131311312,
-  "lat": 51.0442537,
-  "lon": 3.7204243,
+  "lat": 51.0442484,
+  "lon": 3.7204483,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -41,8 +41,8 @@
 {
   "type": "node",
   "id": 2131311318,
-  "lat": 51.0443578,
-  "lon": 3.7205240,
+  "lat": 51.0443557,
+  "lon": 3.7205317,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -51,8 +51,8 @@
 {
   "type": "node",
   "id": 2131311321,
-  "lat": 51.0444412,
-  "lon": 3.7205845,
+  "lat": 51.0444404,
+  "lon": 3.7205880,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -61,8 +61,8 @@
 {
   "type": "node",
   "id": 2131311323,
-  "lat": 51.0445538,
-  "lon": 3.7206478,
+  "lat": 51.0445523,
+  "lon": 3.7206544,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -71,8 +71,8 @@
 {
   "type": "node",
   "id": 2131311326,
-  "lat": 51.0446495,
-  "lon": 3.7207279,
+  "lat": 51.0446525,
+  "lon": 3.7207103,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -81,8 +81,8 @@
 {
   "type": "node",
   "id": 2131311328,
-  "lat": 51.0447335,
-  "lon": 3.7207501,
+  "lat": 51.0447343,
+  "lon": 3.7207452,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -91,8 +91,8 @@
 {
   "type": "node",
   "id": 2131311331,
-  "lat": 51.0448633,
-  "lon": 3.7207644,
+  "lat": 51.0448634,
+  "lon": 3.7207679,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -101,8 +101,8 @@
 {
   "type": "node",
   "id": 2131311333,
-  "lat": 51.0449691,
-  "lon": 3.7207421,
+  "lat": 51.0449696,
+  "lon": 3.7207616,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -111,8 +111,8 @@
 {
   "type": "node",
   "id": 2131311338,
-  "lat": 51.0450705,
-  "lon": 3.7207448,
+  "lat": 51.0450708,
+  "lon": 3.7207550,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -121,8 +121,8 @@
 {
   "type": "node",
   "id": 2131311355,
-  "lat": 51.0451735,
-  "lon": 3.7207395,
+  "lat": 51.0451737,
+  "lon": 3.7207483,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -131,8 +131,8 @@
 {
   "type": "node",
   "id": 2131311368,
-  "lat": 51.0452809,
-  "lon": 3.7207270,
+  "lat": 51.0452813,
+  "lon": 3.7207410,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -141,8 +141,8 @@
 {
   "type": "node",
   "id": 2131311388,
-  "lat": 51.0453918,
-  "lon": 3.7207386,
+  "lat": 51.0453917,
+  "lon": 3.7207333,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -151,8 +151,8 @@
 {
   "type": "node",
   "id": 2131311417,
-  "lat": 51.0455026,
-  "lon": 3.7207421,
+  "lat": 51.0455021,
+  "lon": 3.7207256,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -171,8 +171,8 @@
 {
   "type": "node",
   "id": 2131311430,
-  "lat": 51.0456107,
-  "lon": 3.7207315,
+  "lat": 51.0456103,
+  "lon": 3.7207181,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -181,8 +181,8 @@
 {
   "type": "node",
   "id": 2131311443,
-  "lat": 51.0457103,
-  "lon": 3.7207172,
+  "lat": 51.0457100,
+  "lon": 3.7207099,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -201,8 +201,8 @@
 {
   "type": "node",
   "id": 2131311470,
-  "lat": 51.0458307,
-  "lon": 3.7207083,
+  "lat": 51.0458264,
+  "lon": 3.7206995,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -211,8 +211,8 @@
 {
   "type": "node",
   "id": 2131311498,
-  "lat": 51.0460272,
-  "lon": 3.7206843,
+  "lat": 51.0460271,
+  "lon": 3.7206816,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -221,8 +221,8 @@
 {
   "type": "node",
   "id": 2131311515,
-  "lat": 51.0461503,
-  "lon": 3.7206843,
+  "lat": 51.0461494,
+  "lon": 3.7206677,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -241,8 +241,8 @@
 {
   "type": "node",
   "id": 2131311521,
-  "lat": 51.0462751,
-  "lon": 3.7206567,
+  "lat": 51.0462747,
+  "lon": 3.7206496,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -271,8 +271,8 @@
 {
   "type": "node",
   "id": 2131311533,
-  "lat": 51.0463459,
-  "lon": 3.7206329,
+  "lat": 51.0463463,
+  "lon": 3.7206392,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -301,7 +301,7 @@
 {
   "type": "node",
   "id": 2131311542,
-  "lat": 51.0465301,
+  "lat": 51.0465293,
   "lon": 3.7178532,
   "tags": {
     "natural": "tree",
@@ -311,7 +311,7 @@
 {
   "type": "node",
   "id": 2131311545,
-  "lat": 51.0465338,
+  "lat": 51.0465323,
   "lon": 3.7181642,
   "tags": {
     "natural": "tree",
@@ -321,7 +321,7 @@
 {
   "type": "node",
   "id": 2131311547,
-  "lat": 51.0465338,
+  "lat": 51.0465337,
   "lon": 3.7182625,
   "tags": {
     "natural": "tree",
@@ -331,7 +331,7 @@
 {
   "type": "node",
   "id": 2131311550,
-  "lat": 51.0465316,
+  "lat": 51.0465291,
   "lon": 3.7177606,
   "tags": {
     "natural": "tree",
@@ -341,7 +341,7 @@
 {
   "type": "node",
   "id": 2131311553,
-  "lat": 51.0465310,
+  "lat": 51.0465296,
   "lon": 3.7179547,
   "tags": {
     "natural": "tree",
@@ -351,7 +351,7 @@
 {
   "type": "node",
   "id": 2131311555,
-  "lat": 51.0465320,
+  "lat": 51.0465309,
   "lon": 3.7180585,
   "tags": {
     "natural": "tree",
@@ -361,8 +361,8 @@
 {
   "type": "node",
   "id": 2131311556,
-  "lat": 51.0465472,
-  "lon": 3.7184665,
+  "lat": 51.0465397,
+  "lon": 3.7184676,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -371,8 +371,8 @@
 {
   "type": "node",
   "id": 2131311557,
-  "lat": 51.0465480,
-  "lon": 3.7176618,
+  "lat": 51.0465381,
+  "lon": 3.7176591,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -391,8 +391,8 @@
 {
   "type": "node",
   "id": 2131311560,
-  "lat": 51.0465529,
-  "lon": 3.7175451,
+  "lat": 51.0465507,
+  "lon": 3.7175445,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -401,8 +401,8 @@
 {
   "type": "node",
   "id": 2131311568,
-  "lat": 51.0465653,
-  "lon": 3.7174546,
+  "lat": 51.0465631,
+  "lon": 3.7174538,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -421,8 +421,8 @@
 {
   "type": "node",
   "id": 2131311574,
-  "lat": 51.0466090,
-  "lon": 3.7171846,
+  "lat": 51.0466046,
+  "lon": 3.7171829,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -541,8 +541,8 @@
 {
   "type": "node",
   "id": 2131311614,
-  "lat": 51.0467729,
-  "lon": 3.7160852,
+  "lat": 51.0467727,
+  "lon": 3.7160851,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -551,8 +551,8 @@
 {
   "type": "node",
   "id": 2131311624,
-  "lat": 51.0467886,
-  "lon": 3.7159852,
+  "lat": 51.0467880,
+  "lon": 3.7159850,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -561,8 +561,8 @@
 {
   "type": "node",
   "id": 2131311625,
-  "lat": 51.0467985,
-  "lon": 3.7158994,
+  "lat": 51.0468010,
+  "lon": 3.7159003,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -660,16 +660,6 @@
 },
 {
   "type": "node",
-  "id": 2131311646,
-  "lat": 51.0469615,
-  "lon": 3.7196416,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
   "id": 2131311649,
   "lat": 51.0469680,
   "lon": 3.7181212,
@@ -680,109 +670,9 @@
 },
 {
   "type": "node",
-  "id": 2131311651,
-  "lat": 51.0469677,
-  "lon": 3.7179714,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311655,
-  "lat": 51.0469641,
-  "lon": 3.7190944,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311657,
-  "lat": 51.0469741,
-  "lon": 3.7176985,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311665,
-  "lat": 51.0469741,
-  "lon": 3.7185270,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311668,
-  "lat": 51.0469749,
-  "lon": 3.7178345,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311670,
-  "lat": 51.0469643,
-  "lon": 3.7193657,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311672,
-  "lat": 51.0469729,
-  "lon": 3.7192271,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311675,
-  "lat": 51.0469659,
-  "lon": 3.7182556,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
   "id": 2131311677,
-  "lat": 51.0469701,
-  "lon": 3.7189550,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311680,
-  "lat": 51.0469632,
-  "lon": 3.7194988,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311681,
-  "lat": 51.0469717,
-  "lon": 3.7183898,
+  "lat": 51.0469721,
+  "lon": 3.7189527,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -800,39 +690,9 @@
 },
 {
   "type": "node",
-  "id": 2131311684,
-  "lat": 51.0469899,
-  "lon": 3.7175360,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311685,
-  "lat": 51.0470073,
-  "lon": 3.7174038,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
   "id": 2131311686,
   "lat": 51.0470207,
   "lon": 3.7147783,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311688,
-  "lat": 51.0470240,
-  "lon": 3.7172678,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -850,49 +710,9 @@
 },
 {
   "type": "node",
-  "id": 2131311693,
-  "lat": 51.0470447,
-  "lon": 3.7171206,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311700,
-  "lat": 51.0470556,
-  "lon": 3.7170349,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
   "id": 2131311703,
   "lat": 51.0470696,
   "lon": 3.7146545,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311705,
-  "lat": 51.0470778,
-  "lon": 3.7169089,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311708,
-  "lat": 51.0470905,
-  "lon": 3.7167843,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -910,39 +730,9 @@
 },
 {
   "type": "node",
-  "id": 2131311713,
-  "lat": 51.0471095,
-  "lon": 3.7166395,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
   "id": 2131311716,
   "lat": 51.0471338,
   "lon": 3.7144911,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311718,
-  "lat": 51.0471356,
-  "lon": 3.7164884,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311721,
-  "lat": 51.0471490,
-  "lon": 3.7163561,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -960,46 +750,6 @@
 },
 {
   "type": "node",
-  "id": 2131311726,
-  "lat": 51.0471728,
-  "lon": 3.7162101,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311728,
-  "lat": 51.0471965,
-  "lon": 3.7160628,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311730,
-  "lat": 51.0472084,
-  "lon": 3.7159242,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311733,
-  "lat": 51.0472274,
-  "lon": 3.7157996,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
   "id": 2131311735,
   "lat": 51.0472336,
   "lon": 3.7142997,
@@ -1010,49 +760,9 @@
 },
 {
   "type": "node",
-  "id": 2131311738,
-  "lat": 51.0472456,
-  "lon": 3.7156611,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311740,
-  "lat": 51.0472654,
-  "lon": 3.7155565,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
   "id": 2131311742,
   "lat": 51.0472827,
   "lon": 3.7142280,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311744,
-  "lat": 51.0472892,
-  "lon": 3.7154231,
-  "tags": {
-    "natural": "tree",
-    "species": "Platanus x hispanica"
-  }
-},
-{
-  "type": "node",
-  "id": 2131311747,
-  "lat": 51.0473153,
-  "lon": 3.7152997,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1071,8 +781,8 @@
 {
   "type": "node",
   "id": 2131311752,
-  "lat": 51.0473675,
-  "lon": 3.7151574,
+  "lat": 51.0473816,
+  "lon": 3.7151205,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1101,8 +811,8 @@
 {
   "type": "node",
   "id": 2131311759,
-  "lat": 51.0474127,
-  "lon": 3.7150264,
+  "lat": 51.0474365,
+  "lon": 3.7149802,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1121,8 +831,8 @@
 {
   "type": "node",
   "id": 2131311764,
-  "lat": 51.0474752,
-  "lon": 3.7149131,
+  "lat": 51.0474693,
+  "lon": 3.7149001,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1141,8 +851,8 @@
 {
   "type": "node",
   "id": 2131311769,
-  "lat": 51.0475362,
-  "lon": 3.7147910,
+  "lat": 51.0475330,
+  "lon": 3.7147865,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1161,8 +871,8 @@
 {
   "type": "node",
   "id": 2131311782,
-  "lat": 51.0475955,
-  "lon": 3.7146827,
+  "lat": 51.0475970,
+  "lon": 3.7146855,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1181,8 +891,8 @@
 {
   "type": "node",
   "id": 2131311789,
-  "lat": 51.0476660,
-  "lon": 3.7145844,
+  "lat": 51.0476683,
+  "lon": 3.7145888,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1201,8 +911,8 @@
 {
   "type": "node",
   "id": 2131311793,
-  "lat": 51.0477436,
-  "lon": 3.7144736,
+  "lat": 51.0477477,
+  "lon": 3.7144812,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1381,8 +1091,8 @@
 {
   "type": "node",
   "id": 2131311845,
-  "lat": 51.0482494,
-  "lon": 3.7137962,
+  "lat": 51.0482531,
+  "lon": 3.7138032,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1411,8 +1121,8 @@
 {
   "type": "node",
   "id": 2131311857,
-  "lat": 51.0483302,
-  "lon": 3.7136917,
+  "lat": 51.0483328,
+  "lon": 3.7136966,
   "tags": {
     "natural": "tree",
     "species": "Platanus x hispanica"
@@ -1918,6 +1628,369 @@
     "leaf_type": "broadleaved",
     "natural": "tree",
     "species": "willow"
+  }
+},
+{
+  "type": "node",
+  "id": 6478723976,
+  "lat": 51.0473421,
+  "lon": 3.7152546,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478723977,
+  "lat": 51.0473155,
+  "lon": 3.7153844,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478723978,
+  "lat": 51.0472918,
+  "lon": 3.7155217,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478723995,
+  "lat": 51.0472062,
+  "lon": 3.7160747,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478723996,
+  "lat": 51.0472264,
+  "lon": 3.7159389,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478723997,
+  "lat": 51.0472666,
+  "lon": 3.7156673,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478723998,
+  "lat": 51.0472465,
+  "lon": 3.7158031,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724023,
+  "lat": 51.0471673,
+  "lon": 3.7163392,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724024,
+  "lat": 51.0470879,
+  "lon": 3.7168829,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724025,
+  "lat": 51.0471077,
+  "lon": 3.7167470,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724026,
+  "lat": 51.0471871,
+  "lon": 3.7162033,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724027,
+  "lat": 51.0471474,
+  "lon": 3.7164752,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724028,
+  "lat": 51.0471276,
+  "lon": 3.7166111,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724053,
+  "lat": 51.0470484,
+  "lon": 3.7171475,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724054,
+  "lat": 51.0469771,
+  "lon": 3.7176940,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724055,
+  "lat": 51.0469949,
+  "lon": 3.7175574,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724056,
+  "lat": 51.0470663,
+  "lon": 3.7170109,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724057,
+  "lat": 51.0470306,
+  "lon": 3.7172841,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724058,
+  "lat": 51.0470128,
+  "lon": 3.7174207,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724114,
+  "lat": 51.0469789,
+  "lon": 3.7185280,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724115,
+  "lat": 51.0469725,
+  "lon": 3.7179699,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724116,
+  "lat": 51.0469773,
+  "lon": 3.7183884,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724117,
+  "lat": 51.0469709,
+  "lon": 3.7178304,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724118,
+  "lat": 51.0469757,
+  "lon": 3.7182489,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724119,
+  "lat": 51.0469741,
+  "lon": 3.7181094,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724121,
+  "lat": 51.0469785,
+  "lon": 3.7195107,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724125,
+  "lat": 51.0469769,
+  "lon": 3.7193712,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724133,
+  "lat": 51.0469801,
+  "lon": 3.7196502,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724140,
+  "lat": 51.0469753,
+  "lon": 3.7192317,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478724143,
+  "lat": 51.0469737,
+  "lon": 3.7190922,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478818916,
+  "lat": 51.0490942,
+  "lon": 3.7118144,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478818917,
+  "lat": 51.0471995,
+  "lon": 3.7143622,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478818918,
+  "lat": 51.0465769,
+  "lon": 3.7173635,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478818919,
+  "lat": 51.0465908,
+  "lon": 3.7172732,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6478818920,
+  "lat": 51.0465367,
+  "lon": 3.7183651,
+  "tags": {
+    "natural": "tree",
+    "species": "Platanus x hispanica"
+  }
+},
+{
+  "type": "node",
+  "id": 6681670064,
+  "lat": 51.0575468,
+  "lon": 3.6734262,
+  "tags": {
+    "diameter": "3 m",
+    "natural": "tree",
+    "species": "Sequoiadendron giganteum",
+    "species:nl": "mammoetboom",
+    "website": "https://www.monumentaltrees.com/nl/bel/oostvlaanderen/gent/296_bourgoyenossemeersen/521/"
   }
 }
 

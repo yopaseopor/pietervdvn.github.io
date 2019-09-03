@@ -2,8 +2,8 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.55.7 8b86ff77",
   "osm3s": {
-    "timestamp_osm_base": "2019-05-05T23:19:02Z",
-    "timestamp_areas_base": "2019-05-05T18:42:01Z",
+    "timestamp_osm_base": "2019-09-03T18:53:02Z",
+    "timestamp_areas_base": "2019-09-03T18:14:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -95,6 +95,19 @@
     "natural": "tree",
     "source": "survey",
     "species:nl": "wilg"
+  }
+},
+{
+  "type": "node",
+  "id": 6681670064,
+  "lat": 51.0575468,
+  "lon": 3.6734262,
+  "tags": {
+    "diameter": "3 m",
+    "natural": "tree",
+    "species": "Sequoiadendron giganteum",
+    "species:nl": "mammoetboom",
+    "website": "https://www.monumentaltrees.com/nl/bel/oostvlaanderen/gent/296_bourgoyenossemeersen/521/"
   }
 }
 
