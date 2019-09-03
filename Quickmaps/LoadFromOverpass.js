@@ -811,8 +811,8 @@ function CachedFirstRender(tags, searchIn, textGenerator, imageFunction, options
 	for(var i = 0; i < tags.length; i++){
 		filter = filter.concat("["+tags[i]+"]");
 	}
-    
-    let staleQuery = "https://raw.githubusercontent.com/pietervdvn/pietervdvn.github.io/master/Quickmaps/cache/"+searchIn+"/"+filter+".json"
+
+ let staleQuery = "https://raw.githubusercontent.com/pietervdvn/pietervdvn.github.io/master/Quickmaps/cache/"+searchIn+"/"+Global.encodeURIComponent(filter)+".json"
     console.log("Attempting to load cache from github", staleQuery);
     $.getJSON(staleQuery, 
         function(json) {renderQuery(json.elements, textGenerator, imageFunction, options);}
