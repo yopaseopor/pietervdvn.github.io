@@ -1,9 +1,9 @@
 {
   "version": 0.6,
-  "generator": "Overpass API 0.7.55.7 8b86ff77",
+  "generator": "Overpass API 0.7.55.1009 5e627b63",
   "osm3s": {
-    "timestamp_osm_base": "2019-09-03T18:53:02Z",
-    "timestamp_areas_base": "2019-09-03T18:14:02Z",
+    "timestamp_osm_base": "2019-10-18T18:31:02Z",
+    "timestamp_areas_base": "2019-10-18T18:16:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -2289,6 +2289,28 @@
   "tags": {
     "landuse": "orchard",
     "leisure": "dog_park"
+  }
+},
+{
+  "type": "way",
+  "id": 725047200,
+  "nodes": [
+    6799118951,
+    6799118950,
+    2620347606,
+    6799118949,
+    6799118948,
+    6799118947,
+    2620347600,
+    2620347591,
+    6799118946,
+    6799118945,
+    6799118953,
+    6799118952,
+    6799118951
+  ],
+  "tags": {
+    "landuse": "orchard"
   }
 },
 {
@@ -6382,6 +6404,78 @@
   "id": 1906610314,
   "lat": 50.9917362,
   "lon": 3.5666176
+},
+{
+  "type": "node",
+  "id": 2620347591,
+  "lat": 51.0124303,
+  "lon": 3.6535925
+},
+{
+  "type": "node",
+  "id": 2620347600,
+  "lat": 51.0127274,
+  "lon": 3.6544093
+},
+{
+  "type": "node",
+  "id": 2620347606,
+  "lat": 51.0130625,
+  "lon": 3.6541400
+},
+{
+  "type": "node",
+  "id": 6799118945,
+  "lat": 51.0124179,
+  "lon": 3.6549894
+},
+{
+  "type": "node",
+  "id": 6799118946,
+  "lat": 51.0119558,
+  "lon": 3.6540055
+},
+{
+  "type": "node",
+  "id": 6799118947,
+  "lat": 51.0128806,
+  "lon": 3.6542803
+},
+{
+  "type": "node",
+  "id": 6799118948,
+  "lat": 51.0129244,
+  "lon": 3.6544266
+},
+{
+  "type": "node",
+  "id": 6799118949,
+  "lat": 51.0131033,
+  "lon": 3.6542711
+},
+{
+  "type": "node",
+  "id": 6799118950,
+  "lat": 51.0130172,
+  "lon": 3.6539948
+},
+{
+  "type": "node",
+  "id": 6799118951,
+  "lat": 51.0134175,
+  "lon": 3.6536713
+},
+{
+  "type": "node",
+  "id": 6799118952,
+  "lat": 51.0135312,
+  "lon": 3.6541336
+},
+{
+  "type": "node",
+  "id": 6799118953,
+  "lat": 51.0128607,
+  "lon": 3.6546507
 },
 {
   "type": "node",

@@ -1,9 +1,9 @@
 {
   "version": 0.6,
-  "generator": "Overpass API 0.7.55.7 8b86ff77",
+  "generator": "Overpass API 0.7.55.1009 5e627b63",
   "osm3s": {
-    "timestamp_osm_base": "2019-09-03T18:53:02Z",
-    "timestamp_areas_base": "2019-09-03T18:14:02Z",
+    "timestamp_osm_base": "2019-10-18T18:30:02Z",
+    "timestamp_areas_base": "2019-10-18T18:16:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -287,6 +287,19 @@
     "name": "Ruilkast",
     "opening_hours": "24/7",
     "operator": "Brugge Plus - Uitwijken"
+  }
+},
+{
+  "type": "node",
+  "id": 6779447190,
+  "lat": 51.2156570,
+  "lon": 3.2245804,
+  "tags": {
+    "amenity": "public_bookcase",
+    "email": "rappe.joannes@telenet.be",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/45/Boekenruilkast_Sint-Gillis.jpg",
+    "name": "Ruilbib",
+    "opening_hours": "24/7"
   }
 }
 
