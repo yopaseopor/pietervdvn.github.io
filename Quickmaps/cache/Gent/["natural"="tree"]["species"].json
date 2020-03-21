@@ -1,9 +1,9 @@
 {
   "version": 0.6,
-  "generator": "Overpass API 0.7.55.1009 5e627b63",
+  "generator": "Overpass API 0.7.56.2 b688b00f",
   "osm3s": {
-    "timestamp_osm_base": "2019-10-18T18:31:02Z",
-    "timestamp_areas_base": "2019-10-18T18:16:02Z",
+    "timestamp_osm_base": "2020-03-21T16:27:02Z",
+    "timestamp_areas_base": "2020-03-21T15:37:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -1240,54 +1240,6 @@
 },
 {
   "type": "node",
-  "id": 4097485941,
-  "lat": 51.0679786,
-  "lon": 3.5369176,
-  "tags": {
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "species": "Platanus Hybrida"
-  }
-},
-{
-  "type": "node",
-  "id": 4097513458,
-  "lat": 51.0678842,
-  "lon": 3.5369908,
-  "tags": {
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "species": "Platanus Hybrida"
-  }
-},
-{
-  "type": "node",
-  "id": 4097513459,
-  "lat": 51.0677786,
-  "lon": 3.5371104,
-  "tags": {
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "species": "Platanus Hybrida"
-  }
-},
-{
-  "type": "node",
-  "id": 4097513460,
-  "lat": 51.0679302,
-  "lon": 3.5368049,
-  "tags": {
-    "leaf_cycle": "deciduous",
-    "leaf_type": "broadleaved",
-    "natural": "tree",
-    "species": "Platanus Hybrida"
-  }
-},
-{
-  "type": "node",
   "id": 4097513461,
   "lat": 51.0678494,
   "lon": 3.5368771,
@@ -1981,6 +1933,114 @@
     "species": "Sequoiadendron giganteum",
     "species:nl": "mammoetboom",
     "website": "https://www.monumentaltrees.com/nl/bel/oostvlaanderen/gent/296_bourgoyenossemeersen/521/"
+  }
+},
+{
+  "type": "node",
+  "id": 7004482546,
+  "lat": 51.0623539,
+  "lon": 3.7978588,
+  "tags": {
+    "natural": "tree",
+    "species": "Sequoiadendron giganteum"
+  }
+},
+{
+  "type": "node",
+  "id": 7004482550,
+  "lat": 51.0650591,
+  "lon": 3.7896996,
+  "tags": {
+    "natural": "tree",
+    "species": "Sequoiadendron giganteum"
+  }
+},
+{
+  "type": "node",
+  "id": 7004482555,
+  "lat": 51.0651456,
+  "lon": 3.7896984,
+  "tags": {
+    "natural": "tree",
+    "species": "Sequoiadendron giganteum"
+  }
+},
+{
+  "type": "node",
+  "id": 7315161401,
+  "lat": 51.0996700,
+  "lon": 3.4709025,
+  "tags": {
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Malus domestica",
+    "taxon:cultivar": "James Grieve"
+  }
+},
+{
+  "type": "node",
+  "id": 7315161402,
+  "lat": 51.0996615,
+  "lon": 3.4708975,
+  "tags": {
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Malus domestica",
+    "taxon:cultivar": "Reinette de Flandre"
+  }
+},
+{
+  "type": "node",
+  "id": 7315161403,
+  "lat": 51.0996530,
+  "lon": 3.4708925,
+  "tags": {
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Malus domestica",
+    "taxon:cultivar": "Gris Braibant"
+  }
+},
+{
+  "type": "node",
+  "id": 7315161404,
+  "lat": 51.0996445,
+  "lon": 3.4708874,
+  "tags": {
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Malus domestica",
+    "taxon:cultivar": "Gris Braibant"
+  }
+},
+{
+  "type": "node",
+  "id": 7315161405,
+  "lat": 51.0996368,
+  "lon": 3.4708903,
+  "tags": {
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Malus domestica",
+    "taxon:cultivar": "Alkmere"
+  }
+},
+{
+  "type": "node",
+  "id": 7315161406,
+  "lat": 51.0996330,
+  "lon": 3.4709065,
+  "tags": {
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Malus domestica",
+    "taxon:cultivar": "Reinette de Flandre"
   }
 }
 

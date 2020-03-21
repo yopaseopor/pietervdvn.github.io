@@ -1,9 +1,9 @@
 {
   "version": 0.6,
-  "generator": "Overpass API 0.7.55.1009 5e627b63",
+  "generator": "Overpass API 0.7.56.2 b688b00f",
   "osm3s": {
-    "timestamp_osm_base": "2019-10-18T18:30:02Z",
-    "timestamp_areas_base": "2019-10-18T18:16:02Z",
+    "timestamp_osm_base": "2020-03-21T16:27:02Z",
+    "timestamp_areas_base": "2020-03-21T15:37:02Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -71,6 +71,7 @@
     "brand": "Little Free Library",
     "capacity": "40",
     "description": "In 2018 we started a facebook-like city district-wide community IT platform and someone suggested there to place a little free library. Another person offered to build it and a third person had connection to the city council .",
+    "email": "hennonr@gmail.com",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Boekenruilkast_Sint-Anna.jpg/576px-Boekenruilkast_Sint-Anna.jpg",
     "name": "Little Free Library Sint-Anna",
     "opening_hours": "24/7",
@@ -296,10 +297,13 @@
   "lon": 3.2245804,
   "tags": {
     "amenity": "public_bookcase",
+    "capacity": "50",
     "email": "rappe.joannes@telenet.be",
     "image": "https://upload.wikimedia.org/wikipedia/commons/4/45/Boekenruilkast_Sint-Gillis.jpg",
-    "name": "Ruilbib",
-    "opening_hours": "24/7"
+    "name": "Ruilbib 't Reitje",
+    "opening_hours": "24/7",
+    "operator": "Joannes Rappe",
+    "public_bookcase:type": "reading_box"
   }
 }
 
