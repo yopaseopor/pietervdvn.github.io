@@ -104,6 +104,14 @@ function image(tags){
 }
 
 console.log("Getting started...");
+console.log("Pinging the personal analytics server - don't worry, it's just out of curiosity");
+
+
+$.getJSON("http://178.116.193.137:5000/LogMessage?msg='Loaded BookcasesBe'", 
+        function(json) {}
+        ).fail(function(){} )
+
+
 initializeMap();
 
 var urlParams = new URLSearchParams(window.location.search);
