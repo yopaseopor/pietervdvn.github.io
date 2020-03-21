@@ -104,12 +104,6 @@ function image(tags){
 }
 
 console.log("Getting started...");
-console.log("Pinging the personal analytics server - don't worry, it's just out of curiosity");
-
-
-$.getJSON("http://178.116.193.137:5000/LogMessage?msg='Loaded BookcasesBe'", 
-        function(json) {}
-        ).fail(function(){} )
 
 
 initializeMap();
@@ -126,8 +120,8 @@ CachedFirstRender(['"amenity"="public_bookcase"'],searchIn ,popupText);
 
 </script>
 
-
-
+<!-- Analytics are only to check the count of ppl, all data stays on my computer -->
+<img src="http://178.116.193.137:5000/LogMessage?msg='Loaded BookcasesBe'" height=1px/>
 </body>
 
 
