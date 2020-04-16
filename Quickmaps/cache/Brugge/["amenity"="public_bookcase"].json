@@ -2,7 +2,7 @@
   "version": 0.6,
   "generator": "Overpass API 0.7.56.1002 b121d216",
   "osm3s": {
-    "timestamp_osm_base": "2020-03-24T20:45:02Z",
+    "timestamp_osm_base": "2020-04-16T18:00:02Z",
     "timestamp_areas_base": "2020-03-06T11:03:01Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
@@ -101,28 +101,6 @@
 },
 {
   "type": "node",
-  "id": 6156051610,
-  "lat": 51.2057076,
-  "lon": 3.1962513,
-  "tags": {
-    "amenity": "public_bookcase",
-    "brand": "Little Free Library",
-    "capacity": "25",
-    "description": "I came up with the idea of a Little Free Library in our street because I know many people here (especialy women) like to read. We recommend and lend books to each other. I also love the idea of sharing things with each other.",
-    "description_1": "My husband made the library all by himself. He painted it yellow and green, the Brazilian Fifa World Cup colours :-). A lot of people from other streets pass by here while jogging or walking with their dog, we intend to reach them too.",
-    "image": "https://3c62p93gfps217cemn2fgzd3-wpengine.netdna-ssl.com/wp-content/uploads/2014/11/Hertsvelde_4.jpg",
-    "image_1": "https://littlefreelibrary.secure.force.com/servlet/servlet.FileDownload?file=00Pd000000IisiiEAB",
-    "name": "Little Free Library Hertsvelde-West",
-    "opening_hours": "24/7",
-    "operator": "Manon Billiet",
-    "public_bookcase:type": "reading_box",
-    "ref": "13695",
-    "start_date": "2014",
-    "website": "https://booksinboxes.eu/13694-hertsvelde-west-9-8200-sint-andries/"
-  }
-},
-{
-  "type": "node",
   "id": 6156187094,
   "lat": 51.2037968,
   "lon": 3.1862056,
@@ -212,7 +190,7 @@
   "lon": 3.2098215,
   "tags": {
     "amenity": "public_bookcase",
-    "capacity": "40",
+    "capacity": "140",
     "email": "monique.van.parys@gmail.com",
     "image": "https://i.imgur.com/Q3rNBbP.jpg",
     "name": "MoniqueBib",
