@@ -1,9 +1,9 @@
 {
   "version": 0.6,
-  "generator": "Overpass API 0.7.56.1002 b121d216",
+  "generator": "Overpass API 0.7.56.3 eb200aeb",
   "osm3s": {
-    "timestamp_osm_base": "2020-04-16T19:32:02Z",
-    "timestamp_areas_base": "2020-03-06T11:03:01Z",
+    "timestamp_osm_base": "2020-05-13T23:26:03Z",
+    "timestamp_areas_base": "2020-05-13T23:11:03Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -90,21 +90,6 @@
     "opening_hours": "24/7",
     "operator": "Commune de Ganshoren - Gemeente Ganshoren",
     "public_bookcase:type": "reading_box"
-  }
-},
-{
-  "type": "node",
-  "id": 4437573408,
-  "lat": 49.6784595,
-  "lon": 5.8044876,
-  "tags": {
-    "amenity": "public_bookcase",
-    "image": "https://www.mapillary.com/map/im/ch4y8Ofr4YHneUpmEflHBA",
-    "mapillary": "ch4y8Ofr4YHneUpmEflHBA",
-    "name": "Boite à Livre nº11",
-    "opening_hours": "24/7",
-    "public_bookcase:type": "reading_box",
-    "survey:date": "2018-04-18"
   }
 },
 {
@@ -764,6 +749,7 @@
   "lon": 3.2063610,
   "tags": {
     "amenity": "public_bookcase",
+    "books": "children",
     "brand": "Little Free Library",
     "capacity": "70",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Boekenkast_Sint-Lodewijks.jpg/1024px-Boekenkast_Sint-Lodewijks.jpg",
@@ -2827,7 +2813,8 @@
   "lon": 4.6939367,
   "tags": {
     "amenity": "public_bookcase",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/5/51/Boekenruilkast_Redingenstraat.jpg"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/51/Boekenruilkast_Redingenstraat.jpg",
+    "name": "Koninklijke Atheneum Redingenhof"
   }
 },
 {
@@ -3430,7 +3417,152 @@
   "lon": 4.3763218,
   "tags": {
     "amenity": "public_bookcase",
+    "mapillary": "https://www.mapillary.com/map/im/pJPjZXsewewAD_y54Jn0yw",
     "opening_hours": "24/7"
+  }
+},
+{
+  "type": "node",
+  "id": 7416386075,
+  "lat": 51.3220692,
+  "lon": 4.9378412,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://commons.wikimedia.org/wiki/File:Boekenruilkastje_station_Turnhout.jpg",
+    "name": "Zwerfboek",
+    "opening_hours": "\"Opening station\"",
+    "operator": "Bibliotheek Turnhout",
+    "public_bookcase:type": "metal_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 7416704756,
+  "lat": 50.9588459,
+  "lon": 3.8975074,
+  "tags": {
+    "amenity": "public_bookcase",
+    "image": "https://i.pinimg.com/564x/8b/66/e5/8b66e56ea89d73138a255e4f12ad8e28.jpg",
+    "name": "Ruilbib",
+    "opening_hours": "24/7",
+    "public_bookcase:type": "reading_box"
+  }
+},
+{
+  "type": "node",
+  "id": 7433950955,
+  "lat": 50.5913869,
+  "lon": 4.3224536,
+  "tags": {
+    "amenity": "public_bookcase"
+  }
+},
+{
+  "type": "node",
+  "id": 7444383146,
+  "lat": 51.0324602,
+  "lon": 3.8554183,
+  "tags": {
+    "amenity": "public_bookcase"
+  }
+},
+{
+  "type": "node",
+  "id": 7448061310,
+  "lat": 50.9741235,
+  "lon": 3.9561413,
+  "tags": {
+    "amenity": "public_bookcase",
+    "public_bookcase:type": "wooden_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 7448061319,
+  "lat": 50.9602523,
+  "lon": 3.9519862,
+  "tags": {
+    "amenity": "public_bookcase",
+    "public_bookcase:type": "wooden_cabinet"
+  }
+},
+{
+  "type": "node",
+  "id": 7453518550,
+  "lat": 50.6002374,
+  "lon": 4.3227220,
+  "tags": {
+    "amenity": "public_bookcase",
+    "opening_hours": "24/7"
+  }
+},
+{
+  "type": "node",
+  "id": 7454276981,
+  "lat": 50.6804136,
+  "lon": 4.2992403,
+  "tags": {
+    "amenity": "public_bookcase"
+  }
+},
+{
+  "type": "node",
+  "id": 7473980941,
+  "lat": 50.9325933,
+  "lon": 4.2578656,
+  "tags": {
+    "amenity": "public_bookcase",
+    "lit": "no",
+    "public_bookcase:type": "reading_box"
+  }
+},
+{
+  "type": "node",
+  "id": 7494561380,
+  "lat": 50.9192539,
+  "lon": 4.4770347,
+  "tags": {
+    "amenity": "public_bookcase",
+    "opening_hours": "24/7"
+  }
+},
+{
+  "type": "node",
+  "id": 7505715296,
+  "lat": 51.0273644,
+  "lon": 3.7573657,
+  "tags": {
+    "amenity": "public_bookcase",
+    "brand": "Little Free Library",
+    "brand:wikidata": "Q6650101",
+    "brand:wikipedia": "en:Little Free Library",
+    "name": "Little Free Library",
+    "opening_hours": "24/7",
+    "operator": "leesclub Moscou",
+    "public_bookcase:type": "reading_box",
+    "website": "https://www.facebook.com/ruilboekenkastjeMoscou/"
+  }
+},
+{
+  "type": "node",
+  "id": 7505737887,
+  "lat": 51.0273370,
+  "lon": 3.7592312,
+  "tags": {
+    "amenity": "public_bookcase",
+    "opening_hours": "24/7",
+    "operator": "Santo"
+  }
+},
+{
+  "type": "node",
+  "id": 7515781865,
+  "lat": 50.6759499,
+  "lon": 4.3804791,
+  "tags": {
+    "amenity": "public_bookcase",
+    "operator": "Commune de Braine-'Alleud",
+    "public_bookcase:type": "reading_box"
   }
 }
 

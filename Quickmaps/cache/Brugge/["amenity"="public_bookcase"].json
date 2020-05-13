@@ -1,9 +1,9 @@
 {
   "version": 0.6,
-  "generator": "Overpass API 0.7.56.1002 b121d216",
+  "generator": "Overpass API 0.7.56.3 eb200aeb",
   "osm3s": {
-    "timestamp_osm_base": "2020-04-16T19:32:02Z",
-    "timestamp_areas_base": "2020-03-06T11:03:01Z",
+    "timestamp_osm_base": "2020-05-13T23:25:03Z",
+    "timestamp_areas_base": "2020-05-13T23:11:03Z",
     "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
   },
   "elements": [
@@ -87,6 +87,7 @@
   "lon": 3.2063610,
   "tags": {
     "amenity": "public_bookcase",
+    "books": "children",
     "brand": "Little Free Library",
     "capacity": "70",
     "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Boekenkast_Sint-Lodewijks.jpg/1024px-Boekenkast_Sint-Lodewijks.jpg",
