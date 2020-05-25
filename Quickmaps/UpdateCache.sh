@@ -7,6 +7,7 @@ function update { # search area, relId, tags
     QUERY="[out:json][timeout:25];area($2)->.searchArea;(node$3(area.searchArea);way$3(area.searchArea);relation$3(area.searchArea););out body;>;out skel qt;"
     wget -O "$3.json" "https://overpass-api.de/api/interpreter?data=$QUERY"
     cd ..
+    sleep 10
 
 }
 
