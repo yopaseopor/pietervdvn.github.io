@@ -1,1 +1,4 @@
-dist/*
+MapComplete/.cache/*
+MapComplete/.idea/*
+MapComplete/node_modules/*
+
