@@ -6,16 +6,7 @@ import {Changes} from "./Changes";
 
 let login = new LoginElement();
 
-login.OpenChangeset("Testing Mapcomplete 0.0.0",
-    function (csId) {
-    login.AddChange(csId);
-    login.CloseChangeset(csId);
-    
-    
-    }
-    );
 
-/*
 let bm = new Basemap("leafletDiv");
 
 let changeHandler = new Changes(login);
@@ -38,5 +29,5 @@ var access = new Question(
 
 let op = new QuestLayer(bm, ["leisure=nature_reserve"], [access], 13);
 
-*/
+
 

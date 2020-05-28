@@ -61,10 +61,6 @@ export class Question {
         this._qId = Question.questions.length;
         this._changeHandler = changeHandler;
         Question.questions.push(this);
-
-        if (!Question.IsInitialized) {
-            console.log("ERROR NOT INITIALIZED")
-        }
     }
 
     /**
@@ -106,12 +102,15 @@ export class Question {
             console.log("No answer selected");
             return
         }
-        ;
 
         const value = selected.value;
         console.log("Got question answered: " + this._qId, this._tagKey, value, elementId);
-        this._changeHandler.AddChange(elementId, this._tagKey, value)
-
+        const self = this;
+        self._changeHandler.addChange(elementId, this._tagKey, value,
+            function () {
+                self._changeHandler.uploadAll();
+            }
+        );
     }
 
     /**
@@ -120,11 +119,11 @@ export class Question {
      * @constructor
      */
     public CreateHtml(tags) {
-        var radios = "";
-        var c = 0;
-        for (var answer of this._answers) {
-            var human = answer.a;
-            var ansId = "q" + this._qId + "-answer" + c;
+        let radios = "";
+        let c = 0;
+        for (let answer of this._answers) {
+            const human = answer.a;
+            const ansId = "q" + this._qId + "-answer" + c;
             c++;
             radios +=
                 "<input type='radio' name='q" + this._qId + "' id='" + ansId + "' value='" + answer.v + "' />" +
@@ -132,7 +131,7 @@ export class Question {
                 "<br />";
         }
 
-        var embeddedScript = 'questionAnswered(' + this._qId + ', "' + tags.id + '" )';
+        const embeddedScript = 'questionAnswered(' + this._qId + ', "' + tags.id + '" )';
         return this._question + "<br/>  " + radios + "<input type='button' onclick='" + embeddedScript + "' value='Opslaan' />";
     }
 

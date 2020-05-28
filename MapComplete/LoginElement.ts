@@ -30,10 +30,19 @@ export class LoginElement {
     }
 
     private UpdateUserBadge() {
+        const self = this;
         this.auth.xhr({
             method: 'GET',
             path: '/api/0.6/user/details'
         }, function (err, details) {
+            if(err != null){
+                console.log(err);
+                self.auth.logout();
+            }
+            
+            if(details == null){
+                return;
+            }
             // details is an XML DOM of user details
             let userInfo = details.getElementsByTagName("user")[0];
             let userName = userInfo.getAttribute('display_name');
@@ -47,26 +56,40 @@ export class LoginElement {
 
     public OpenChangeset(comment: string, continuation: ((changesetId: string) => void)) {
        console.log("Opened");
+        if (!this.auth.authenticated()) {
+            console.log(("HUH???"));
+        } else {
+            console.log("AUth OK!")
+        }
+
         this.auth.xhr({
             method: 'PUT',
             path: '/api/0.6/changeset/create',
+            options: { header: { 'Content-Type': 'text/xml' } },
             content: '<osm><changeset>' +
                 '<tag k="created_by" v="MapComplete 0.0.0" />' +
                 '<tag k="comment" v="' + comment + '"/>' +
                 '</changeset></osm>'
         }, function (err, response) {
             console.log("err", err);
-            console.log("response", response);
-            console.log("Opened changeset ", response);
-            continuation(response);
+            if (response === undefined) {
+                return;
+            } else {
+                console.log("response", response);
+                console.log("Opened changeset ", response);
+                continuation(response);
+            }
         });
     }
     
-    public AddChange(changesetId: string){
+    public AddChange(changesetId: string, 
+                     changesetXML: string,
+                     continuation: ((changesetId: string) => void)){
         console.log("uploading");
         const changes = "<osmChange version='0.6' generator='Mapcomplete 0.0.0'>" +
             "<modify>" +
-            "<node id='7564216431' version='1'>" +
+            // Version must be the same as the server version; all keys must be repeated (missing = removed); all tags/members must be repeated: lat/lon must be repeated
+            "<node id='7564216431' version='2' changeset='"+changesetId+"' lat='51.2157018' lon='3.2197236'>" +
             "<tag k='fixme' v='remove me after testing'/>" +
             "</node>" +
             "</modify>" +
@@ -74,12 +97,18 @@ export class LoginElement {
         
         this.auth.xhr({
             method: 'POST',
+            options: { header: { 'Content-Type': 'text/xml' } },
             path: '/api/0.6/changeset/'+changesetId+'/upload',
-            content: changes
+            content: changesetXML
         }, function (err, response) {
             console.log("err", err);
+            if(response == null){
+                return;
+            }
+            
             console.log("response", response);
             console.log("Closed changeset ", changesetId);
+            continuation(changesetId);
         });
     }
 
@@ -94,4 +123,5 @@ export class LoginElement {
             console.log("Closed changeset ", changesetId);
         });
     }
+    
 }

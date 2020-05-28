@@ -42,6 +42,7 @@ export class QuestLayer {
                     }
                 });
                 html+="</form>";
+                html += "<a href='https://osm.org/"+feature.properties.id+"'>Op OSM</a>";
                 layer.bindPopup(html);
             }
         }).addTo(this.map.map);
