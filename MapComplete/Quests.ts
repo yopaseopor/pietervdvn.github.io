@@ -1,40 +1,79 @@
-import {QuestionDefinition} from "./Question";
+import {QuestionDefinition} from "./Logic/Question";
 
 
 export class Quests {
 
 
-   static allQuests(): QuestionDefinition[] {
+    static hasFee = QuestionDefinition.radioQuestionSimple("Moet men betalen om deze toiletten te gebruiken?", 10,
+        "fee",
+        [{text: "ja", value: "yes"}, {text: "nee", value: "no"}]
+    );
 
-        let access = new QuestionDefinition("Is dit gebied toegankelijk voor het publiek?");
-        access.severity = 10;
-        access.addAnwser("Nee, dit is afgesloten", "access", "no");
-        access.addAnwser("Nee, dit is een privaat terrein", "access", "no");
-        access.addAnwser("Hoewel het een privebos is, kan men er toch in", "access", "permissive");
-        access.addAnwser("Enkel tijdens activiteiten of met een gids", "access", "guided");
-        access.addAnwser("Ja, het is gewoon toegankelijk (als men op de paden blijft)", "access", "yes");
-        access.addUnrequiredTag("seamark:type","restricted_area");
+    static toiletsWheeChairs = QuestionDefinition.radioQuestionSimple("Zijn deze toiletten rolstoeltoegankelijk?", 20,
+        "wheelchair",
+        [{text: "ja", value: "yes"}, {text: "nee", value: "no"}]
+    ).addUnrequiredTag("toilets:position", "urinals");
 
-        let name = new QuestionDefinition("Wat is de naam van dit gebied?");
-        name.severity = 20;
-        name.type = 'text';
-        name.key = 'name';
-        name.addUnrequiredTag('name', '*');
+    static toiletsChangingTable = QuestionDefinition.radioQuestionSimple("Is er een luiertafel beschikbaar?", 20,
+        "changing_table",
+        [{text: "ja", value: "yes"}, {text: "nee", value: "no"}]
+    )
+    // Urinals are often a pitlatrine/something very poor where no changing table is
+        .addUnrequiredTag("toilets:position", "urinals").addUnrequiredTag("toilets:position", "urinal");
 
-        let operator = new QuestionDefinition("Wie is de beheerder van dit gebied?");
-        operator.severity = 1;
-        operator.addUnrequiredTag("access", "private");
-        operator.addUnrequiredTag("access", "no");
-        operator.addAnwser("Natuurpunt", "operator", "Natuurpunt");
-        operator.addAnwser("Het Agenschap Natuur en Bos", "operator", "Agentschap Natuur en Bos");
-        operator.addAnwser("Een prive-eigenaar beheert dit", "operator", "private");
-        operator.addUnrequiredTag('operator', '*');
-        operator.type = 'radio+text';
-        operator.key = "operator";
-        
-        
-        return [name, access, operator];
+    static toiletsChangingTableLocation = QuestionDefinition.radioAndTextQuestion("Waar bevindt de luiertafel zich?", 5,
+        "changing_table",
+        [{text: "In de vrouwentoiletten", value: "female_toilet"},
+            {text: "In de mannentoiletten", value: "male_toilet"},
+            {text: "In de rolstoeltoegangkelijke toiletten", value: "wheelchair_toilet"},
+            {text: "In de aparte, speciaal voorziene ruimte", value: "dedicated_room"},
+            {text: "In de genderneutrale toiletten", value: "unisex_toilet"}]
+    )
+        .addRequiredTag("changing_table", "yes");
 
-    }
+
+    static toiletsPosition = QuestionDefinition.radioQuestionSimple("Wat voor toiletten zijn dit?", 1,
+        "toilets:position",
+        [{text: "Enkel urinoirs", value: "urinals"},
+            {text: "Enkel 'gewone' toiletten waar men op gaat zitten", value: "seated"},
+            {text: "Er zijn zowel urinoirs als zittoiletten", value: "seated;urinals"}]);
+
+
+    static toiletQuests = [Quests.hasFee, Quests.toiletsChangingTable, Quests.toiletsChangingTableLocation, Quests.toiletsPosition];
+
+
+    static accessNatureReserve = QuestionDefinition.radioQuestionSimple(
+        "Is dit gebied toegankelijk voor het publiek?",
+        10,
+        "access",
+        [
+            {text: "Nee, dit is afgesloten", value: "no"},
+            {text: "Nee, dit is een privaat terrein", value: "no"},
+            {text: "Hoewel het een privebos is, kan men er toch in", value: "permissive"},
+            {text: "Enkel tijdens activiteiten of met een gids", value: "guided"},
+            {text: "Ja, het is gewoon toegankelijk", value: "yes"}
+        ]
+    ).addUnrequiredTag("seamark:type", "restricted_area");
+
+    static nameNatureReserve =
+        QuestionDefinition.textQuestion("Wat is de naam van dit gebied?", "name", 20);
+    static operator =
+        QuestionDefinition.radioAndTextQuestion(
+            "Wie is de beheerder van dit gebied?",
+            1,
+            "operator",
+            [{text: "Natuurpunt", value: "Natuurpunt"},
+                {text: "Natuurpunt", value: "Natuurpunt"},
+                {text: "Het Agenschap voor Natuur en Bos", value: "Agentschap Natuur en Bos"},
+                {text: "Een prive-eigenaar beheert dit", value: "private"}
+            ]
+        ).addUnrequiredTag("access", "private")
+            .addUnrequiredTag("access", "no");
+
+
+    static groenQuests =
+        [Quests.nameNatureReserve, Quests.accessNatureReserve, Quests.operator];
+
+    
 
 }

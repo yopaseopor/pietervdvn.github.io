@@ -33,7 +33,7 @@ export abstract class UIElement {
     }
 
     Render(): string {
-        return "<div id='" + this.id + "'>" + this.InnerRender() + "</div>"
+        return "<div class='uielement' id='" + this.id + "'>" + this.InnerRender() + "</div>"
     }
     
     AttachTo(divId : string){

@@ -4,8 +4,9 @@
  */
 import {OsmConnection} from "./OsmConnection";
 import {OsmObject} from "./OsmObject";
-import {ElementStorage} from "../ElementStorage";
+import {ElementStorage} from "./ElementStorage";
 import {UIEventSource} from "../UI/UIEventSource";
+import {Question, QuestionDefinition} from "./Question";
 
 export class Changes {
     private readonly login: OsmConnection;
@@ -46,7 +47,7 @@ export class Changes {
 
     }
 
-    public uploadAll() {
+    public uploadAll(optionalContinuation : (() => void)) {
 
         const pending: { elementId: string; key: string; value: string }[] = this._pendingChanges;
         this._pendingChanges = [];
@@ -130,7 +131,15 @@ export class Changes {
                         "</osmChange>";
 
                     return changes;
-                });
+                }, optionalContinuation);
         });
+    }
+    
+    public asQuestions(qs : QuestionDefinition[]){
+        let ls = [];
+        for (var i in qs){
+            ls.push(new Question(this, qs[i]));
+        } 
+        return ls;
     }
 }

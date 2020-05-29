@@ -12,6 +12,14 @@ export class UserBadge extends UIElement {
     constructor(userDetails: UIEventSource<UserDetails>) {
         super(userDetails);
         this._userDetails = userDetails;
+
+        userDetails.addCallback(function () {
+            const profilePic = document.getElementById("profile-pic");
+            profilePic.onload = function () {
+                profilePic.style.opacity = "1"
+            };
+        });
+
     }
 
     protected InnerRender(): string {
@@ -19,8 +27,8 @@ export class UserBadge extends UIElement {
         if (!user.loggedIn) {
             return "Click here to log in";
         }
-        
-        return "<img class='profile-pic' src='" + user.img + "'/> " +
+
+        return "<img id='profile-pic' src='" + user.img + "'/> " +
             "<div id='usertext'>"+
             "<div id='username'>" +
             "<a href='https://www.openstreetmap.org/user/"+user.name+"' target='_blank'>" + user.name + "</a></div> <br />" +

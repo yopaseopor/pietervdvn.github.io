@@ -1,6 +1,6 @@
-import {Changes} from "./Logic/Changes";
-import {UIElement} from "./UI/UIElement";
-import {UIEventSource} from "./UI/UIEventSource";
+import {Changes} from "./Changes";
+import {UIElement} from "../UI/UIElement";
+import {UIEventSource} from "../UI/UIEventSource";
 
 export class QuestionUI extends UIElement {
     private readonly _q: Question;
@@ -90,7 +90,81 @@ export class QuestionUI extends UIElement {
 export class QuestionDefinition {
 
 
-    constructor(question: string) {
+    static textQuestion(
+        question: string,
+        key: string,
+        severity: number
+    ): QuestionDefinition {
+        const q = new QuestionDefinition(question);
+        q.type = 'text';
+        q.key = key;
+        q.severity = severity;
+        q.addUnrequiredTag(key, '*');
+        return q;
+    }
+
+    static radioQuestionSimple(
+        question: string,
+        severity: number,
+        key: string,
+        answers: { text: string, value: string }[]) {
+
+
+        const answers0: {
+            text: string,
+            tags: { k: string, v: string }[],
+        }[] = [];
+        for (const i in answers) {
+            const answer = answers[i];
+            answers0.push({text: answer.text, tags: [{k: key, v: answer.value}]})
+        }
+
+        var q = this.radioQuestion(question, severity, answers0);
+        q.key = key;
+        q.addUnrequiredTag(key, '*');
+        return q;
+    }
+
+    static radioAndTextQuestion(
+        question: string,
+        severity: number,
+        key: string,
+        answers: { text: string, value: string }[]) {
+
+        const q = this.radioQuestionSimple(question, severity, key, answers);
+        q.type = 'radio+text';
+        return q;
+
+    }
+
+    static radioQuestion(
+        question: string,
+        severity: number,
+        answers:
+            {
+                text: string,
+                tags: { k: string, v: string }[],
+            }[]
+    ): QuestionDefinition {
+
+
+        const q = new QuestionDefinition(question);
+        q.severity = severity;
+        q.type = 'radio';
+        q.answers = answers;
+        for (const i in answers) {
+            const answer = answers[i];
+            for (const j in answer.tags) {
+                const tag = answer.tags[j];
+                q.addUnrequiredTag(tag.k, tag.v);
+            }
+        }
+
+        return q;
+    }
+
+
+    private constructor(question: string) {
         this.question = question;
     }
 
@@ -117,22 +191,22 @@ export class QuestionDefinition {
      */
     public key: string = null;
 
-    public answers: [{
+    public answers: {
         text: string,
-        tags: { k: string, v: string }[],
-    }];
+        tags: { k: string, v: string }[]
+    }[];
 
     /**
      * Indicates that the element must have _all_ the tags defined below
      * Dictionary 'key' => [values]; empty list is wildcard
      */
-    public mustHaveAllTags = [];
+    private mustHaveAllTags = [];
 
     /**
      * Indicates that the element must _not_ have any of the tags defined below.
      * Dictionary 'key' => [values]
      */
-    public mustNotHaveTags = [];
+    private mustNotHaveTags = [];
 
     /**
      * Severity: how important the question is
@@ -146,6 +220,7 @@ export class QuestionDefinition {
         } else {
             this.mustHaveAllTags[key].push(value);
         }
+        return this;
     }
 
     addUnrequiredTag(key: string, value: string) {
@@ -163,10 +238,11 @@ export class QuestionDefinition {
 
         if (value === '*') {
             this.mustNotHaveTags[key] = [];
-        } 
+        }
+        return this;
     }
 
-    addAnwser(anwser: string, key: string, value: string) {
+    private addAnwser(anwser: string, key: string, value: string) {
         if (this.answers === undefined) {
             this.answers = [{text: anwser, tags: [{k: key, v: value}]}];
         } else {
@@ -345,7 +421,6 @@ export class Question {
             this._changeHandler.addChange(elementId, toApply.k, toApply.v);
         }
         
-        this._changeHandler.uploadAll();
     }
 
     /**

@@ -3,9 +3,9 @@ import * as OsmToGeoJson from "osmtogeojson";
 import * as $ from "jquery";
 import L from "leaflet";
 import {ElementStorage} from "./ElementStorage";
-import {Changes} from "./Logic/Changes";
-import {UIElement} from "./UI/UIElement";
-import {UIEventSource} from "./UI/UIEventSource";
+import {Changes} from "./Changes";
+import {UIElement} from "../UI/UIElement";
+import {UIEventSource} from "../UI/UIEventSource";
 
 export class OverpassLayer {
     private readonly map: Basemap;
@@ -27,6 +27,13 @@ export class OverpassLayer {
                 popupContent: ((source: UIEventSource<any>) => UIElement),
                 style: ((properties) => any),
                 minzoom: number) {
+
+        if (style === undefined) {
+            style = function (properties) {
+                return {};
+            }
+        }
+        
         this.map = map;
         this.filters = filters;
         this.popupContent = popupContent;
@@ -36,7 +43,8 @@ export class OverpassLayer {
         
         this.previousBounds = {north: 0, east: 0, south: 0, west: 0};
         let self = this;
-        map.map.on("moveend", function () {
+
+        map.Location.addCallback(function () {
             self.RunQuery();
         });
     }

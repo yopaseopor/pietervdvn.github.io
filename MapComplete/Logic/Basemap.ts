@@ -1,10 +1,12 @@
 import L from "leaflet"
+import {UIEventSource} from "../UI/UIEventSource";
 
 // Contains all setup and baselayers for Leaflet stuff
 export class Basemap {
 
     public map: Map;
 
+    public Location: UIEventSource<{ zoom: number, lat: number, lon: number }>;
 
     private aivLucht2013Layer = L.tileLayer.wms('https://geoservices.informatievlaanderen.be/raadpleegdiensten/OGW/wms?s',
         {
@@ -42,18 +44,23 @@ export class Basemap {
         "GRB Vlaanderen": this.grbLayer
     };
 
-   
-   
-   
-   
-    constructor(leafletElementId: string) {
-        this.map = L.map(leafletElementId, {
-            center: [50.8435, 4.3688],
-            zoom: 10,
+
+    constructor(leafletElementId: string, location: UIEventSource<{ zoom: number, lat: number, lon: number }>) {
+        this. map = L.map(leafletElementId, {
+            center: [location.data.lat, location.data.lon],
+            zoom: location.data.zoom,
             layers: [this.osmBeLayer]
         });
+        this.Location = location;
         L.control.layers(this.baseLayers).addTo(this.map);
         this.map.zoomControl.setPosition("bottomleft");
+        const self = this;
+        this.map.on("moveend", function () {
+            location.data.zoom = self.map.getZoom();
+            location.data.lat = self.map.getCenter().lat;
+            location.data.lon = self.map.getCenter().lon;
+            location.ping();
+        })
     }
 
     

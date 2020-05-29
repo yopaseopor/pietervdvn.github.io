@@ -1,10 +1,10 @@
 import {UIElement} from "./UIElement";
-import {Question} from "../Question";
+import {Question} from "../Logic/Question";
 import {UIEventSource} from "./UIEventSource";
 
 export class QuestionPicker extends UIElement {
-    private _questions: Question[];
-    private tags: any;
+    private readonly _questions: Question[];
+    private readonly tags: any;
     private source: UIEventSource<any>;
 
     constructor(questions: Question[],

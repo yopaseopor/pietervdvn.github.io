@@ -21,11 +21,11 @@ export class OsmConnection {
         auto: true // show a login form if the user is not authenticated and
                    // you try to do a call
     });
-    private _userDetails: UIEventSource<UserDetails>;
+    public userDetails: UIEventSource<UserDetails>;
     private _dryRun: boolean;
 
-    constructor(userDetails: UIEventSource<UserDetails>, dryRun: boolean) {
-        this._userDetails = userDetails;
+    constructor(dryRun: boolean) {
+        this.userDetails = new UIEventSource<UserDetails>(new UserDetails());
         this._dryRun = dryRun;
 
         if (this.auth.authenticated()) {
@@ -54,8 +54,8 @@ export class OsmConnection {
             if(err != null){
                 console.log(err);
                 self.auth.logout();
-                self._userDetails.data.loggedIn = false;
-                self._userDetails.ping();
+                self.userDetails.data.loggedIn = false;
+                self.userDetails.ping();
             }
 
             if(details == null){
@@ -64,18 +64,19 @@ export class OsmConnection {
             // details is an XML DOM of user details
             let userInfo = details.getElementsByTagName("user")[0];
 
-            let data = self._userDetails.data;
+            let data = self.userDetails.data;
             data.loggedIn = true;
             data.name = userInfo.getAttribute('display_name');
             data.csCount = userInfo.getElementsByTagName("changesets")[0].getAttribute("count");
             data.img = userInfo.getElementsByTagName("img")[0].getAttribute("href");
             data.unreadMessages = userInfo.getElementsByTagName("received")[0].getAttribute("unread");
-            self._userDetails.ping();
+            self.userDetails.ping();
         });
     }
 
 
-    public UploadChangeset(comment: string, generateChangeXML: ((csid: string) => string)) {
+    public UploadChangeset(comment: string, generateChangeXML: ((csid: string) => string),
+                           continuation: (() => void)) {
 
         if (this._dryRun) {
             console.log("NOT UPLOADING as dryrun is true");
@@ -89,16 +90,15 @@ export class OsmConnection {
                 self.AddChange(csId, changesetXML,
                     function (csId) {
 
-                        self.CloseChangeset(csId);
+                        self.CloseChangeset(csId, continuation);
                     }
                 );
 
             }
         );
         
-        this._userDetails.data.csCount++;
-        this._userDetails.ping();
-        
+        this.userDetails.data.csCount++;
+        this.userDetails.ping();
     }
 
 
@@ -143,7 +143,7 @@ export class OsmConnection {
         });
     }
 
-    private CloseChangeset(changesetId: string) {
+    private CloseChangeset(changesetId: string, continuation : (() => void)) {
         console.log("closing");
         this.auth.xhr({
             method: 'PUT',
@@ -154,6 +154,10 @@ export class OsmConnection {
                 console.log("err", err);
             }
             console.log("Closed changeset ", changesetId);
+            
+            if(continuation !== undefined){
+                continuation();
+            }
         });
     }
 
