@@ -1,4 +1,3 @@
-import {OsmConnection} from "./OsmConnection";
 import * as $ from "jquery"
 
 
@@ -15,7 +14,7 @@ export abstract class OsmObject {
         this.type = type;
     }
 
-    static DownloadObject(id, continuation: (() => void)) {
+    static DownloadObject(id, continuation: ((element: OsmObject) => void)) {
         const splitted = id.split("/");
         const type = splitted[0];
         const idN = splitted[1];
@@ -34,7 +33,7 @@ export abstract class OsmObject {
     abstract SaveExtraData(element);
 
 
-    Download(continuation: (() => void)) {
+    Download(continuation: ((element: OsmObject) => void)) {
         const self = this;
         $.getJSON("https://www.openstreetmap.org/api/0.6/" + this.type + "/" + this.id,
             function (data) {
@@ -42,16 +41,18 @@ export abstract class OsmObject {
                 self.tags = element.tags;
                 self.version = element.version;
                 self.SaveExtraData(element);
-                continuation();
+                continuation(self);
             }
         );
         return this;
     }
 
     public addTag(k: string, v: string): void {
+        console.log("Adding tag ", k, v, this.id);
         if (k in this.tags) {
-            var oldV = this.tags[k];
+            const oldV = this.tags[k];
             if (oldV == v) {
+                console.log("Skipped");
                 return;
             }
             alert("Opgelet: er is een conflict - iemand anders heeft terzelfdertijd de vraag opgelost met een ander antwoord... Jouw antwoord voor " + k + ": " + v + ", het andere antwoord is " + oldV);

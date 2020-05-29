@@ -75,14 +75,30 @@ export class OsmConnection {
     }
 
 
-    public UploadChangeset(comment: string, changeXML: ((string) => string)) {
+    public UploadChangeset(comment: string, generateChangeXML: ((csid: string) => string)) {
 
         if (this._dryRun) {
             console.log("NOT UPLOADING as dryrun is true");
             return;
         }
 
+        const self = this;
+        this.OpenChangeset(comment,
+            function (csId) {
+                var changesetXML = generateChangeXML(csId);
+                self.AddChange(csId, changesetXML,
+                    function (csId) {
 
+                        self.CloseChangeset(csId);
+                    }
+                );
+
+            }
+        );
+        
+        this._userDetails.data.csCount++;
+        this._userDetails.ping();
+        
     }
 
 

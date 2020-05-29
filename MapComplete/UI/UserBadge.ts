@@ -22,8 +22,10 @@ export class UserBadge extends UIElement {
         
         return "<img class='profile-pic' src='" + user.img + "'/> " +
             "<div id='usertext'>"+
-            "<div id='username'>" + user.name + "</div> <br />" +
-            "<div id='csCount'> <img class='star' src='./assets/star.svg'/>" + user.csCount + "</div>" +
+            "<div id='username'>" +
+            "<a href='https://www.openstreetmap.org/user/"+user.name+"' target='_blank'>" + user.name + "</a></div> <br />" +
+            "<div id='csCount'> " +
+            "   <a href='https://www.openstreetmap.org/user/"+user.name+"/history' target='_blank'><img class='star' src='./assets/star.svg'/>" + user.csCount + "</div></a>" +
             "</div>";
     }
 

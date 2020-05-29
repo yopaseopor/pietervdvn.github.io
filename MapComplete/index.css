@@ -29,24 +29,29 @@ body {
     border-radius: 50%;
 }
 
+#usertext a {
+    text-decoration: none;
+    color: black;
+}
 
 #usertext {
     width: auto;
     margin:0;
-    margin-left: 2em; /* Should be half of profile-pic's width */
     
     padding: 0.9em;
-    padding-left: 3em;/* Should be half of profile-pic's width + actual padding (same as padding-right)*/
-    padding-right:1em;
+    padding-left: 4.7em; /* Should be half of profile-pic's width + actual padding (same as padding-right)*/
+    padding-right: 1.5em;
+    border-radius: 2em; /*Half border radius width/height*/
     height: 2.2em; /*SHould equal profile-pic height - padding*/
     z-index: 5000;
     text-align: left;
     background-color: white;
     background-size: 100%;
-    border-radius:1em;
     display: block;
     
     line-height: 0.75em;
+
+
 }
 
 #username {
@@ -68,5 +73,40 @@ body {
     padding-left: 1em;
     padding-right: 1em;
     z-index: 5000;
+
+}
+
+#pendingchangesbox {
+    position: absolute;
+    margin:1%;
+    padding:0;
+    padding-left: 1em;
+    padding-right: 1em;
+    z-index: 5000;
+
+}
+
+
+#zoomin {
+
+}
+
+#centermessage {
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+    width: 30em;
+    height: 18em;
+    margin-top: -9em; /*set to a negative number 1/2 of your height*/
+    margin-left: -15em; /*set to a negative number 1/2 of your width*/
+
+    padding: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 1em;
+    z-index: 5000;
+    pointer-events: none;
+
 
 }

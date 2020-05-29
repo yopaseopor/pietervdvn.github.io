@@ -9,15 +9,21 @@ export abstract class UIElement {
     protected constructor(source: UIEventSource<any>) {
         this.id = "ui-element-" + UIElement.nextId;
         UIElement.nextId++;
+        this.ListenTo(source);
+    }
+
+
+    protected ListenTo(source: UIEventSource<any>) {
+        if(source === undefined){
+            return;
+        }
         const self = this;
         source.addCallback(() => {
             self.Update();
         })
     }
 
-
     Update(): void {
-        console.log("UPDATING", this.id);
         let element = document.getElementById(this.id);
         if (element === null || element === undefined) {
             // The element is not painted

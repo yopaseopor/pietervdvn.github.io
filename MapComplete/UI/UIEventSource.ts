@@ -1,6 +1,6 @@
 export class UIEventSource<T>{
     
-    public readonly data : T;
+    public data : T;
     private _callbacks = [];
     
     constructor(data :T){
@@ -10,6 +10,14 @@ export class UIEventSource<T>{
     
     public addCallback(callback : (() => void)){
         this._callbacks.push(callback);
+    }
+    
+    public setData(t : T) : void{
+        if(this.data === t){
+            return;
+        }
+        this.data = t;
+        this.ping();
     }
     
     public ping():void{

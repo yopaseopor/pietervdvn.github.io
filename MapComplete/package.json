@@ -4,7 +4,7 @@
   "description": "A small website to edit OSM easily",
   "main": "index.js",
   "scripts": {
-    "start": "parcel index.html land.html index.css assets/*",
+    "start": "parcel index.html land.html assets/* UI/* Logic/*",
     "build": "parcel build --public-url ./ index.html land.html assets/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

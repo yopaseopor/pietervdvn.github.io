@@ -17,18 +17,11 @@ export class QuestionUI extends UIElement {
         this._qid = qid;
     }
 
-    InnerRender(): string {
-        
-        if(!this._q.Applicable(this._tags.data)){
-            return "";
-        }
-        
+
+    private RenderRadio() {
         let radios = "";
         let c = 0;
-
-        const q = this._q.question;
-
-        for (let answer of q.answers) {
+        for (let answer of this._q.question.answers) {
             const human = answer.text;
             const ansId = "q" + this._qid + "-answer" + c;
             radios +=
@@ -37,9 +30,59 @@ export class QuestionUI extends UIElement {
                 "<br />";
             c++;
         }
+        return radios;
+    }
 
-        const embeddedScript = 'questionAnswered(' + this._qid + ', "' + this._tags.data.id + '" )';
-        return q.question + "<br/>  " + radios + "<input type='button' onclick='" + embeddedScript + "' value='Opslaan' />";
+    private RenderRadioText() {
+        let radios = "";
+        let c = 0;
+        for (let answer of this._q.question.answers) {
+            const human = answer.text;
+            const ansId = "q" + this._qid + "-answer" + c;
+            radios +=
+                "<input type='radio' name='q" + this._qid + "' id='" + ansId + "' value='" + c + "' />" +
+                "<label for='" + ansId + "'>" + human + "</label>" +
+                "<br />";
+            c++;
+        }
+        const ansId = "q" + this._qid + "-answer" + c;
+
+        radios +=
+            "<input type='radio' name='q" + this._qid + "' id='" + ansId + "' value='" + c + "' />" +
+            "<label for='" + ansId + "'>Andere: <input type='text' id='q-" + this._qid + "-textbox' onclick='checkRadioButton(\"" + ansId + "\")'/></label>" +
+            "<br />";
+
+        return radios;
+    }
+
+
+    InnerRender(): string {
+
+        if (!this._q.Applicable(this._tags.data)) {
+            return "";
+        }
+
+
+        const q = this._q.question;
+
+
+        let answers = "";
+        if (q.type == "radio") {
+            answers += this.RenderRadio();
+        } else if (q.type == "text") {
+            answers += "<input type='text' id='q-" + this._qid + "-textbox'/><br/>"
+        } else if (q.type == "radio+text") {
+            answers += this.RenderRadioText();
+        } else {
+            alert("PLZ RENDER TYPE " + q.type);
+        }
+
+
+        const embeddedScriptSave = 'questionAnswered(' + this._qid + ', "' + this._tags.data.id + '", false )';
+        const embeddedScriptSkip = 'questionAnswered(' + this._qid + ', "' + this._tags.data.id + '", true )';
+        const saveButton = "<input class='save-button' type='button' onclick='" + embeddedScriptSave + "' value='Opslaan' />";
+        const skip = "<input class='skip-button' type='button' onclick='" + embeddedScriptSkip + "' value='Ik ben het niet zeker' />";
+        return q.question + "<br/>  " + answers + saveButton + skip;
     }
 }
 
@@ -76,7 +119,7 @@ export class QuestionDefinition {
 
     public answers: [{
         text: string,
-        tags: [{ k: string, v: string }],
+        tags: { k: string, v: string }[],
     }];
 
     /**
@@ -106,11 +149,21 @@ export class QuestionDefinition {
     }
 
     addUnrequiredTag(key: string, value: string) {
-        if (this.mustNotHaveTags[key] === undefined) {
-            this.mustNotHaveTags[key] = [value];
+        let valueList = this.mustNotHaveTags[key];
+
+        if (valueList === undefined) {
+            valueList = [value];
+            this.mustNotHaveTags[key] = valueList;
         } else {
-            this.mustNotHaveTags[key].push(value);
+            if (valueList === []) {
+                return;
+            }
+            valueList.push(value);
         }
+
+        if (value === '*') {
+            this.mustNotHaveTags[key] = [];
+        } 
     }
 
     addAnwser(anwser: string, key: string, value: string) {
@@ -123,27 +176,21 @@ export class QuestionDefinition {
     }
 
     public isApplicable(alreadyExistingTags): boolean {
-        console.log('Testing applicability ', alreadyExistingTags);
         for (let k in this.mustHaveAllTags) {
 
             var actual = alreadyExistingTags[k];
             if (actual === undefined) {
-                console.log("missing ",k);
                 return false;
             }
 
             let possibleVals = this.mustHaveAllTags[k];
             if (possibleVals.length == 0) {
                 // Wildcard
-                console.log("wilded ",k);
-
                 continue;
             }
 
             let index = possibleVals.indexOf(actual);
             if (index < 0) {
-                console.log("not found ",k,actual);
-
                 return false
             }
         }
@@ -156,15 +203,11 @@ export class QuestionDefinition {
             let impossibleVals = this.mustNotHaveTags[k];
             if (impossibleVals.length == 0) {
                 // Wildcard
-                console.log("unwilded ",k);
-
                 return false;
             }
 
             let index = impossibleVals.indexOf(actual);
             if (index >= 0) {
-                console.log("found ",k);
-
                 return false
             }
         }
@@ -190,14 +233,31 @@ export class Question {
         // We work around this, by letting the 'save' button just call the function 'questionAnswered' with the ID of the question
         // THis defines and registers this global function
 
-        function questionAnswered(questionId, elementId) {
-            Question.questions[questionId].OnSave(elementId);
+
+        /**
+         * Calls back to the question with either the answer or 'skip'
+         * @param questionId
+         * @param elementId
+         */
+        function questionAnswered(questionId, elementId, dontKnow) {
+            if (dontKnow) {
+                Question.questions[questionId].Skip(elementId);
+            } else {
+                Question.questions[questionId].OnSave(elementId);
+            }
+        }
+
+
+        function checkRadioButton(id) {
+            // @ts-ignore
+            document.getElementById(id).checked = true;
         }
 
         // must cast as any to set property on window
         // @ts-ignore
         const _global = (window /* browser */ || global /* node */) as any;
         _global.questionAnswered = questionAnswered;
+        _global.checkRadioButton = checkRadioButton;
         return [];
     }
 
@@ -205,6 +265,7 @@ export class Question {
     public readonly question: QuestionDefinition;
     private _changeHandler: Changes;
     private readonly _qId;
+    public skippedElements: string[] = [];
 
     constructor(
         changeHandler: Changes,
@@ -222,6 +283,11 @@ export class Question {
      * Returns false if question is already there or if a premise is missing
      */
     public Applicable(tags): boolean {
+
+        if (this.skippedElements.indexOf(tags.id) >= 0) {
+            return false;
+        }
+        
         return this.question.isApplicable(tags);
     }
 
@@ -231,21 +297,55 @@ export class Question {
      * @constructor
      */
     protected OnSave(elementId: string) {
+        let tagsToApply: { k: string, v: string }[] = [];
+        const q: QuestionDefinition = this.question;
+        let tp = this.question.type;
+        if (tp === "radio") {
+            const selected = document.querySelector('input[name="q' + this._qId + '"]:checked');
+            if (selected === null) {
+                console.log("No answer selected");
+                return
+            }
+            let index = (selected as any).value;
+            tagsToApply = q.answers[index].tags;
+        } else if (tp === "text") {
+            // @ts-ignore
+            let value = document.getElementById("q-" + this._qId + "-textbox").value;
+            if (value === undefined || value.length < 3) {
+                console.log("Answer too short");
+                return;
+            }
+            tagsToApply = [{k: q.key, v: value}];
+        } else if (tp === "radio+text") {
+            const selected = document.querySelector('input[name="q' + this._qId + '"]:checked');
+            if (selected === null) {
+                console.log("No answer selected");
+                return
+            }
+            let index = (selected as any).value;
+            if (index < q.answers.length) {
+                // A 'proper' answer was selected
+                tagsToApply = q.answers[index].tags;
+            } else {
+                // The textfield was selected 
+                // @ts-ignore
+                let value = document.getElementById("q-" + this._qId + "-textbox").value;
+                if (value === undefined || value.length < 3) {
+                    console.log("Answer too short");
+                    return;
+                }
+                tagsToApply = [{k: q.key, v: value}];
+            }
 
-
-        const selected = document.querySelector('input[name="q' + this._qId + '"]:checked');
-        if (selected === null) {
-            console.log("No answer selected");
-            return
         }
 
-        const value = (selected as any).value;
-        console.log(value, this.question.answers);
-        let tagsToApply = this.question.answers[value].tags;
+        console.log(tagsToApply);
 
         for (const toApply of tagsToApply) {
             this._changeHandler.addChange(elementId, toApply.k, toApply.v);
         }
+        
+        this._changeHandler.uploadAll();
     }
 
     /**
@@ -256,4 +356,11 @@ export class Question {
     }
 
 
+    private Skip(elementId: any) {
+        this.skippedElements.push(elementId);
+        console.log("SKIP");
+        // Yeah, this is cheating below
+        // It is an easy way to notify the UIElement that something has changed
+        this._changeHandler._allElements.getElement(elementId).ping();
+    }
 }

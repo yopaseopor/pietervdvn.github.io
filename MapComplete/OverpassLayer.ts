@@ -2,33 +2,35 @@ import {Basemap} from "./Basemap";
 import * as OsmToGeoJson from "osmtogeojson";
 import * as $ from "jquery";
 import L from "leaflet";
-import {Question, QuestionDefinition} from "./Question";
 import {ElementStorage} from "./ElementStorage";
 import {Changes} from "./Logic/Changes";
-import {Infobox} from "./UI/Infobox";
+import {UIElement} from "./UI/UIElement";
+import {UIEventSource} from "./UI/UIEventSource";
 
-export class QuestLayer {
+export class OverpassLayer {
     private readonly map: Basemap;
     private readonly filters: string[];
     private readonly minzoom: number;
-    private questions: Question[];
+    private readonly popupContent: ((source: UIEventSource<any>) => UIElement);
     private previousBounds: { north: number, east: number, south: number, west: number };
 
     private readonly _storage: ElementStorage;
 
+    private _geolayer;
+
+    public queryState: UIEventSource<boolean> = new UIEventSource<boolean>(false);
+    private style: (properties) => any;
+
     constructor(map: Basemap, storage: ElementStorage,
                 changes: Changes,
                 filters: string[],
-                questions: QuestionDefinition[],
+                popupContent: ((source: UIEventSource<any>) => UIElement),
+                style: ((properties) => any),
                 minzoom: number) {
         this.map = map;
         this.filters = filters;
-        this.questions = [];
-        for (let q of questions) {
-            this.questions.push(new Question(changes, q));
-        } 
-        
-        
+        this.popupContent = popupContent;
+        this.style = style;
         this.minzoom = minzoom;
         this._storage = storage;
         
@@ -39,29 +41,42 @@ export class QuestLayer {
         });
     }
 
+    public updateStyle() {
+        if (this._geolayer === undefined) {
+            return;
+        }
+        const self = this;
+        this._geolayer.setStyle(function (feature) {
+            return self.style(feature.properties);
+        });
+    }
 
     private RenderLayer(data) {
         let self = this;
-        L.geoJSON(data, {
+
+        if (this._geolayer !== undefined && this._geolayer !== null) {
+            this.map.map.removeLayer(this._geolayer);
+        }
+
+        this._geolayer = L.geoJSON(data, {
             style: function (feature) {
-                return feature.properties.style;
+                return self.style(feature.properties);
             },
             onEachFeature: function (feature, layer) {
                 self._storage.addElement(feature);
 
                 let eventSource = self._storage.getElement(feature.properties.id);
-
-                let html = new Infobox(eventSource).Render();
-                self.questions.forEach(function(q){
-                    if(q.Applicable(feature.properties)){
-                        html += "<br />" + q.CreateHtml(eventSource).Render();
-                    }
+                eventSource.addCallback(function () {
+                    self.updateStyle();
                 });
-                html+="</form>";
-                html += "<a href='https://osm.org/"+feature.properties.id+"'>Op OSM</a>";
-                layer.bindPopup(html);
+
+                layer.bindPopup(
+                    self.popupContent(eventSource).Render()
+                );
             }
-        }).addTo(this.map.map);
+        });
+
+        this._geolayer.addTo(this.map.map);
     }
 
     /**
@@ -74,19 +89,24 @@ export class QuestLayer {
 
         if (this.map.map.getZoom() < this.minzoom) {
             console.log("Not running query: zoom not sufficient");
+            return;
         } else if (this.IsInBounds()) {
-            console.log("Not running query: current query completely within bound");
-        } else {
-            console.log("Running query!");
-            const query = this.BuildQuery();
-            const self = this;
-            $.getJSON(query,
-                function (json) {
-                    // @ts-ignore
-                    let geojson = OsmToGeoJson.default(json);
-                    self.RenderLayer(geojson);
-                });
+            // Still in bounds
+            return;
         }
+
+        console.log("Running query!");
+        const query = this.BuildQuery();
+        const self = this;
+        this.queryState.setData(true);
+        $.getJSON(query,
+            function (json) {
+                // @ts-ignore
+                let geojson = OsmToGeoJson.default(json);
+                self.RenderLayer(geojson);
+                self.queryState.setData(false);
+            });
+
     }
 
     private IsInBounds(): boolean {
