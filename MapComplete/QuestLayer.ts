@@ -1,25 +1,37 @@
-import {Basemap} from "./basemap";
+import {Basemap} from "./Basemap";
 import * as OsmToGeoJson from "osmtogeojson";
 import * as $ from "jquery";
 import L from "leaflet";
-import {Question} from "./Question";
+import {Question, QuestionDefinition} from "./Question";
+import {ElementStorage} from "./ElementStorage";
+import {Changes} from "./Logic/Changes";
+import {Infobox} from "./UI/Infobox";
 
 export class QuestLayer {
-    private map: Basemap;
-    private filters: string[];
-    private minzoom: number;
+    private readonly map: Basemap;
+    private readonly filters: string[];
+    private readonly minzoom: number;
     private questions: Question[];
     private previousBounds: { north: number, east: number, south: number, west: number };
 
+    private readonly _storage: ElementStorage;
 
-    constructor(map: Basemap,
+    constructor(map: Basemap, storage: ElementStorage,
+                changes: Changes,
                 filters: string[],
-                questions: Question[],
+                questions: QuestionDefinition[],
                 minzoom: number) {
         this.map = map;
         this.filters = filters;
-        this.questions = questions;
+        this.questions = [];
+        for (let q of questions) {
+            this.questions.push(new Question(changes, q));
+        } 
+        
+        
         this.minzoom = minzoom;
+        this._storage = storage;
+        
         this.previousBounds = {north: 0, east: 0, south: 0, west: 0};
         let self = this;
         map.map.on("moveend", function () {
@@ -35,10 +47,14 @@ export class QuestLayer {
                 return feature.properties.style;
             },
             onEachFeature: function (feature, layer) {
-                var html = feature.properties.name+"<br/><h3>Questions</h3><form>";
+                self._storage.addElement(feature);
+
+                let eventSource = self._storage.getElement(feature.properties.id);
+
+                let html = new Infobox(eventSource).Render();
                 self.questions.forEach(function(q){
                     if(q.Applicable(feature.properties)){
-                        html += "<br />"+q.CreateHtml(feature.properties);
+                        html += "<br />" + q.CreateHtml(eventSource).Render();
                     }
                 });
                 html+="</form>";
@@ -66,6 +82,7 @@ export class QuestLayer {
             const self = this;
             $.getJSON(query,
                 function (json) {
+                    // @ts-ignore
                     let geojson = OsmToGeoJson.default(json);
                     self.RenderLayer(geojson);
                 });

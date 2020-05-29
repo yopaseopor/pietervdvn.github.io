@@ -1,4 +1,179 @@
-import {Changes} from "./Changes";
+import {Changes} from "./Logic/Changes";
+import {UIElement} from "./UI/UIElement";
+import {UIEventSource} from "./UI/UIEventSource";
+
+export class QuestionUI extends UIElement {
+    private readonly _q: Question;
+    private readonly _tags: UIEventSource<any>;
+    /**
+     * The ID of the calling question - used to trigger it's onsave
+     */
+    private readonly _qid;
+
+    constructor(q: Question, qid: number, tags: UIEventSource<any>) {
+        super(tags);
+        this._q = q;
+        this._tags = tags;
+        this._qid = qid;
+    }
+
+    InnerRender(): string {
+        
+        if(!this._q.Applicable(this._tags.data)){
+            return "";
+        }
+        
+        let radios = "";
+        let c = 0;
+
+        const q = this._q.question;
+
+        for (let answer of q.answers) {
+            const human = answer.text;
+            const ansId = "q" + this._qid + "-answer" + c;
+            radios +=
+                "<input type='radio' name='q" + this._qid + "' id='" + ansId + "' value='" + c + "' />" +
+                "<label for='" + ansId + "'>" + human + "</label>" +
+                "<br />";
+            c++;
+        }
+
+        const embeddedScript = 'questionAnswered(' + this._qid + ', "' + this._tags.data.id + '" )';
+        return q.question + "<br/>  " + radios + "<input type='button' onclick='" + embeddedScript + "' value='Opslaan' />";
+    }
+}
+
+
+export class QuestionDefinition {
+
+
+    constructor(question: string) {
+        this.question = question;
+    }
+
+    /**
+     * Question for humans
+     */
+    public question: string;
+
+    /**
+     * 'type' indicates how the answers are rendered and must be one of:
+     * 'text' for a free to fill text field
+     * 'radio' for radiobuttons
+     * 'radio+text' for radiobuttons and a freefill text field
+     * 'dropdown' for a dropdown menu
+     * 'number' for a number field
+     *
+     * If 'text' or 'number' is specified, 'key' is used as tag for the answer.
+     * If 'radio' or 'dropdown' is specified, the answers are used from 'tags'
+     *
+     */
+    public type: string = 'radio';
+    /**
+     * Only used for 'text' or 'number' questions
+     */
+    public key: string = null;
+
+    public answers: [{
+        text: string,
+        tags: [{ k: string, v: string }],
+    }];
+
+    /**
+     * Indicates that the element must have _all_ the tags defined below
+     * Dictionary 'key' => [values]; empty list is wildcard
+     */
+    public mustHaveAllTags = [];
+
+    /**
+     * Indicates that the element must _not_ have any of the tags defined below.
+     * Dictionary 'key' => [values]
+     */
+    public mustNotHaveTags = [];
+
+    /**
+     * Severity: how important the question is
+     * The higher, the sooner it'll be shown
+     */
+    public severity: number = 0;
+
+    addRequiredTag(key: string, value: string) {
+        if (this.mustHaveAllTags[key] === undefined) {
+            this.mustHaveAllTags[key] = [value];
+        } else {
+            this.mustHaveAllTags[key].push(value);
+        }
+    }
+
+    addUnrequiredTag(key: string, value: string) {
+        if (this.mustNotHaveTags[key] === undefined) {
+            this.mustNotHaveTags[key] = [value];
+        } else {
+            this.mustNotHaveTags[key].push(value);
+        }
+    }
+
+    addAnwser(anwser: string, key: string, value: string) {
+        if (this.answers === undefined) {
+            this.answers = [{text: anwser, tags: [{k: key, v: value}]}];
+        } else {
+            this.answers.push({text: anwser, tags: [{k: key, v: value}]});
+        }
+        this.addUnrequiredTag(key, value);
+    }
+
+    public isApplicable(alreadyExistingTags): boolean {
+        console.log('Testing applicability ', alreadyExistingTags);
+        for (let k in this.mustHaveAllTags) {
+
+            var actual = alreadyExistingTags[k];
+            if (actual === undefined) {
+                console.log("missing ",k);
+                return false;
+            }
+
+            let possibleVals = this.mustHaveAllTags[k];
+            if (possibleVals.length == 0) {
+                // Wildcard
+                console.log("wilded ",k);
+
+                continue;
+            }
+
+            let index = possibleVals.indexOf(actual);
+            if (index < 0) {
+                console.log("not found ",k,actual);
+
+                return false
+            }
+        }
+
+        for (var k in this.mustNotHaveTags) {
+            var actual = alreadyExistingTags[k];
+            if (actual === undefined) {
+                continue;
+            }
+            let impossibleVals = this.mustNotHaveTags[k];
+            if (impossibleVals.length == 0) {
+                // Wildcard
+                console.log("unwilded ",k);
+
+                return false;
+            }
+
+            let index = impossibleVals.indexOf(actual);
+            if (index >= 0) {
+                console.log("found ",k);
+
+                return false
+            }
+        }
+
+        return true;
+
+    }
+}
+
 
 export class Question {
 
@@ -20,44 +195,23 @@ export class Question {
         }
 
         // must cast as any to set property on window
+        // @ts-ignore
         const _global = (window /* browser */ || global /* node */) as any;
         _global.questionAnswered = questionAnswered;
         return [];
     }
 
 
-    private _question: string;
+    public readonly question: QuestionDefinition;
     private _changeHandler: Changes;
-    private _tagKey: string;
-    private _answers: { a: string; v: string }[];
-    private _requiredTags: { k: string; v: string [] }[];
-    private _qId;
+    private readonly _qId;
 
-    /**
-     * Represents a single question that can be asked about an object.
-     * It will generate HTML for in the textbox
-     * @param question: The question text
-     * @param severity: the importance of the question
-     *     - 0: an extra, nice to know (e.g. road surface)
-     *     - 1: a useful, but not very important thing (e.g. phone number of a shop)
-     *     - 2: an important thing to know (e.g. the name of the shop)
-     *     - 3: a deal breaker (e.g.: what does this shop sell?)
-     *     - 4: potentially dangerous information if missing
-     * @param tagKey
-     * @param answers
-     * @param requiredTags
-     */
     constructor(
         changeHandler: Changes,
-        question: string,
-        severity: number,
-        tagKey: string,
-        answers: { a: string, v: string }[],
-        requiredTags: { k: string, v: string[] }[]) {
-        this._question = question;
-        this._tagKey = tagKey;
-        this._answers = answers;
-        this._requiredTags = requiredTags;
+        question: QuestionDefinition) {
+
+        this.question = question;
+
         this._qId = Question.questions.length;
         this._changeHandler = changeHandler;
         Question.questions.push(this);
@@ -66,27 +220,9 @@ export class Question {
     /**
      * SHould this question be asked?
      * Returns false if question is already there or if a premise is missing
-     * @param f
-     * @constructor
      */
     public Applicable(tags): boolean {
-        if (this._tagKey in tags) {
-            return false;
-        }
-
-        for (const neededTag of this._requiredTags) {
-            let k = neededTag.k;
-            if (!(k in tags)) {
-                return false;
-            }
-            let actual = tags[k];
-            if (neededTag.v.indexOf(actual) < 0) {
-                console.log("Not asking question " + this._question + " as " + k + " is missing");
-                return false;
-            }
-        }
-
-        return true;
+        return this.question.isApplicable(tags);
     }
 
     /**
@@ -103,36 +239,20 @@ export class Question {
             return
         }
 
-        const value = selected.value;
-        console.log("Got question answered: " + this._qId, this._tagKey, value, elementId);
-        const self = this;
-        self._changeHandler.addChange(elementId, this._tagKey, value,
-            function () {
-                self._changeHandler.uploadAll();
-            }
-        );
+        const value = (selected as any).value;
+        console.log(value, this.question.answers);
+        let tagsToApply = this.question.answers[value].tags;
+
+        for (const toApply of tagsToApply) {
+            this._changeHandler.addChange(elementId, toApply.k, toApply.v);
+        }
     }
 
     /**
      * Creates the HTML question for this tag collection
-     * @param f
-     * @constructor
      */
-    public CreateHtml(tags) {
-        let radios = "";
-        let c = 0;
-        for (let answer of this._answers) {
-            const human = answer.a;
-            const ansId = "q" + this._qId + "-answer" + c;
-            c++;
-            radios +=
-                "<input type='radio' name='q" + this._qId + "' id='" + ansId + "' value='" + answer.v + "' />" +
-                "<label for='" + ansId + "'>" + human + "</label>" +
-                "<br />";
-        }
-
-        const embeddedScript = 'questionAnswered(' + this._qId + ', "' + tags.id + '" )';
-        return this._question + "<br/>  " + radios + "<input type='button' onclick='" + embeddedScript + "' value='Opslaan' />";
+    public CreateHtml(tags: UIEventSource<any>): UIElement {
+        return new QuestionUI(this, this._qId, tags);
     }
 
 

@@ -1,33 +1,40 @@
-import {Basemap} from "./basemap"
-import {LoginElement} from "./LoginElement";
+import {Basemap} from "./Basemap"
+import {OsmConnection, UserDetails} from "./Logic/OsmConnection";
 import {QuestLayer} from "./QuestLayer";
-import {Question} from "./Question";
-import {Changes} from "./Changes";
+import {Question, QuestionDefinition} from "./Question";
+import {Changes} from "./Logic/Changes";
+import {ElementStorage} from "./ElementStorage";
+import {UIEventSource} from "./UI/UIEventSource";
+import {UserBadge} from "./UI/UserBadge";
 
-let login = new LoginElement();
+
+let userDetails = new UIEventSource<UserDetails>(new UserDetails());
+let login = new OsmConnection(userDetails, true);
+
+new UserBadge(userDetails).AttachTo('authbox');
+document.getElementById('authbox').onclick = function () {
+    login.AttemptLogin();
+};
+
+
 
 
 let bm = new Basemap("leafletDiv");
 
-let changeHandler = new Changes(login);
+let allElements = new ElementStorage();
+let changeHandler = new Changes(login, allElements);
+
+let access = new QuestionDefinition("Is dit gebied toegankelijk voor het publiek?");
+access.severity = 10;
+access.addAnwser("Nee, dit is afgesloten", "access", "no");
+access.addAnwser("Nee, dit is een privaat terrein", "access", "no");
+access.addAnwser("Hoewel het een privebos is, kan men er toch in", "access", "permissive");
+access.addAnwser("Enkel tijdens activiteiten of met een gids", "access", "guided");
+access.addAnwser("Ja, het is gewoon toegankelijke", "access", "yes");
 
 
 
-
-var access = new Question(
-    changeHandler,
-    "Is dit gebied toegankelijk voor het publiek?",
-    3,
-    "access",
-    [{a: "Nee, dit is afgesloten", v: "no"},
-            {a: "Nee, dit een privebos waar men niet in mag", v: "private"},
-            {a: "Hoewel het een privebos is, kan men er toch in", v: "permissive"},
-            {a: "Enkel tijdens activiteiten of met een gids", v: "guided"},
-            {a: "Ja, het is gewoon toegankelijk", v: "yes"}],
-    []
-);
-
-let op = new QuestLayer(bm, ["leisure=nature_reserve"], [access], 13);
+new QuestLayer(bm, allElements, changeHandler, ["leisure=nature_reserve"], [access], 13);
 
 
 

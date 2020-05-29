@@ -1,7 +1,18 @@
+// @ts-ignore
 import osmAuth from "osm-auth";
+import {UIEventSource} from "../UI/UIEventSource";
 
+export class UserDetails {
 
-export class LoginElement {
+    public loggedIn = false;
+    public name = "Not logged in";
+    public csCount = 0;
+    public img: string;
+    public unreadMessages = 0;
+
+}
+
+export class OsmConnection {
 
 
     private auth = new osmAuth({
@@ -10,26 +21,31 @@ export class LoginElement {
         auto: true // show a login form if the user is not authenticated and
                    // you try to do a call
     });
+    private _userDetails: UIEventSource<UserDetails>;
+    private _dryRun: boolean;
 
-    constructor() {
+    constructor(userDetails: UIEventSource<UserDetails>, dryRun: boolean) {
+        this._userDetails = userDetails;
+        this._dryRun = dryRun;
 
         if (this.auth.authenticated()) {
-            this.UpdateUserBadge()
+            this.AttemptLogin(); // Also updates the user badge
         }else{
             console.log("Not authenticated");
         }
 
-        const self = this;
-        document.getElementById('authenticate').onclick = function () {
-            // Signed method call - since `auto` is true above, this will
-            // automatically start an authentication process if the user isn't
-            // authenticated yet.
-            self.UpdateUserBadge()
-        };
+        
+        if(dryRun){
+            console.log("DRYRUN ENABLED");
+        }
 
     }
 
-    private UpdateUserBadge() {
+    public LogOut() {
+        this.auth.logout();
+    }
+
+    public AttemptLogin() {
         const self = this;
         this.auth.xhr({
             method: 'GET',
@@ -38,29 +54,40 @@ export class LoginElement {
             if(err != null){
                 console.log(err);
                 self.auth.logout();
+                self._userDetails.data.loggedIn = false;
+                self._userDetails.ping();
             }
-            
+
             if(details == null){
                 return;
             }
             // details is an XML DOM of user details
             let userInfo = details.getElementsByTagName("user")[0];
-            let userName = userInfo.getAttribute('display_name');
-            let img = userInfo.getElementsByTagName("img")[0].getAttribute("href");
-            console.log(img);
-            console.log("Welcome ", userName);
-            document.getElementById("authenticate").innerHTML = userName;
+
+            let data = self._userDetails.data;
+            data.loggedIn = true;
+            data.name = userInfo.getAttribute('display_name');
+            data.csCount = userInfo.getElementsByTagName("changesets")[0].getAttribute("count");
+            data.img = userInfo.getElementsByTagName("img")[0].getAttribute("href");
+            data.unreadMessages = userInfo.getElementsByTagName("received")[0].getAttribute("unread");
+            self._userDetails.ping();
         });
     }
 
 
-    public OpenChangeset(comment: string, continuation: ((changesetId: string) => void)) {
-       console.log("Opened");
-        if (!this.auth.authenticated()) {
-            console.log(("HUH???"));
-        } else {
-            console.log("AUth OK!")
+    public UploadChangeset(comment: string, changeXML: ((string) => string)) {
+
+        if (this._dryRun) {
+            console.log("NOT UPLOADING as dryrun is true");
+            return;
         }
+
+
+    }
+
+
+    private OpenChangeset(comment: string, continuation: ((changesetId: string) => void)) {
+
 
         this.auth.xhr({
             method: 'PUT',
@@ -71,57 +98,47 @@ export class LoginElement {
                 '<tag k="comment" v="' + comment + '"/>' +
                 '</changeset></osm>'
         }, function (err, response) {
-            console.log("err", err);
             if (response === undefined) {
+                console.log("err", err);
                 return;
             } else {
-                console.log("response", response);
-                console.log("Opened changeset ", response);
                 continuation(response);
             }
         });
     }
-    
-    public AddChange(changesetId: string, 
-                     changesetXML: string,
-                     continuation: ((changesetId: string) => void)){
-        console.log("uploading");
-        const changes = "<osmChange version='0.6' generator='Mapcomplete 0.0.0'>" +
-            "<modify>" +
-            // Version must be the same as the server version; all keys must be repeated (missing = removed); all tags/members must be repeated: lat/lon must be repeated
-            "<node id='7564216431' version='2' changeset='"+changesetId+"' lat='51.2157018' lon='3.2197236'>" +
-            "<tag k='fixme' v='remove me after testing'/>" +
-            "</node>" +
-            "</modify>" +
-            "</osmChange>";
-        
+
+    private AddChange(changesetId: string,
+                      changesetXML: string,
+                      continuation: ((changesetId: string) => void)){
+
         this.auth.xhr({
             method: 'POST',
             options: { header: { 'Content-Type': 'text/xml' } },
             path: '/api/0.6/changeset/'+changesetId+'/upload',
             content: changesetXML
         }, function (err, response) {
-            console.log("err", err);
             if(response == null){
+                console.log("err", err);
                 return;
             }
-            
-            console.log("response", response);
+
             console.log("Closed changeset ", changesetId);
             continuation(changesetId);
         });
     }
 
-    public CloseChangeset(changesetId: string) {
+    private CloseChangeset(changesetId: string) {
         console.log("closing");
         this.auth.xhr({
             method: 'PUT',
             path: '/api/0.6/changeset/'+changesetId+'/close',
         }, function (err, response) {
-            console.log("err", err);
-            console.log("response", response);
+            if (response == null) {
+
+                console.log("err", err);
+            }
             console.log("Closed changeset ", changesetId);
         });
     }
-    
+
 }

@@ -12,15 +12,61 @@ body {
     height: 100%;
 }
 
-#authBox {
+.star {
+    fill: black;
+    width: 1em;
+    height: 1em;
+}
+
+.profile-pic {
+    float: left;
+    width: 4em;
+    height: 4em;
+    padding:0;
+    margin:0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+
+#usertext {
+    width: auto;
+    margin:0;
+    margin-left: 2em; /* Should be half of profile-pic's width */
+    
+    padding: 0.9em;
+    padding-left: 3em;/* Should be half of profile-pic's width + actual padding (same as padding-right)*/
+    padding-right:1em;
+    height: 2.2em; /*SHould equal profile-pic height - padding*/
+    z-index: 5000;
+    text-align: left;
+    background-color: white;
+    background-size: 100%;
+    border-radius:1em;
+    display: block;
+    
+    line-height: 0.75em;
+}
+
+#username {
+    display: block ruby;
+}
+
+
+#authenticate{
+    text-align: center;
+    background-color: white;
+    background-size: 100%;
+    border-radius:1em;
+}
+
+#authbox {
     position: absolute;
     margin:1%;
     padding:0;
     padding-left: 1em;
     padding-right: 1em;
     z-index: 5000;
-    text-align: center;
-    background-color: white;
-    background-size: 100%;
-    border-radius:1em;
+
 }

@@ -1,4 +1,4 @@
-import {LoginElement} from "./LoginElement";
+import {OsmConnection} from "./OsmConnection";
 import * as $ from "jquery"
 
 
