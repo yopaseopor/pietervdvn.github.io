@@ -24,13 +24,18 @@ export abstract class UIElement {
     }
 
     Update(): void {
-        let element = document.getElementById(this.id);
+        let element  = document.getElementById(this.id);
         if (element === null || element === undefined) {
             // The element is not painted
             return;
         }
+        
         element.innerHTML = this.InnerRender();
+        this.InnerUpdate(element);
     }
+    
+    // Called after the HTML has been replaced. Can be used for css tricks
+    abstract InnerUpdate(htmlElement : HTMLElement);
 
     Render(): string {
         return "<div class='uielement' id='" + this.id + "'>" + this.InnerRender() + "</div>"

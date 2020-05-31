@@ -3,7 +3,7 @@ import {UIEventSource} from "./UIEventSource";
 import {Changes} from "../Logic/Changes";
 
 export class PendingChanges extends UIElement{
-    
+
     private readonly changes;
 
     constructor(changes: Changes, countdown: UIEventSource<number>) {
@@ -23,7 +23,6 @@ export class PendingChanges extends UIElement{
             style.width = percentage + "%";
             style["margin-left"] = (50 - (percentage / 2)) + "%";
 
-            console.log("Percentag", percentage);
         });
 
         changes.pendingChangesES.addCallback(function () {
@@ -57,6 +56,10 @@ export class PendingChanges extends UIElement{
     protected InnerRender(): string {
         return "<div id='pending-bar' style='width:100%; margin-left:0%'></div>" +
             "<div id='pending-text'></div>";
-    }
+    }   
     
+    InnerUpdate(htmlElement: HTMLElement) {
+    }
+
+
 }

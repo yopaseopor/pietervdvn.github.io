@@ -46,5 +46,7 @@ export class TagMapping extends UIElement {
 
         return o.template.replace("{" + o.key + "}", v);
     }
+    InnerUpdate(htmlElement: HTMLElement) {
+    }
 
 }

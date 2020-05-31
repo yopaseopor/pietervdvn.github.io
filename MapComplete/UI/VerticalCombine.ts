@@ -15,5 +15,7 @@ export class VerticalCombine extends UIElement {
         } 
         return html;
     }
+    InnerUpdate(htmlElement: HTMLElement) {
+    }
 
 }

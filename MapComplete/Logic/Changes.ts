@@ -9,15 +9,18 @@ import {UIEventSource} from "../UI/UIEventSource";
 import {Question, QuestionDefinition} from "./Question";
 
 export class Changes {
-    private readonly login: OsmConnection;
 
+
+    private readonly login: OsmConnection;
     public _allElements: ElementStorage;
     public _pendingChanges: { elementId: string, key: string, value: string }[] = [];
     public pendingChangesES = new UIEventSource(this._pendingChanges);
+    private centerMessage: UIEventSource<string>;
 
-    constructor(login: OsmConnection, allElements: ElementStorage) {
+    constructor(login: OsmConnection, allElements: ElementStorage, centerMessage: UIEventSource<string>) {
         this.login = login;
         this._allElements = allElements;
+        this.centerMessage = centerMessage;
     }
 
     /**
@@ -27,6 +30,24 @@ export class Changes {
      * @param value
      */
     addChange(elementId: string, key: string, value: string) {
+
+        console.log("addchange", this.login.userDetails.data);
+        if (!this.login.userDetails.data.loggedIn) {
+            console.log("hi");
+            this.centerMessage.setData(
+                "<p>Bedankt voor je antwoord!</p>" +
+                "<p>Gelieve <span class='activate-osm-authentication'>in te loggen op OpenStreetMap</span> om dit op te slaan.</p>"+
+                "<p>Nog geen account? <a href=\'https://www.openstreetmap.org/user/new\' target=\'_blank\'>Registreer hier</a></p>"
+            );
+            const self = this;
+            this.login.userDetails.addCallback(() => {
+                if (self.login.userDetails.data.loggedIn) {
+                    self.centerMessage.setData("");
+                }
+            });
+            return;
+        }
+        
 
         if (key === undefined || key === null || key === "") {
             console.log("Invalid key");

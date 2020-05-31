@@ -25,7 +25,7 @@ export class UserBadge extends UIElement {
     protected InnerRender(): string {
         const user = this._userDetails.data;
         if (!user.loggedIn) {
-            return "Click here to log in";
+            return "<div class='activate-osm-authentication'>Klik hier om aan te melden bij OSM</div>";
         }
 
         return "<img id='profile-pic' src='" + user.img + "'/> " +
@@ -37,5 +37,7 @@ export class UserBadge extends UIElement {
             "</div>";
     }
 
+    InnerUpdate(htmlElement: HTMLElement) {
+    }
 
 }

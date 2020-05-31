@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Buurtnatuur</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin=""/>
@@ -11,20 +11,48 @@
 </head>
 <body>
 <div id="authbox">
-    <div id="authenticate">Login</div>
+    <div id="userbadge">
+    </div>
     <br/>
     <div id="pendingchangesbox"></div>
+    <br/>
+    <div id="messagesbox">
+
+        <img src="assets/groen.svg" alt="logo partij groen" id="logo"/>
+
+        <h3>Buurtnatuur meten</h3>
+
+
+        Met deze tool willen we de natuur in Belgie beter inventariseren. <br/>
+        In welke natuurgebieden kan men terecht?<br/>
+        In welke bossen is het goed vertoeven?<br>
+        <p>Natuur maakt immers gelukkig!</p>
+
+        <h4>OpenStreetMap</h4>
+
+        <p>We zoeken de bossen en natuurgebieden op in OpenStreetMap, want is vrij te gebruiken en te
+            bewerken</p>
+
+        <p>Je antwoorden worden opgeslaan op OpenStreetMap, zo zijn die onmiddelijk
+            bruikbaar voor iedereen.</p>
+        <p>Je antwoorden zijn ook de énige data die worden opgeslaan.<br/>
+            We houden geen verdere gegevens bij, ook geen cookies (tenzij je inlogt).</p>
+
+
+        <p>Wil je meehelpen? <br/>
+            Begin dan met <a href="https://www.openstreetmap.org/user/new" target="_blank">een account
+            te maken</a> of
+            <span onclick="authOsm()" class="activate-osm-authentication">in te loggen</span>.</p>
+
+
+    </div>
 </div>
 
 
+<div id="centermessage"></div>
 
-
-<div id="centermessage">
-</div>
 
 <div id="leafletDiv"></div>
-
-
 <script src="./index.ts"></script>
 
 

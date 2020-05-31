@@ -13,6 +13,8 @@ import {OverpassLayer} from "./Logic/OverpassLayer";
 import {PendingChanges} from "./UI/PendingChanges";
 import {FixedUiElement} from "./UI/FixedUiElement";
 import {LayerBox} from "./UI/LayerBox";
+import {CenterMessageBox} from "./UI/CenterMessageBox";
+import {Helpers} from "./Helpers";
 
 
 function generateBoxNatureReserve(questions: Question[]) {
@@ -135,7 +137,7 @@ function generateBoxToilets(questions: Question[]) {
 
 
 
-/*
+
 function style(properties) {
 
     let questionSeverity = 0;
@@ -160,7 +162,6 @@ function style(properties) {
 
     return {color: colour};
 }
-*/
 
 
 
@@ -169,16 +170,15 @@ function style(properties) {
 
 
 
+const centerMessage = new UIEventSource<string>("");
 const allElements = new ElementStorage();
-let osmConnection = new OsmConnection(true);
+let osmConnection = new OsmConnection(false);
 
-new UserBadge(osmConnection.userDetails).AttachTo('authenticate');
-document.getElementById('authbox').onclick = function () {
-    osmConnection.AttemptLogin();
-};
+new UserBadge(osmConnection.userDetails).AttachTo('userbadge');
 
 
-const changes = new Changes(osmConnection, allElements);
+
+const changes = new Changes(osmConnection, allElements, centerMessage);
 // This little function triggers the actual upload:
 // Either when more then three answers are selected, or when no new answer has been added for the last 20s
 const sendCountdownMillis = new UIEventSource<number>(0);
@@ -195,6 +195,7 @@ window.decreaseTime = function () {
     }
     window.setTimeout('decreaseTime()', 1000);
 };
+
 
 changes.pendingChangesES.addCallback(function () {
 
@@ -215,22 +216,7 @@ new PendingChanges(changes, sendCountdownMillis).AttachTo("pendingchangesbox");
 // @ts-ignore
 window.decreaseTime(); // The timer keeps running...
 
-
-window.addEventListener("beforeunload", function (e) {
-    // Quickly save everyting!
-    if (changes._pendingChanges.length == 0) {
-        return "";
-    }
-
-    changes.uploadAll(function () {
-        window.close()
-    });
-    var confirmationMessage = "Nog even geduld - je laatset wijzigingen worden opgeslaan!";
-
-    (e || window.event).returnValue = confirmationMessage; //Gecko + IE
-    return confirmationMessage;                            //Webkit, Safari, Chrome
-});
-
+Helpers.LastEffortSave(changes);
 
 var locationControl = new UIEventSource({
     zoom: 14,
@@ -249,6 +235,9 @@ let layer1 = new OverpassLayer(bm, allElements, changes, ["leisure=nature_reserv
 const l0box = new LayerBox("toiletten", layer0);
 const l1box = new LayerBox("Natuurgebieden", layer1);
 
-new VerticalCombine([l0box, l1box]).AttachTo("centermessage");
+new VerticalCombine([l0box, l1box]);
+new CenterMessageBox(centerMessage, osmConnection, bm.Location, [layer0, layer1]).AttachTo("centermessage");
 
 locationControl.ping();
+
+Helpers.registerActivateOsmAUthenticationClass(osmConnection);

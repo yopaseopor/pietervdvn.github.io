@@ -58,15 +58,18 @@ body {
 
 #username {
     display: block ruby;
+    text-decoration: none;
+    color: black;
 }
 
 
-#authenticate{
+#userbadge{
     text-align: center;
     background-color: white;
     -webkit-border-radius: 2em;
     -moz-border-radius: 2em;
     border-radius: 2em;
+    transition: all 500ms linear;
 }
 
 #authbox {
@@ -76,6 +79,8 @@ body {
     margin-bottom: 0;
     padding:0;
     z-index: 5000;
+    transition: all 500ms linear;
+    max-width: 20%;
 
 }
 
@@ -113,24 +118,54 @@ body {
 
 }
 
-#centermessage {
-    position: fixed;
+#messagesbox {
+    padding: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    z-index: 5000;
+    transition: all 500ms linear;
+    background-color: white;
+    border-radius: 2em;
+}
 
-    top: 50%;
-    left: 50%;
-    width: 30em;
-    height: 18em;
-    margin-top: -9em; /*set to a negative number 1/2 of your height*/
-    margin-left: -15em; /*set to a negative number 1/2 of your width*/
-
+#logo {
+    position: relative;
+    display: flex;
+    float: right;
+    margin: 1em;
+    margin-top: 0;
+    margin-right: -0.5em;
     padding: 0;
-    padding-left: 1em;
-    padding-right: 1em;
-    border-radius: 1em;
+    right: 1em;
+    top: 1em;
+}
+
+#centermessage {
+    position: absolute;
+    display: block ruby;
+
+    margin: auto;
+    top: 30%;
+    left: 50%;
+    margin-left: -15%;
+    width: 30%;
+
+    font-size: large;
+
+    padding: 2em;
+    border-radius: 2em;
     z-index: 5000;
     pointer-events: none;
 
+    opacity: 1;
+    background-color: white;
 
+    transition: opacity 500ms linear;
+
+
+    text-align: center;
+    horiz-align: center;
+    font-weight: bold;
 }
 
 .uielement{
@@ -138,4 +173,10 @@ body {
     height:100%;
     margin:0;
     padding:0;
+}
+
+.activate-osm-authentication {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
 }

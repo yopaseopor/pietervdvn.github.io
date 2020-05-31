@@ -21,5 +21,8 @@ export class LayerBox extends  UIElement{
         }
         return "<div class='layerbox'>"+this.name+"</div>";
     }
+
+    InnerUpdate(htmlElement: HTMLElement) {
+    }
     
 }

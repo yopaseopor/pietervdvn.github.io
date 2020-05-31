@@ -25,6 +25,6 @@ export class UIEventSource<T>{
             this._callbacks[i]();
         }
     }
-    
-    
+
+
 }

@@ -10,7 +10,7 @@ import {UIEventSource} from "../UI/UIEventSource";
 export class OverpassLayer {
     private readonly map: Basemap;
     private readonly filters: string[];
-    private readonly minzoom: number;
+    public readonly minzoom: number;
     private readonly popupContent: ((source: UIEventSource<any>) => UIElement);
     private previousBounds: { north: number, east: number, south: number, west: number };
 
@@ -19,6 +19,7 @@ export class OverpassLayer {
     private _geolayer;
 
     public queryState: UIEventSource<boolean> = new UIEventSource<boolean>(false);
+    
     private style: (properties) => any;
 
     constructor(map: Basemap, storage: ElementStorage,
