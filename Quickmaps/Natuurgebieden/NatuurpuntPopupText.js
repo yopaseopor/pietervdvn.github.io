@@ -100,17 +100,17 @@ function accessInfo(tags){
 			text += "<p>Toegankelijkheid: "+tags.access+"</p>";				
 		}
 	}
-	if(tags.dogs){
-		if(tags.dogs == "no"){
+	if(tags.dog){
+		if(tags.dog == "no"){
 			text += "<p>Honden niet toegelaten</p>";		
-		}else if(tags.dogs == "leashed"){
+		}else if(tags.dog == "leashed"){
 			text += "<p>Honden enkel aan de leiband</p>";		
-		}else if(tags.dogs == "yes"){
+		}else if(tags.dog == "yes"){
 			text += "<p>Honden zijn toegelaten</p>";
-		}else if(tags.dogs == "unleashed"){
+		}else if(tags.dog == "unleashed"){
 			text += "<p>Honden zijn toegelaten, zelfs los zonder leiband</p>";
 		}else{
-			text += "<p>Honden: "+tags.dogs+"</p>";		
+			text += "<p>Honden: "+tags.dog+"</p>";		
 		}
 
 	}
