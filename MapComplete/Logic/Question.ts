@@ -84,6 +84,9 @@ export class QuestionUI extends UIElement {
         const skip = "<input class='skip-button' type='button' onclick='" + embeddedScriptSkip + "' value='Ik ben het niet zeker' />";
         return q.question + "<br/>  " + answers + saveButton + skip;
     }
+
+    InnerUpdate(htmlElement: HTMLElement) {
+    }
 }
 
 

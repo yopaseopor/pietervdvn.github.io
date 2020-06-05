@@ -1,22 +1,43 @@
 import {UIElement} from "./UIElement";
 import {UIEventSource} from "./UIEventSource";
 
+
+export class TagMappingOptions {
+    key: string;// The key to show
+    mapping?: any;// dictionary for specific values, the values are substituted 
+    template?: string; // The template, where {key} will be substituted
+    missing?: string// What to show when the key is not there
+
+    constructor(options: {
+        key: string,
+        mapping?: any,
+        template?: string,
+        missing?: string
+    }) {
+        this.key = options.key;
+        this.mapping = options.mapping;
+        this.template = options.template;
+        this.missing = options.missing;
+    }
+
+}
+
 export class TagMapping extends UIElement {
 
     private readonly tags;
-    private readonly options: { key: string; mapping?: { any }; template?: string; missing?: string };
+    private readonly options: TagMappingOptions;
 
     constructor(
-        options: {
-            key: string, // The key to show
-            mapping?: any  // dictionary for specific keys, where 
-            template?: string, // The template, where {key} will be substituted
-            missing?: string, // What to show when the key is not there, missing by default
-        },
+        options: TagMappingOptions,
         tags: UIEventSource<any>) {
         super(tags);
         this.tags = tags.data;
         this.options = options;
+    }
+
+    IsEmpty(): boolean {
+        const o = this.options;
+        return this.tags[o.key] === undefined && o.missing === undefined;
     }
 
     protected InnerRender(): string {

@@ -14,13 +14,14 @@ export class OverpassLayer {
     private readonly popupContent: ((source: UIEventSource<any>) => UIElement);
     private previousBounds: { north: number, east: number, south: number, west: number };
 
+    private readonly style: (properties) => any;
+
     private readonly _storage: ElementStorage;
 
     private _geolayer;
 
     public queryState: UIEventSource<boolean> = new UIEventSource<boolean>(false);
-    
-    private style: (properties) => any;
+
 
     constructor(map: Basemap, storage: ElementStorage,
                 changes: Changes,
@@ -66,26 +67,61 @@ export class OverpassLayer {
         if (this._geolayer !== undefined && this._geolayer !== null) {
             this.map.map.removeLayer(this._geolayer);
         }
-
+        
+        // The data is split in two parts: the poinst and the rest
+        // The points get a special treatment in order to render them properly
+        // Note that some features might get a point representation as well
+        
+        
         this._geolayer = L.geoJSON(data, {
             style: function (feature) {
                 return self.style(feature.properties);
             },
-            onEachFeature: function (feature, layer) {
-                self._storage.addElement(feature);
+            
+            pointToLayer: function(feature, latLng){
 
-                let eventSource = self._storage.getElement(feature.properties.id);
+                console.log(feature);
+
+                const eventSource = self._storage.addOrGetElement(feature);
+                const style = self.style(feature.properties);
+                if(style.icon === undefined){
+                    return null;
+                }
+                const marker = L.marker(latLng, {
+                    icon: style.icon
+                })
+
                 eventSource.addCallback(function () {
                     self.updateStyle();
                 });
+                const content = self.popupContent(eventSource)
+                marker.bindPopup(
+                    content.Render(),
+                ).on("popupopen", function () {
+                    content.Update();
+                });
 
+                return marker;
+            },
+            
+            onEachFeature: function (feature, layer) {
+                
+
+                let eventSource = self._storage.addOrGetElement(feature);
+                eventSource.addCallback(function () {
+                    self.updateStyle();
+                });
+                const content = self.popupContent(eventSource)
                 layer.bindPopup(
-                    self.popupContent(eventSource).Render()
-                );
+                    content.Render(),
+                ).on("popupopen", function () {
+                    content.Update();
+                });
             }
         });
 
         this._geolayer.addTo(this.map.map);
+        //*/
     }
 
     /**

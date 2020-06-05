@@ -40,12 +40,16 @@ export abstract class UIElement {
     Render(): string {
         return "<div class='uielement' id='" + this.id + "'>" + this.InnerRender() + "</div>"
     }
-    
-    AttachTo(divId : string){
+
+    AttachTo(divId: string) {
         let element = document.getElementById(divId);
         element.innerHTML = this.Render();
     }
 
     protected abstract InnerRender(): string;
+
+    public IsEmpty(): boolean {
+        return this.InnerRender() === "";
+    }
 
 }

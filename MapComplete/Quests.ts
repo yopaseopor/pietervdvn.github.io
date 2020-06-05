@@ -39,8 +39,6 @@ export class Quests {
             {text: "Er zijn zowel urinoirs als zittoiletten", value: "seated;urinals"}]);
 
 
-    static toiletQuests = [Quests.hasFee, Quests.toiletsChangingTable, Quests.toiletsChangingTableLocation, Quests.toiletsPosition];
-
 
     static accessNatureReserve = QuestionDefinition.radioQuestionSimple(
         "Is dit gebied toegankelijk voor het publiek?",
@@ -71,9 +69,5 @@ export class Quests {
             .addUnrequiredTag("access", "no");
 
 
-    static groenQuests =
-        [Quests.nameNatureReserve, Quests.accessNatureReserve, Quests.operator];
-
-    
 
 }

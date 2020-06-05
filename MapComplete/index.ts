@@ -15,167 +15,49 @@ import {FixedUiElement} from "./UI/FixedUiElement";
 import {LayerBox} from "./UI/LayerBox";
 import {CenterMessageBox} from "./UI/CenterMessageBox";
 import {Helpers} from "./Helpers";
+import {Toilets} from "./layers/Toilets";
+import {NatureReserves} from "./layers/NatureReserves";
+import {KnownSet} from "./layers/KnownSet";
+import {LoginDependendtMessage} from "./UI/LoginDependendtMessage";
 
 
-function generateBoxNatureReserve(questions: Question[]) {
-
-
-    return function (tagsES: UIEventSource<any>) {
-
-
-        const qbox = new QuestionPicker(questions, tagsES);
-        const infobox = new VerticalCombine(
-            [
-                new TagMapping({
-                    key: "name",
-                    template: "<h2>{name}</h2>",
-                    missing: "<h2>Naamloos gebied</h2>"
-                }, tagsES),
-
-                new TagMapping({
-                    key: "access",
-                    mapping: {
-                        yes: "Vrij toegankelijk (op de paden)",
-                        no: "Niet toegankelijk",
-                        private: "Niet toegankelijk, want privegebied",
-                        permissive: "Toegankelijk, maar het is privegebied",
-                        guided: "Enkel met gids of op activiteit"
-                    }
-                }, tagsES),
-
-                new TagMapping({
-                    key: "operator",
-                    template: "Beheer door {operator}",
-                    mapping: {
-                        private: 'Beheer door een privepersoon of organisatie'
-                    }
-
-                }, tagsES),
-
-                new TagMapping({
-                    key: "id",
-                    template: "<a href='https://osm.org/{id}'> Op OSM</a>"
-                }, tagsES)
-
-            ]
-        );
-        
-        
-        
-        
-        return new VerticalCombine([infobox, qbox]);
-    }
-}
-
-function generateBoxToilets(questions: Question[]) {
-
-    return function (tagsES: UIEventSource<any>) {
-
-        const qbox = new QuestionPicker(questions, tagsES);
-        const infobox = new VerticalCombine(
-            [
-                new FixedUiElement("<h2>Toiletten</h2>"),
-
-                new TagMapping({
-                    key: "access",
-                    mapping: {
-                        yes: "Toegankelijk",
-                        no: "Niet toegankelijk",
-                        private: "Niet toegankelijk",
-                        customers: "Enkel voor klanten",
-                    }
-                }, tagsES),
-
-
-                new TagMapping({
-                    key: "fee",
-                    mapping: {
-                        yes: "Betalend",
-                        no: "Gratis",
-                        ["0"]: "Gratis"
-                    },
-                    template: "Betalend, men vraagt {fee}"
-                }, tagsES),
-
-                new TagMapping({
-                    key: "toilets:position",
-                    mapping: {
-                        seated: 'Gewone zittoiletten',
-                        urinal: 'Een enkele urinoir',
-                        urinals: 'Urinoirs',
-                        ['urinals;seated']: "Urinoirs en gewone toiletten",
-                        ['seated;urinals']: "Urinoirs en gewone toiletten",
-
-                    }
-                }, tagsES),
-
-                new TagMapping({
-                    key: "wheelchair",
-                    mapping: {
-                        yes: "Rolstoeltoegankelijk",
-                        no: "Niet Rolstoeltoegankelijk",
-                        limited: "Beperkt rolstoeltoegankelijk",
-
-                    }
-                }, tagsES),
-
-                new TagMapping({
-                    key: "id",
-                    template: "<a href='https://osm.org/{id}'> Op OSM</a>"
-                }, tagsES)
-
-            ]
-        );
-        return new VerticalCombine([infobox, qbox]);
-    }
-}
-
-
-
-
-
-
-
-
-
+/*
 function style(properties) {
 
-    let questionSeverity = 0;
-    for (const q of questions) {
-        if (q.Applicable(properties)) {
-            questionSeverity = Math.max(questionSeverity, q.question.severity);
-        }
-    }
 
-    let colormapping = {
-        0: "#00bb00",
-        1: "#00ff00",
-        10: "#dddd00",
-        20: "#ff0000"
-    };
-
-    let colour = colormapping[questionSeverity];
-    while (colour == undefined) {
-        questionSeverity--;
-        colormapping[questionSeverity];
-    }
-
-    return {color: colour};
 }
 
 
+*/
 
 
-
-
+let questSetToRender = KnownSet.groen;
+if (window.location.hash) {
+    const params = window.location.hash.substr(1).split("&");
+    const paramDict : any = {};
+    for (const param of params) {
+        var kv = param.split("=");
+        paramDict[kv[0]] = kv[1];
+    }
+    
+    console.log(paramDict);
+    console.log(KnownSet.allSets);
+    if(paramDict.quests){
+        questSetToRender = KnownSet.allSets[paramDict.quests];
+        console.log("Using quests: ",questSetToRender.name);
+    }
+    
+}
 
 
 const centerMessage = new UIEventSource<string>("");
 const allElements = new ElementStorage();
-let osmConnection = new OsmConnection(false);
+let osmConnection = new OsmConnection(true);
 
 new UserBadge(osmConnection.userDetails).AttachTo('userbadge');
-
+new FixedUiElement(questSetToRender.welcomeMessage).AttachTo("welcomeMessage");
+new LoginDependendtMessage(osmConnection.userDetails, questSetToRender.gettingStartedPlzLogin, questSetToRender.welcomeBackMessage)
+    .AttachTo("gettingStartedBox");
 
 
 const changes = new Changes(osmConnection, allElements, centerMessage);
@@ -219,24 +101,22 @@ window.decreaseTime(); // The timer keeps running...
 Helpers.LastEffortSave(changes);
 
 var locationControl = new UIEventSource({
-    zoom: 14,
-    lat: 51.2,
-    lon: 3.2
+    zoom: questSetToRender.startzoom,
+    lat: questSetToRender.startLat,
+    lon: questSetToRender.startLon
 });
 
 
+const bm = new Basemap("leafletDiv", locationControl);
+const allLayers = []
+
+for (const layer of questSetToRender.layers) {
+    const renderedLayer = layer.asLayer(bm, allElements, changes);
+    allLayers.push(renderedLayer.layer);
+}
 
 
-let bm = new Basemap("leafletDiv", locationControl);
-
-let layer0 = new OverpassLayer(bm, allElements, changes, ["amenity=toilets"], generateBoxToilets(changes.asQuestions(Quests.toiletQuests)), undefined, 13);
-let layer1 = new OverpassLayer(bm, allElements, changes, ["leisure=nature_reserve"], generateBoxNatureReserve(changes.asQuestions(Quests.groenQuests)), undefined, 13);
-
-const l0box = new LayerBox("toiletten", layer0);
-const l1box = new LayerBox("Natuurgebieden", layer1);
-
-new VerticalCombine([l0box, l1box]);
-new CenterMessageBox(centerMessage, osmConnection, bm.Location, [layer0, layer1]).AttachTo("centermessage");
+new CenterMessageBox(centerMessage, osmConnection, bm.Location, allLayers).AttachTo("centermessage");
 
 locationControl.ping();
 
