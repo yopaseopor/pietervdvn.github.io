@@ -1,18 +1,40 @@
 import {LayerDefinition} from "../LayerDefinition";
 import {Quests} from "../Quests";
 import {FixedUiElement} from "../UI/FixedUiElement";
-import {TagMapping, TagMappingOptions} from "../UI/TagMapping";
-
+import {TagMappingOptions} from "../UI/TagMapping";
+import L from "leaflet";
+import {CommonTagMappings} from "./CommonTagMappings";
 
 export class Toilets extends LayerDefinition{
     
     constructor() {
         super();
         
-        this.name="Toiletten";
+        this.name="toilet";
+        this.newElementTags = [{k: "amenity", v:"toilets"}];
+        this.icon = "./assets/toilets.svg";
         this.overpassFilter = ["amenity=toilets"];
         this.minzoom = 13;
-        this.questions = [Quests.hasFee, Quests.toiletsChangingTable, Quests.toiletsChangingTableLocation, Quests.toiletsPosition];
+        this.questions = [Quests.hasFee, 
+            Quests.toiletsWheelChairs,
+            Quests.toiletsChangingTable, 
+            Quests.toiletsChangingTableLocation, 
+            Quests.toiletsPosition];
+        
+        this.style = function(tags){
+            if(tags.wheelchair == "yes"){
+                
+            return {icon :  new L.icon({
+                    iconUrl: "assets/wheelchair.svg",
+                    iconSize: [40, 40]
+                })};
+            }
+            return {icon :  new L.icon({
+                    iconUrl: "assets/toilets.svg",
+                    iconSize: [40, 40]
+                })};
+        }
+        
         this.elementsToShow = [
 
 
@@ -27,7 +49,6 @@ export class Toilets extends LayerDefinition{
                     customers: "Enkel voor klanten",
                 }
             }),
-
 
             new TagMappingOptions({
                 key: "fee",
@@ -61,10 +82,7 @@ export class Toilets extends LayerDefinition{
                 }
             }),
 
-            new TagMappingOptions({
-                key: "id",
-                template: "<a href='https://osm.org/{id}'> Op OSM</a>"
-            })
+            CommonTagMappings.osmLink
             
         ];
     }

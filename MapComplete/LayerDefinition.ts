@@ -16,6 +16,8 @@ export class LayerDefinition {
 
 
     name: string;
+    newElementTags: {k: string, v: string}[]
+    icon: string;
     minzoom: number;
     overpassFilter: string[];
 

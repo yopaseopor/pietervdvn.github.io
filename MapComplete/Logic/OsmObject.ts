@@ -5,7 +5,7 @@ export abstract class OsmObject {
 
     type: string;
     id: number;
-    tags: {};
+    tags: {} = {};
     version: number;
     public changed: boolean = false;
 
@@ -48,11 +48,9 @@ export abstract class OsmObject {
     }
 
     public addTag(k: string, v: string): void {
-        console.log("Adding tag ", k, v, this.id);
         if (k in this.tags) {
             const oldV = this.tags[k];
             if (oldV == v) {
-                console.log("Skipped");
                 return;
             }
             alert("Opgelet: er is een conflict - iemand anders heeft terzelfdertijd de vraag opgelost met een ander antwoord... Jouw antwoord voor " + k + ": " + v + ", het andere antwoord is " + oldV);
@@ -61,11 +59,17 @@ export abstract class OsmObject {
         this.changed = true;
     }
 
+    protected VersionXML(){
+        if(this.version === undefined){
+            return "";
+        }
+        return 'version="'+this.version+'"';
+    }
     abstract ChangesetXML(changesetId: string): string;
 }
 
 
-class OsmNode extends OsmObject {
+export class OsmNode extends OsmObject {
 
     lat: number;
     lon: number;
@@ -82,7 +86,7 @@ class OsmNode extends OsmObject {
         }
 
         let change =
-            '        <node id="' + this.id + '" changeset="' + changesetId + '" version="' + this.version + '" lat="' + this.lat + '" lon="' + this.lon + '">\n' +
+            '        <node id="' + this.id + '" changeset="' + changesetId + '" ' + this.VersionXML() + ' lat="' + this.lat + '" lon="' + this.lon + '">\n' +
             tags +
             '        </node>\n';
 
@@ -95,7 +99,7 @@ class OsmNode extends OsmObject {
     }
 }
 
-class OsmWay extends OsmObject {
+export class OsmWay extends OsmObject {
 
     nodes: number[];
 
@@ -116,7 +120,7 @@ class OsmWay extends OsmObject {
         }
 
         let change =
-            '    <way id="' + this.id + '" changeset="' + changesetId + '" version="' + this.version + '">\n' +
+            '    <way id="' + this.id + '" changeset="' + changesetId + '" ' + this.VersionXML() + '>\n' +
             nds +
             tags +
             '        </way>\n';
@@ -129,7 +133,7 @@ class OsmWay extends OsmObject {
     }
 }
 
-class OsmRelation extends OsmObject {
+export class OsmRelation extends OsmObject {
 
     members;
 
@@ -150,11 +154,10 @@ class OsmRelation extends OsmObject {
             tags += '            <tag k="' + key + '" v="' + this.tags[key] + '"/>\n'
         }
         let change =
-            '    <relation id="' + this.id + '" changeset="' + changesetId + '" version="' + this.version + '">\n' +
+            '    <relation id="' + this.id + '" changeset="' + changesetId + '" ' + this.VersionXML() + '>\n' +
             members +
             tags +
             '        </relation>\n';
-        console.log(change);
         return change;
 
     }

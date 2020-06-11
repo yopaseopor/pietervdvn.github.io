@@ -9,7 +9,7 @@ export class Quests {
         [{text: "ja", value: "yes"}, {text: "nee", value: "no"}]
     );
 
-    static toiletsWheeChairs = QuestionDefinition.radioQuestionSimple("Zijn deze toiletten rolstoeltoegankelijk?", 20,
+    static toiletsWheelChairs = QuestionDefinition.radioQuestionSimple("Zijn deze toiletten rolstoeltoegankelijk?", 20,
         "wheelchair",
         [{text: "ja", value: "yes"}, {text: "nee", value: "no"}]
     ).addUnrequiredTag("toilets:position", "urinals");
@@ -53,15 +53,16 @@ export class Quests {
         ]
     ).addUnrequiredTag("seamark:type", "restricted_area");
 
-    static nameNatureReserve =
-        QuestionDefinition.textQuestion("Wat is de naam van dit gebied?", "name", 20);
+    static nameOf(name: string) : QuestionDefinition {
+        return QuestionDefinition.textQuestion("Wat is de naam van dit " + name + "?", "name", 20);
+    }
+
     static operator =
         QuestionDefinition.radioAndTextQuestion(
             "Wie is de beheerder van dit gebied?",
             1,
             "operator",
             [{text: "Natuurpunt", value: "Natuurpunt"},
-                {text: "Natuurpunt", value: "Natuurpunt"},
                 {text: "Het Agenschap voor Natuur en Bos", value: "Agentschap Natuur en Bos"},
                 {text: "Een prive-eigenaar beheert dit", value: "private"}
             ]

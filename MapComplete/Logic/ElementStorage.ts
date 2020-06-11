@@ -3,19 +3,19 @@
  */
 import {UIEventSource} from "../UI/UIEventSource";
 
-export class ElementStorage{
-    
+export class ElementStorage {
+
     private _elements = [];
-    
-    constructor(){
-        
+
+    constructor() {
+
     }
-    
-    addElementById(id: string, eventSource : UIEventSource<any>){
+
+    addElementById(id: string, eventSource: UIEventSource<any>) {
         this._elements[id] = eventSource;
     }
-    
-    addElement(element) : UIEventSource<any>{
+
+    addElement(element): UIEventSource<any> {
         const eventSource = new UIEventSource<any>(element.properties);
         this._elements[element.properties.id] = eventSource;
         return eventSource;
@@ -24,13 +24,25 @@ export class ElementStorage{
     addOrGetElement(element: any) {
         const elementId = element.properties.id;
         if (elementId in this._elements) {
-            return this._elements[elementId];
+            const es = this._elements[elementId];
+            const keptKeys = es.data;
+            // The element already exists
+            // We add all the new keys to the old keys
+            for (const k in element.properties) {
+                const v = element.properties[k];
+                if (keptKeys[k] !== v) {
+                    keptKeys[k] = v;
+                    es.ping();
+                }
+            }
+
+            return es;
         }else{
             return this.addElement(element);
         }
     }
-    
-    getElement(elementId) : UIEventSource<any>{
+
+    getElement(elementId): UIEventSource<any> {
         if (elementId in this._elements) {
             return this._elements[elementId];
         }
@@ -38,4 +50,7 @@ export class ElementStorage{
     }
 
 
+    removeId(oldId: string) {
+        delete this._elements[oldId];
+    }
 }

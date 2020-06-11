@@ -8,6 +8,26 @@ import {UIElement} from "../UI/UIElement";
 import {UIEventSource} from "../UI/UIEventSource";
 
 export class OverpassLayer {
+
+    private static queryQueue: UIEventSource<OverpassLayer[]> =
+        new UIEventSource<OverpassLayer[]>([])
+            .addCallback(
+                function () {
+                    const toRun = OverpassLayer.queryQueue.data[0];
+                    if (toRun === undefined) {
+                        return;
+                    }
+                    if (toRun.queryState.data) {
+                        // Still working, ping will follow later
+                        return;
+                    }
+                    toRun.RunQueryDirectly(function () {
+                        OverpassLayer.queryQueue.data.splice(0, 1);
+                        OverpassLayer.queryQueue.ping();
+                    });
+                }
+            );
+
     private readonly map: Basemap;
     private readonly filters: string[];
     public readonly minzoom: number;
@@ -18,6 +38,15 @@ export class OverpassLayer {
 
     private readonly _storage: ElementStorage;
 
+    /** The featurecollection from overpass
+     */
+    private _dataFromOverpass;
+    /** List of new elements, geojson features
+     */
+    private _newElements = [];
+    /**
+     * The leaflet layer object which should be removed on rerendering
+     */
     private _geolayer;
 
     public queryState: UIEventSource<boolean> = new UIEventSource<boolean>(false);
@@ -42,13 +71,14 @@ export class OverpassLayer {
         this.style = style;
         this.minzoom = minzoom;
         this._storage = storage;
-        
-        this.previousBounds = {north: 0, east: 0, south: 0, west: 0};
-        let self = this;
 
+        this.previousBounds = {north: 0, east: 0, south: 0, west: 0};
+        const self = this;
         map.Location.addCallback(function () {
-            self.RunQuery();
+            OverpassLayer.queryQueue.data.push(self);
+            OverpassLayer.queryQueue.ping();
         });
+
     }
 
     public updateStyle() {
@@ -61,18 +91,47 @@ export class OverpassLayer {
         });
     }
 
+    public AddNewElement(element) {
+        this._newElements.push(element);
+        console.log("Element added");
+        this.RenderLayer(this._dataFromOverpass); // Update the layer
+
+    }
+
     private RenderLayer(data) {
         let self = this;
 
         if (this._geolayer !== undefined && this._geolayer !== null) {
             this.map.map.removeLayer(this._geolayer);
         }
-        
+        this._dataFromOverpass = data;
+        const fusedFeatures = [];
+        const idsFromOverpass = [];
+        for (const feature of data.features) {
+            idsFromOverpass.push(feature.properties.id);
+            fusedFeatures.push(feature);
+        }
+
+        for (const feature of this._newElements) {
+            if (idsFromOverpass.indexOf(feature.properties.id) < 0) {
+                // This element is not yet uploaded or not yet visible in overpass
+                // We include it in the layer
+                fusedFeatures.push(feature);
+            }
+        }
+
+        // We use a new, fused dataset
+        data = {
+            type: "FeatureCollection",
+            features: fusedFeatures
+        }
+
+
         // The data is split in two parts: the poinst and the rest
         // The points get a special treatment in order to render them properly
         // Note that some features might get a point representation as well
-        
-        
+
+
         this._geolayer = L.geoJSON(data, {
             style: function (feature) {
                 return self.style(feature.properties);
@@ -80,16 +139,17 @@ export class OverpassLayer {
             
             pointToLayer: function(feature, latLng){
 
-                console.log(feature);
-
                 const eventSource = self._storage.addOrGetElement(feature);
                 const style = self.style(feature.properties);
-                if(style.icon === undefined){
-                    return null;
+                let marker;
+                if (style.icon === undefined) {
+                    marker = L.marker(latLng);
+                } else {
+
+                    marker = L.marker(latLng, {
+                        icon: style.icon
+                    });
                 }
-                const marker = L.marker(latLng, {
-                    icon: style.icon
-                })
 
                 eventSource.addCallback(function () {
                     self.updateStyle();
@@ -121,8 +181,8 @@ export class OverpassLayer {
         });
 
         this._geolayer.addTo(this.map.map);
-        //*/
     }
+
 
     /**
      *
@@ -130,7 +190,9 @@ export class OverpassLayer {
      * @param callback: the function called with the geojson
      * @constructor
      */
-    private RunQuery() {
+    private RunQueryDirectly(continuation: (() => void)) {
+        const self = this;
+
 
         if (this.map.map.getZoom() < this.minzoom) {
             console.log("Not running query: zoom not sufficient");
@@ -142,15 +204,22 @@ export class OverpassLayer {
 
         console.log("Running query!");
         const query = this.BuildQuery();
-        const self = this;
         this.queryState.setData(true);
         $.getJSON(query,
-            function (json) {
+            function (json, status) {
+                console.log("status:", status)
+                if (status !== "success") {
+                    OverpassLayer.queryQueue.data.push(self);
+                    self.previousBounds = undefined;
+                    continuation;
+                }
                 // @ts-ignore
                 let geojson = OsmToGeoJson.default(json);
                 self.RenderLayer(geojson);
                 self.queryState.setData(false);
+                continuation();
             });
+
 
     }
 

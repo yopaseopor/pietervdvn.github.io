@@ -10,6 +10,7 @@ export class UIEventSource<T>{
     
     public addCallback(callback : (() => void)){
         this._callbacks.push(callback);
+        return this;
     }
     
     public setData(t : T) : void{

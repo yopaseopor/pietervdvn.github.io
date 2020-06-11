@@ -170,27 +170,27 @@ body {
 }
 
 #bottomRight {
-    position: absolute;
+
     display: block ruby;
+    position: absolute;
 
     margin: auto;
-    top: 87%;
-    left: 90%;
-    margin-left: 0;
-    width: 4em;
-    height: 1em;
+    right: 1%;
+    bottom: 1.5em;
+    height: auto;
+    min-height: 1em;
+    width: auto;
 
     font-size: large;
 
     padding: 2em;
     border-radius: 2em;
     z-index: 5000;
-    pointer-events: none;
 
     opacity: 1;
     background-color: white;
 
-    transition: opacity 500ms linear;
+    transition: all 500ms linear;
 
     text-align: center;
     horiz-align: center;
@@ -208,4 +208,10 @@ body {
     cursor: pointer;
     color: blue;
     text-decoration: underline;
+}
+
+.popupImg {
+    max-height: 150px;
+    max-width: 300px;
+    
 }

@@ -11,7 +11,6 @@ export class Helpers {
     static registerActivateOsmAUthenticationClass(osmConnection : OsmConnection) {
 
         const authElements = document.getElementsByClassName("activate-osm-authentication");
-        console.log(authElements);
         for (let i = 0; i < authElements.length; i++) {
             let element = authElements.item(i);
             // @ts-ignore
@@ -20,6 +19,7 @@ export class Helpers {
             }
         }
     }
+    
     
     
     /*

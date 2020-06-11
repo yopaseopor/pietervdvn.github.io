@@ -4,27 +4,30 @@ import {TagMappingOptions} from "../UI/TagMapping";
 import L from "leaflet"
 import {CommonTagMappings} from "./CommonTagMappings";
 
-export class NatureReserves extends LayerDefinition {
-    
+export class Park extends LayerDefinition {
+
     constructor() {
         super();
-        this.name = "natuurgebied";
+        this.name = "park";
         this.icon = "./assets/tree_white_background.svg";
-        this.overpassFilter = ["leisure=nature_reserve"];
-        this.newElementTags = [{k:"leisure",v:"nature_reserve"},{k:"fixme",v:"Toegevoegd met MapComplete, geometry nog uit te tekenen"}]
+        this.overpassFilter = ["leisure=park"];
+        this.newElementTags = [{k: "leisure", v: "park"}, {
+            k: "fixme",
+            v: "Toegevoegd met MapComplete, geometry nog uit te tekenen"
+        }]
         this.minzoom = 13;
-        this.questions = [Quests.nameOf(this.name), Quests.accessNatureReserve, Quests.operator];
+        this.questions = [Quests.nameOf("park"), Quests.accessNatureReserve];
         this.style = this.generateStyleFunction();
         this.elementsToShow = [
             new TagMappingOptions({
                 key: "name",
                 template: "<h2>{name}</h2>",
-                missing: "<h2>Naamloos gebied</h2>"
+                missing: "<h2>Naamloos park</h2>"
             }),
 
             CommonTagMappings.access,
             CommonTagMappings.operator,
-           CommonTagMappings.osmLink
+            CommonTagMappings.osmLink
 
         ];
 
@@ -65,5 +68,5 @@ export class NatureReserves extends LayerDefinition {
             };
         };
     }
-    
+
 }

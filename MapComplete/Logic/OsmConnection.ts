@@ -27,6 +27,9 @@ export class OsmConnection {
     constructor(dryRun: boolean) {
         this.userDetails = new UIEventSource<UserDetails>(new UserDetails());
         this._dryRun = dryRun;
+        if(dryRun){
+            alert("Opgelet: testmode actief. Wijzigingen worden NIET opgeslaan")
+        }
 
         if (this.auth.authenticated()) {
             this.AttemptLogin(); // Also updates the user badge
@@ -74,12 +77,30 @@ export class OsmConnection {
         });
     }
 
+    private static parseUploadChangesetResponse(response: XMLDocument) {
+        const nodes = response.getElementsByTagName("node");
+        const mapping = {};
+        // @ts-ignore
+        for (const node of nodes) {
+            const oldId = parseInt(node.attributes.old_id.value);
+            const newId = parseInt(node.attributes.new_id.value);
+            if (oldId !== undefined && newId !== undefined &&
+                !isNaN(oldId) && !isNaN(newId)) {
+                mapping["node/"+oldId] = "node/"+newId;
+            }
+        }
+        return mapping;
+    }
+
 
     public UploadChangeset(comment: string, generateChangeXML: ((csid: string) => string),
+                           handleMapping: ((idMapping: any) => void),
                            continuation: (() => void)) {
 
         if (this._dryRun) {
             console.log("NOT UPLOADING as dryrun is true");
+            var changesetXML = generateChangeXML("123456");
+            console.log(changesetXML);
             return;
         }
 
@@ -88,9 +109,9 @@ export class OsmConnection {
             function (csId) {
                 var changesetXML = generateChangeXML(csId);
                 self.AddChange(csId, changesetXML,
-                    function (csId) {
-
+                    function (csId, mapping) {
                         self.CloseChangeset(csId, continuation);
+                        handleMapping(mapping);
                     }
                 );
 
@@ -125,21 +146,21 @@ export class OsmConnection {
 
     private AddChange(changesetId: string,
                       changesetXML: string,
-                      continuation: ((changesetId: string) => void)){
-
+                      continuation: ((changesetId: string, idMapping: any) => void)){
+        const self = this;
         this.auth.xhr({
             method: 'POST',
             options: { header: { 'Content-Type': 'text/xml' } },
             path: '/api/0.6/changeset/'+changesetId+'/upload',
             content: changesetXML
         }, function (err, response) {
-            if(response == null){
+            if (response == null) {
                 console.log("err", err);
                 return;
             }
-
-            console.log("Closed changeset ", changesetId);
-            continuation(changesetId);
+            const mapping = OsmConnection.parseUploadChangesetResponse(response);
+            console.log("Uplaoded changeset ", changesetId);
+            continuation(changesetId, mapping);
         });
     }
 

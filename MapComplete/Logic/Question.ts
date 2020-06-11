@@ -93,6 +93,19 @@ export class QuestionUI extends UIElement {
 export class QuestionDefinition {
 
 
+    static noNameOrNameQuestion(question: string, noExplicitName : string, severity : number) : QuestionDefinition{
+        const q = new QuestionDefinition(question);
+        
+        q.type = 'radio+text';
+        q.addAnwser(noExplicitName, "noname","yes");
+        q.addUnrequiredTag("name", "*");
+        q.addUnrequiredTag("noname", "yes");
+        
+        q.key = "name";
+        q.severity = severity;
+        return q;
+    }
+    
     static textQuestion(
         question: string,
         key: string,
@@ -418,7 +431,7 @@ export class Question {
 
         }
 
-        console.log(tagsToApply);
+        console.log("Question.ts: Applying tags",tagsToApply," to element ", elementId);
 
         for (const toApply of tagsToApply) {
             this._changeHandler.addChange(elementId, toApply.k, toApply.v);
