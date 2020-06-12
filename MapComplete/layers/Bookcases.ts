@@ -11,7 +11,7 @@ export class Bookcases extends LayerDefinition {
     constructor() {
         super();
 
-        this.name = "toilet";
+        this.name = "boekenkast";
         this.newElementTags = [{k: "amenity", v: "public_bookcase"}];
         this.icon = "./assets/bookcase.svg";
         this.overpassFilter = ["amenity=public_bookcase"];

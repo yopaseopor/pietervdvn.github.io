@@ -5,6 +5,7 @@ import {Bos} from "./Bos";
 import {Park} from "./Park";
 import {Playground} from "./Playground";
 import {Bookcases} from "./Bookcases";
+import {Artwork} from "./Artwork";
 
 
 export class KnownSet {
@@ -118,6 +119,27 @@ export class KnownSet {
         "            </a> of door je " +
         "            <span onclick=\"authOsm()\" class=\"activate-osm-authentication\">aan te melden</span>.</p>",
         "Klik op een boekenruilkastje om vragen te beantwoorden"
+    );
+
+    static statues = new KnownSet(
+        "statues",
+        "Open Artwork Map",
+        [new Artwork()],
+        14,
+        51.2,
+        3.2,
+
+
+        "        <h3>Open Statue Map</h3>\n" +
+        "\n" +
+        "<p>" +
+        "Help with creating a map of all statues all over the world!" 
+        
+        ,
+        "  <p>Start by <a href=\"https://www.openstreetmap.org/user/new\" target=\"_blank\">creating an account\n" +
+        "            </a> or by " +
+        "            <span onclick=\"authOsm()\" class=\"activate-osm-authentication\">logging in</span>.</p>",
+        "Start by clicking a pin and answering the questions"
     );
 
 
