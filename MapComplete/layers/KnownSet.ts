@@ -125,9 +125,9 @@ export class KnownSet {
         "statues",
         "Open Artwork Map",
         [new Artwork()],
-        14,
-        51.2,
-        3.2,
+        10,
+        50.8435,
+        4.3688,
 
 
         "        <h3>Open Statue Map</h3>\n" +
