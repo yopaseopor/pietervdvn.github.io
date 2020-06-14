@@ -32,6 +32,20 @@ export abstract class OsmObject {
 
     abstract SaveExtraData(element);
 
+    /**
+     * Generates the changeset-XML for tags
+     * @constructor
+     */
+    TagsXML(): string {
+        let tags = "";
+        for (const key in this.tags) {
+            const v = this.tags[key];
+            if (v !== "") {
+                tags += '            <tag k="' + key + '" v="' + this.tags[key] + '"/>\n'
+            }
+        }
+        return tags;
+    }
 
     Download(continuation: ((element: OsmObject) => void)) {
         const self = this;
@@ -53,7 +67,7 @@ export abstract class OsmObject {
             if (oldV == v) {
                 return;
             }
-            alert("Opgelet: er is een conflict - iemand anders heeft terzelfdertijd de vraag opgelost met een ander antwoord... Jouw antwoord voor " + k + ": " + v + ", het andere antwoord is " + oldV);
+            console.log("WARNING: overwriting ",oldV, " with ", v," for key ",k)
         }
         this.tags[k] = v;
         this.changed = true;
@@ -80,10 +94,7 @@ export class OsmNode extends OsmObject {
     }
 
     ChangesetXML(changesetId: string): string {
-        let tags = "";
-        for (const key in this.tags) {
-            tags += '            <tag k="' + key + '" v="' + this.tags[key] + '"/>\n'
-        }
+        let tags = this.TagsXML();
 
         let change =
             '        <node id="' + this.id + '" changeset="' + changesetId + '" ' + this.VersionXML() + ' lat="' + this.lat + '" lon="' + this.lon + '">\n' +
@@ -109,11 +120,7 @@ export class OsmWay extends OsmObject {
     }
 
     ChangesetXML(changesetId: string): string {
-        let tags = "";
-        for (const key in this.tags) {
-            tags += '            <tag k="' + key + '" v="' + this.tags[key] + '"/>\n'
-        }
-
+        let tags = this.TagsXML();
         let nds = "";
         for (const node in this.nodes) {
             nds += '      <nd ref="' + this.nodes[node] + '"/>\n';
@@ -149,10 +156,7 @@ export class OsmRelation extends OsmObject {
             members += '      <member type="' + member.type + '" ref="' + member.ref + '" role="' + member.role + '"/>\n';
         }
 
-        let tags = "";
-        for (const key in this.tags) {
-            tags += '            <tag k="' + key + '" v="' + this.tags[key] + '"/>\n'
-        }
+        let tags = this.TagsXML();
         let change =
             '    <relation id="' + this.id + '" changeset="' + changesetId + '" ' + this.VersionXML() + '>\n' +
             members +

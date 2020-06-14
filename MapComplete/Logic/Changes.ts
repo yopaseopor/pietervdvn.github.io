@@ -51,11 +51,11 @@ export class Changes {
         }
         
 
-        if (key === undefined || key === null || key === "") {
+        if (key === undefined || key === null) {
             console.log("Invalid key");
             return;
         }
-        if (value === undefined || value === null || value === "") {
+        if (value === undefined || value === null) {
             console.log("Invalid value for ",key);
             return;
         }

@@ -6,6 +6,7 @@ import {Park} from "./Park";
 import {Playground} from "./Playground";
 import {Bookcases} from "./Bookcases";
 import {Artwork} from "./Artwork";
+import {GrbToFix} from "./GrbToFix";
 
 
 export class KnownSet {
@@ -142,6 +143,21 @@ export class KnownSet {
         "Start by clicking a pin and answering the questions"
     );
 
+    static grb = new KnownSet(
+        "grb",
+        "Grb import fix tool",
+        [new GrbToFix()],
+        10,
+        50.8435,
+        4.3688,
 
+
+        "<h3>GRB Fix tool</h3>\n" +
+        "\n" +
+        "Expert use only"
+
+        ,
+        "",""
+    );
 
 }

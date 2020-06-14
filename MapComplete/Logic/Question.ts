@@ -180,6 +180,49 @@ export class QuestionDefinition {
     }
 
 
+    static GrbNoNumberQuestion() : QuestionDefinition{
+        const q = new QuestionDefinition("Heeft dit gebouw een huisnummer?");
+        q.type = "radio";
+        q.severity = 10;
+        q.answers = [{
+            text: "Ja, het OSM-huisnummer is correct",
+            tags: [{k: "fixme", v: ""}]
+        }, {
+
+            text: "Nee, het is een enkele garage",
+            tags: [{k: "building", v: "garage"}, {k: "fixme", v: ""}]
+        }, {
+
+            text: "Nee, het zijn meerdere garages",
+            tags: [{k: "building", v: "garages"}, {k: "fixme", v: ""}]
+        }
+
+
+        ];
+        q.addRequiredTag("fixme", "GRB thinks that this has number no number")
+        return q;
+    }
+
+    static GrbHouseNumberQuestion() : QuestionDefinition{
+
+
+        const q = new QuestionDefinition("Wat is het huisnummer?");
+        q.type = "radio+text";
+        q.severity = 10;
+
+        q.answers = [{
+            text: "Het OSM-huisnummer is correct",
+            tags: [{k: "fixme", v: ""}],
+        }]
+        q.key = "addr:housenumber";
+        
+      
+        q.addRequiredTag("fixme", "*");
+        
+        return q;
+    }
+
+
     private constructor(question: string) {
         this.question = question;
     }
@@ -234,7 +277,15 @@ export class QuestionDefinition {
         if (this.mustHaveAllTags[key] === undefined) {
             this.mustHaveAllTags[key] = [value];
         } else {
+            if(this.mustHaveAllTags[key] === []){
+                // Wildcard
+                return;
+            }
             this.mustHaveAllTags[key].push(value);
+        }
+
+        if (value === '*') {
+            this.mustHaveAllTags[key] = [];
         }
         return this;
     }
@@ -403,7 +454,7 @@ export class Question {
         } else if (tp === "text") {
             // @ts-ignore
             let value = document.getElementById("q-" + this._qId + "-textbox").value;
-            if (value === undefined || value.length < 3) {
+            if (value === undefined || value.length == 0) {
                 console.log("Answer too short");
                 return;
             }
