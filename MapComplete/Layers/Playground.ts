@@ -3,20 +3,20 @@ import {Quests} from "../Quests";
 import {TagMappingOptions} from "../UI/TagMapping";
 import L from "leaflet"
 import {CommonTagMappings} from "./CommonTagMappings";
+import {Tag} from "../Logic/TagsFilter";
 
-export class Park extends LayerDefinition {
+export class Playground extends LayerDefinition {
 
     constructor() {
         super();
-        this.name = "park";
+        this.name = "speeltuin";
         this.icon = "./assets/tree_white_background.svg";
-        this.overpassFilter = ["leisure=park"];
-        this.newElementTags = [{k: "leisure", v: "park"}, {
-            k: "fixme",
-            v: "Toegevoegd met MapComplete, geometry nog uit te tekenen"
-        }]
+        this.overpassFilter = new Tag("leisure","playground");
+        this.newElementTags = [new Tag("leisure",  "playground"), new Tag( "fixme", "Toegevoegd met MapComplete, geometry nog uit te tekenen")]
+        this.removeContainedElements = true;
+
         this.minzoom = 13;
-        this.questions = [Quests.nameOf("park"), Quests.accessNatureReserve];
+        this.questions = [Quests.nameOf(this.name), Quests.accessNatureReserve];
         this.style = this.generateStyleFunction();
         this.elementsToShow = [
             new TagMappingOptions({

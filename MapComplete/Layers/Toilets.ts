@@ -4,6 +4,7 @@ import {FixedUiElement} from "../UI/FixedUiElement";
 import {TagMappingOptions} from "../UI/TagMapping";
 import L from "leaflet";
 import {CommonTagMappings} from "./CommonTagMappings";
+import {Tag} from "../Logic/TagsFilter";
 
 export class Toilets extends LayerDefinition{
     
@@ -11,9 +12,9 @@ export class Toilets extends LayerDefinition{
         super();
         
         this.name="toilet";
-        this.newElementTags = [{k: "amenity", v:"toilets"}];
+        this.newElementTags = [new Tag( "amenity", "toilets")];
         this.icon = "./assets/toilets.svg";
-        this.overpassFilter = ["amenity=toilets"];
+        this.overpassFilter = new Tag("amenity","toilets");
         this.minzoom = 13;
         this.questions = [Quests.hasFee, 
             Quests.toiletsWheelChairs,

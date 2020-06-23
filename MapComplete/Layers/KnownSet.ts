@@ -49,7 +49,7 @@ export class KnownSet {
 
     static groen = new KnownSet("groen",
         "Buurtnatuur",
-        [new NatureReserves(), new Bos(), new Park(), new Playground()],
+        [new NatureReserves(), new Park(), new Bos(), new Playground()],
         14,
         51.2,
         3.2,
@@ -63,15 +63,10 @@ export class KnownSet {
         "        In welke bossen is het goed vertoeven?<br>\n" +
         "        <p>Natuur maakt immers gelukkig!</p>\n" +
         "\n" +
-        "        <h4>OpenStreetMap</h4>\n" +
-        "\n" +
-        "        <p>We zoeken de bossen en natuurgebieden op in OpenStreetMap, want die is <a href='https://osm.org/copyright' target='_blank'>vrij te gebruiken</a> en te\n" +
-        "            bewerken.</p>\n" +
-        "\n" +
-        "        <p>Je antwoorden worden opgeslaan op OpenStreetMap, zo zijn die onmiddelijk\n" +
-        "            bruikbaar voor iedereen.</p>\n" +
-        "        <p>Je antwoorden zijn ook de énige data die worden opgeslaan.<br/>\n" +
-        "            We houden geen verdere gegevens bij, ook geen cookies (tenzij je inlogt).</p>\n",
+        "<p>De data komt van <b>OpenStreetMap</b> en je antwoorden worden daar ook opgeslaan. " +
+        "Omdat iedereen aan deze data bijdraagt, kunnen we geen garantie op correctheid bieden en heeft deze data geen jurische waarde</p>\n" +
+        "<p>Je <b>privacy</b> is belangrijk. We tellen wel hoeveel personen de website bezoeken. Om je niet dubbel te tellen wordt er één coockie bijgehouden waar geen persoonlijke informatie in staat." +
+        "Als je inlogt, komt er een tweede coockie bij met je inloggegevens.</p>\n",
         "  <p>Wil je meehelpen? <br/>\n" +
         "            Begin dan met <a href=\"https://www.openstreetmap.org/user/new\" target=\"_blank\">een account\n" +
         "            te maken</a> of\n" +

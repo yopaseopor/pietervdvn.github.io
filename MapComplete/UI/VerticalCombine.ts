@@ -19,5 +19,11 @@ export class VerticalCombine extends UIElement {
     }
     InnerUpdate(htmlElement: HTMLElement) {
     }
+    
+    Activate() {
+        for (const element of this._elements){
+            element.Activate();
+        }
+    }
 
 }

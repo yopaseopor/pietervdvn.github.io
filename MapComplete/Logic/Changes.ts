@@ -7,6 +7,7 @@ import {OsmNode, OsmObject} from "./OsmObject";
 import {ElementStorage} from "./ElementStorage";
 import {UIEventSource} from "../UI/UIEventSource";
 import {Question, QuestionDefinition} from "./Question";
+import {Tag} from "./TagsFilter";
 
 export class Changes {
 
@@ -76,7 +77,7 @@ export class Changes {
      * An internal OsmObject is created to upload later on, a geojson represention is returned.
      * Note that the geojson version shares the tags (properties) by pointer, but has _no_ id in properties
      */
-    createElement(basicTags: { k:string, v: string}[], lat: number, lon: number) {
+    createElement(basicTags:Tag[], lat: number, lon: number) {
         const osmNode = new OsmNode(Changes._nextId);
         this.newElements.push(osmNode);
         Changes._nextId--;
@@ -103,8 +104,8 @@ export class Changes {
         // The basictags are COPIED, the id is included in the properties
         // The tags are not yet written into the OsmObject, but this is applied onto a 
         for (const kv of basicTags) {
-            this.addChange(id, kv.k, kv.v); // We use the call, to trigger all the other machinery (including updating the geojson itsel
-            properties[kv.k] = kv.v;
+            this.addChange(id, kv.key, kv.value); // We use the call, to trigger all the other machinery (including updating the geojson itsel
+            properties[kv.key] = kv.value;
         }
 
         return geojson;

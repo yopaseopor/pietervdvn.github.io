@@ -62,6 +62,11 @@ body {
     color: black;
 }
 
+.imgWithAttr {
+    max-height: 20em;
+    
+}
+
 
 #userbadge{
     text-align: center;
@@ -213,5 +218,21 @@ body {
 .popupImg {
     max-height: 150px;
     max-width: 300px;
-    
+}
+
+.image-slidehow{
+    width: 500px;
+    height: 250px;
+}
+
+.slide {
+}
+
+.slide img{
+    max-height: 200px;
+    max-width: 500px;
+}
+
+.hidden {
+    display: none;
 }

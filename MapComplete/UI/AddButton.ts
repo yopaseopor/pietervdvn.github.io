@@ -1,9 +1,10 @@
 import {UIEventSource} from "./UIEventSource";
 import {UIElement} from "./UIElement";
 import {Basemap} from "../Logic/Basemap";
-import {OverpassLayer} from "../Logic/OverpassLayer";
 import {Changes} from "../Logic/Changes";
 import L from "leaflet";
+import {Tag} from "../Logic/TagsFilter";
+import {FilteredLayer} from "../Logic/FilteredLayer";
 
 export class AddButton extends UIElement {
 
@@ -22,7 +23,7 @@ export class AddButton extends UIElement {
      * ""
      */
     private state: UIEventSource<string> = new UIEventSource<string>("");
-    private _options: { name: string; icon: string; tags: { k: string; v: string }[]; layerToAddTo: OverpassLayer }[];
+    private _options: { name: string; icon: string; tags: Tag[]; layerToAddTo: FilteredLayer }[];
 
 
     constructor(
@@ -31,8 +32,8 @@ export class AddButton extends UIElement {
         options: {
             name: string,
             icon: string,
-            tags: { k: string, v: string }[],
-            layerToAddTo: OverpassLayer
+            tags: Tag[],
+            layerToAddTo: FilteredLayer
         }[]) {
         super(undefined);
 

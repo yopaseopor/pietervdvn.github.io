@@ -3,6 +3,7 @@ import {QuestionDefinition} from "../Logic/Question";
 import {TagMappingOptions} from "../UI/TagMapping";
 import {CommonTagMappings} from "./CommonTagMappings";
 import L from "leaflet"
+import {Regex} from "../Logic/TagsFilter";
 
 export class GrbToFix extends LayerDefinition {
 
@@ -12,9 +13,8 @@ export class GrbToFix extends LayerDefinition {
         this.name = "grb";
         this.newElementTags = undefined;
         this.icon = "./assets/star.svg";
-        this.overpassFilter = ["fixme~GRB"];
+        this.overpassFilter = new Regex("fixme","GRB");
         this.minzoom = 13;
-
 
 
         this.questions = [

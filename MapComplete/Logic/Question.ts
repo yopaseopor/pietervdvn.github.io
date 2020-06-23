@@ -49,7 +49,7 @@ export class QuestionUI extends UIElement {
 
         radios +=
             "<input type='radio' name='q" + this._qid + "' id='" + ansId + "' value='" + c + "' />" +
-            "<label for='" + ansId + "'>Andere: <input type='text' id='q-" + this._qid + "-textbox' onclick='checkRadioButton(\"" + ansId + "\")'/></label>" +
+            "<label for='" + ansId + "'><input type='text' id='q-" + this._qid + "-textbox' onclick='checkRadioButton(\"" + ansId + "\")'/></label>" +
             "<br />";
 
         return radios;

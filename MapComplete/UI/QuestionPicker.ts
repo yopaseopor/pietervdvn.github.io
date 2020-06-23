@@ -43,5 +43,8 @@ export class QuestionPicker extends UIElement {
     }
     InnerUpdate(htmlElement: HTMLElement) {
     }
+    
+    Activate() {
+    }
 
 }

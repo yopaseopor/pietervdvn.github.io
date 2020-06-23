@@ -1,5 +1,3 @@
-import {OverpassLayer} from "./Logic/OverpassLayer";
-import {Quests} from "./Quests";
 import {Basemap} from "./Logic/Basemap";
 import {ElementStorage} from "./Logic/ElementStorage";
 import {Changes} from "./Logic/Changes";
@@ -9,31 +7,35 @@ import {UIEventSource} from "./UI/UIEventSource";
 import {QuestionPicker} from "./UI/QuestionPicker";
 import {VerticalCombine} from "./UI/VerticalCombine";
 import {UIElement} from "./UI/UIElement";
-import {LayerBox} from "./UI/LayerBox";
+import {Tag, TagsFilter} from "./Logic/TagsFilter";
+import {FilteredLayer} from "./Logic/FilteredLayer";
+import {ImageCarousel} from "./UI/Image/ImageCarousel";
+import {FixedUiElement} from "./UI/FixedUiElement";
 
 
 export class LayerDefinition {
 
 
     name: string;
-    newElementTags: {k: string, v: string}[]
+    newElementTags: Tag[]
     icon: string;
     minzoom: number;
-    overpassFilter: string[];
+    overpassFilter: TagsFilter;
 
     elementsToShow: (TagMappingOptions | QuestionDefinition | UIElement)[];
     questions: QuestionDefinition[]; // Questions are shown below elementsToShow in a questionPicker
-    
+
     style: (tags: any) => any;
+    
+    removeContainedElements : boolean = false;
+    removeTouchingElements: boolean = false;
 
 
-    asLayer(basemap: Basemap, allElements: ElementStorage, changes: Changes): {
-        layer: OverpassLayer,
-        layerBox: LayerBox
-    } {
+    asLayer(basemap: Basemap, allElements: ElementStorage, changes: Changes):
+        FilteredLayer {
         const self = this;
 
-        function generateBox(tagsES: UIEventSource<any>) {
+        function generateInfoBox(tagsES: UIEventSource<any>) {
 
             var infoboxes: UIElement[] = [];
             for (const uiElement of self.elementsToShow) {
@@ -50,6 +52,9 @@ export class LayerDefinition {
                 }
 
             }
+            infoboxes.push(new ImageCarousel(tagsES));
+            
+            infoboxes.push(new FixedUiElement("<div style='width:750px'></div>"));
 
 
             const qbox = new QuestionPicker(changes.asQuestions(self.questions), tagsES);
@@ -59,14 +64,13 @@ export class LayerDefinition {
 
         }
 
-        const layer = new OverpassLayer(basemap, allElements, changes,
-            this.overpassFilter, generateBox,
-            this.style, 
-            this.minzoom);
-        return {
-            layer: layer,
-            layerBox: new LayerBox(this.name, layer)
-        };
+        return new FilteredLayer(
+            this.name,
+            basemap, allElements, changes,
+            this.overpassFilter,
+            this.removeContainedElements, this.removeTouchingElements,
+            generateInfoBox,
+            this.style);
 
     }
 

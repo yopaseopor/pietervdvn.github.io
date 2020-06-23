@@ -5,6 +5,7 @@ import {TagMapping, TagMappingOptions} from "../UI/TagMapping";
 import L from "leaflet";
 import {QuestionDefinition} from "../Logic/Question";
 import {CommonTagMappings} from "./CommonTagMappings";
+import {Tag} from "../Logic/TagsFilter";
 
 export class Bookcases extends LayerDefinition {
 
@@ -12,9 +13,9 @@ export class Bookcases extends LayerDefinition {
         super();
 
         this.name = "boekenkast";
-        this.newElementTags = [{k: "amenity", v: "public_bookcase"}];
+        this.newElementTags = [new Tag( "amenity",  "public_bookcase")];
         this.icon = "./assets/bookcase.svg";
-        this.overpassFilter = ["amenity=public_bookcase"];
+        this.overpassFilter = new Tag("amenity","public_bookcase");
         this.minzoom = 13;
 
 
@@ -57,9 +58,6 @@ export class Bookcases extends LayerDefinition {
             new TagMappingOptions({key: "ref", template: "Referentienummer {ref}"}),
 
             new TagMappingOptions({key: "description", template: "Extra beschrijving: <br /> <p>{description}</p>"}),
-            new TagMappingOptions({key: "image", template:   "<img class='popupImg' alt='image' src='{image}' />"}),
-            new TagMappingOptions({key: "image_0", template: "<img class='popupImg' alt='image' src='{image_0}' />"}),
-            new TagMappingOptions({key: "image_1", template: "<img class='popupImg' alt='image' src='{image_1}' />"}),
 
             CommonTagMappings.osmLink
 

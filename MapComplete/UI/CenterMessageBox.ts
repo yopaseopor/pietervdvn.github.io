@@ -1,75 +1,68 @@
 import {UIElement} from "./UIElement";
-import {OverpassLayer} from "../Logic/OverpassLayer";
 import {UIEventSource} from "./UIEventSource";
 import {Helpers} from "../Helpers";
 import {OsmConnection} from "../Logic/OsmConnection";
 
 export class CenterMessageBox extends UIElement {
-    private location: UIEventSource<{ zoom: number }>;
-    private readonly layers: OverpassLayer[];
-    private zoomInMore = new UIEventSource<boolean>(true);
-    private centermessage: UIEventSource<string>;
-    private readonly  osmConnection: OsmConnection;
 
-    constructor(centermessage: UIEventSource<string>,
-                osmConnection: OsmConnection,
-                location: UIEventSource<{ zoom: number }>, layers: OverpassLayer[]) {
+    private readonly _location: UIEventSource<{ zoom: number }>;
+    private readonly _zoomInMore = new UIEventSource<boolean>(true);
+    private readonly _centermessage: UIEventSource<string>;
+    private readonly _osmConnection: OsmConnection;
+    private readonly _queryRunning: UIEventSource<boolean>;
+
+    constructor(
+        startZoom: number,
+        centermessage: UIEventSource<string>,
+        osmConnection: OsmConnection,
+        location: UIEventSource<{ zoom: number }>,
+        queryRunning: UIEventSource<boolean>
+    ) {
         super(centermessage);
-        this.centermessage = centermessage;
-        this.location = location;
-        this.layers = layers;
-        this.osmConnection = osmConnection;
 
-        let minZoomForAll = 0;
-        for (const i in layers) {
-            let l = layers[i];
-            minZoomForAll = Math.max(minZoomForAll, l.minzoom);
-            this.ListenTo(l.queryState);
-        }
+        this._centermessage = centermessage;
+        this._location = location;
+        this._osmConnection = osmConnection;
+        this._queryRunning = queryRunning;
+        this.ListenTo(queryRunning);
+
+
         const self = this;
         location.addCallback(function () {
-            self.zoomInMore.setData(location.data.zoom < minZoomForAll);
+            self._zoomInMore.setData(location.data.zoom < startZoom);
         });
-        this.ListenTo(this.zoomInMore);
+        this.ListenTo(this._zoomInMore);
 
     }
 
     protected InnerRender(): string {
 
-        if (this.centermessage.data != "") {
-            return this.centermessage.data;
+        if (this._centermessage.data != "") {
+            return this._centermessage.data;
         }
 
-        if (this.zoomInMore.data) {
+        if (this._zoomInMore.data) {
             return "Zoom in om de data te zien en te bewerken";
-        } else {
-            for (const i in this.layers) {
-                let l = this.layers[i];
-                if (l.queryState.data) {
-                    return "Data wordt geladen...";
-                }
-            }
+        } else if (this._queryRunning.data) {
+            return "Data wordt geladen...";
         }
         return "Klaar!";
     }
 
 
-    private ShouldShowSomething() {
-        for (const i in this.layers) {
-            let l = this.layers[i];
-            if (l.queryState.data) {
-                return true;
-            }
+    private ShouldShowSomething() : boolean{
+        if (this._queryRunning.data) {
+            return true;
         }
-        return this.zoomInMore.data;
+        return this._zoomInMore.data;
     }
 
     InnerUpdate(htmlElement: HTMLElement) {
         const pstyle = htmlElement.parentElement.style;
-        if (this.centermessage.data != "") {
+        if (this._centermessage.data != "") {
             pstyle.opacity = "1";
             pstyle.pointerEvents = "all";
-            Helpers.registerActivateOsmAUthenticationClass(this.osmConnection);
+            Helpers.registerActivateOsmAUthenticationClass(this._osmConnection);
             return;
         }
         pstyle.pointerEvents = "none";

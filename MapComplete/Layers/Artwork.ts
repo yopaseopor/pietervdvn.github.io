@@ -4,6 +4,7 @@ import L from "leaflet";
 import {CommonTagMappings} from "./CommonTagMappings";
 import {TagMappingOptions} from "../UI/TagMapping";
 import {QuestionDefinition} from "../Logic/Question";
+import {Tag} from "../Logic/TagsFilter";
 
 export class Artwork extends LayerDefinition {
 
@@ -11,9 +12,9 @@ export class Artwork extends LayerDefinition {
         super();
 
         this.name = "artwork";
-        this.newElementTags = [{k: "tourism", v: "artwork"}];
+        this.newElementTags = [new Tag("tourism", "artwork")];
         this.icon = "./assets/statue.svg";
-        this.overpassFilter = ["tourism=artwork"];
+        this.overpassFilter = new Tag("tourism", "artwork");
         this.minzoom = 13;
         this.questions = [
             QuestionDefinition.radioAndTextQuestion("What kind of artwork is this?", 10, "artwork_type",

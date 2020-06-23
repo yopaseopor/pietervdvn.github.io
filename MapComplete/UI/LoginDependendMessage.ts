@@ -2,7 +2,7 @@ import {UIElement} from "./UIElement";
 import {UserDetails} from "../Logic/OsmConnection";
 import {UIEventSource} from "./UIEventSource";
 
-export class LoginDependendtMessage extends UIElement {
+export class LoginDependendMessage extends UIElement {
     private _noLoginMsg: string;
     private _loginMsg: string;
     private _userDetails: UserDetails;

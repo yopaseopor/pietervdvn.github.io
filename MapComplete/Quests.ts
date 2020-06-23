@@ -54,7 +54,8 @@ export class Quests {
     ).addUnrequiredTag("seamark:type", "restricted_area");
 
     static nameOf(name: string) : QuestionDefinition {
-        return QuestionDefinition.textQuestion("Wat is de naam van dit " + name + "?", "name", 20);
+        return QuestionDefinition.noNameOrNameQuestion("Wat is de naam van dit " + name + "?",
+            "Dit " + name + " heeft geen naam", 20);
     }
 
     static operator =
