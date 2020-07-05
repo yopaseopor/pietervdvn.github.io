@@ -1,0 +1,706 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+#leafletDiv {
+    height: 100%;
+}
+
+#geolocate-button {
+    position: absolute;
+    bottom: 27px;
+    right: 65px;
+    z-index: 999; /*Just below leaflets zoom*/
+    background-color: white;
+    border-radius: 5px;
+    border: solid 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    width: 43px;
+    height: 43px;
+    display: none; /*Hidden by default, only visible on mobile*/
+}
+
+#geolocate-button img{
+    width: 31px;
+    height:31px;
+    margin: 6px;
+}
+
+/**************** GENERIC ****************/
+
+.uielement {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.alert {
+    background-color: #fee4d1;
+    font-weight: bold;
+    border-radius: 1em;
+    padding: 0.3em;
+    margin: 0.25em;
+    text-align: center;
+    padding-top: 0.15em;
+    padding-bottom: 0.15em;
+}
+
+
+.activate-osm-authentication {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+
+/**************** USER BADGE ****************/
+
+.small-userbadge-icon {
+    width: 1em;
+    height: 1em;
+    fill: black;
+    border-radius: 0;
+}
+
+#home {
+    cursor: pointer;
+}
+
+#profile-pic {
+    float: left;
+    width: 4em;
+    height: 4em;
+    padding: 0;
+    margin: 0;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 500ms linear;
+}
+
+#username {
+    text-decoration: none;
+    color: black;
+}
+
+
+#usertext {
+    width: auto;
+    margin:0;
+    
+    padding: 0.9em;
+    padding-left: 4.7em; /* Should be half of profile-pic's width + actual padding (same as padding-right)*/
+    padding-right: 1.5em;
+    border-radius: 2em; /*Half border radius width/height*/
+    height: 2.2em; /*SHould equal profile-pic height - padding*/
+    z-index: 5000;
+    text-align: left;
+    background-color: white;
+    background-size: 100%;
+    display: block;
+
+    line-height: 0.75em;
+}
+
+#usertext a {
+    text-decoration: none;
+    color: black;
+}
+
+#userbadge {
+    display: inline-block;
+    text-align: center;
+    background-color: white;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+    border-bottom-right-radius: 1.5em;
+    border-top-right-radius: 1.5em;
+    transition: all 500ms linear;
+    margin: 0;
+    margin-bottom: 0.5em;
+
+    min-width: 20em;
+    pointer-events: all;
+}
+
+#userbadge-and-search {
+    display: inline-block;
+}
+
+
+#searchbox {
+    display: inline-block;
+    text-align: left;
+    background-color: white;
+    transition: all 500ms linear;
+    pointer-events: all;
+    border-radius: 1.3em;
+    margin: 0;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+.search {
+    position: relative;
+    float: left;
+    height: 2em;
+    margin-right: 0.5em;
+}
+
+#searchbox .form-text-field {
+    position: relative;
+    float: left;
+    margin-top: 0.2em;
+    margin-left: 1em;
+}
+
+#searchbox input[type="text"] {
+    background: transparent;
+    border: none;
+    font-size: large;
+}
+
+.search-go {
+    position: relative;
+    float: right;
+    height: 1.2em;
+    border: 2px solid black;
+    border-radius: 2em;
+    padding: 0.4em;
+    margin-left: 0.5em;
+    margin-right: 0;
+
+}
+
+
+#userbadge p {
+    margin: 0;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
+
+
+/**************************************/
+
+
+#topleft-tools {
+    display: block;
+    position: absolute;
+    margin: 1em;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding: 0;
+    z-index: 5000;
+    transition: all 500ms linear;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#messagesboxmobilewrapper {
+    display: none; /*Only shown on small screens*/
+}
+
+#welcomeMessage {
+    max-width: 35em;
+    padding: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#collapseButton {
+    position: absolute;
+    right: 1em;
+    background-color: white;
+    margin: 1.5em;
+    border: 2px solid black;
+    border-radius: 2em;
+    padding: 0.5em;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+}
+
+#collapseButton img {
+    width: 1em;
+    height: 1em;
+}
+
+
+#messagesbox-wrapper {
+}
+
+
+#messagesbox {
+    /*Only shown on big screens*/
+    padding: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    z-index: 5000;
+    background-color: white;
+    border-radius: 2em;
+    pointer-events: all;
+}
+
+
+@media only screen and (max-width: 600px) {
+    #messagesbox-wrapper {
+        display: none;
+    }
+
+    #messagesbox {
+        display: none;
+    }
+
+    #geolocate-button {
+        display: block;
+    }
+
+    .leaflet-popup {
+        /* Popups are hidden on mobile */
+        display: none;
+    }
+
+    #messagesboxmobilewrapper {
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        z-index: 5050;
+        transition: all 500ms linear;
+        overflow: hidden;
+        border-radius: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        background-color: white;
+    }
+
+    #messagesboxmobile-scroll {
+        display: block;
+        overflow-y: auto;
+        width: 100vw;
+        padding: 0;
+        margin:0;
+        height: calc(100% - 5em); /*Height of to-the-map is 2em, padding is 2 * 0.5em*/
+    }
+    #messagesboxmobile {
+        padding: 1em;
+        padding-bottom: 2em;
+        border-radius:1em;
+        background-color: white;
+    }
+}
+
+
+#to-the-map {
+    
+    height: 4em;
+    padding: 0.5em;
+    margin: 0;
+    
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    
+    padding-right: 2em;
+    width: 100%;
+    text-align: right;
+    color: white;
+    background-color: #7ebc6f;
+    cursor: pointer;
+}
+
+
+#logo {
+    position: relative;
+    display: flex;
+    float: right;
+    margin: 1em;
+    margin-top: 0;
+    margin-right: -0.5em;
+    padding: 0;
+    right: 1em;
+    top: 1em;
+    border-radius: 0;
+}
+
+#centermessage {
+    position: absolute;
+    display: block ruby;
+
+    margin: auto;
+    top: 30%;
+    left: 50%;
+    margin-left: -15%;
+    width: 30%;
+
+    font-size: large;
+
+    padding: 2em;
+    border-radius: 2em;
+    z-index: 5000;
+    pointer-events: none;
+
+    opacity: 1;
+    background-color: white;
+
+    transition: opacity 500ms linear;
+
+
+    text-align: center;
+    horiz-align: center;
+    font-weight: bold;
+}
+
+#bottomRight {
+
+    display: block ruby;
+    position: absolute;
+
+    margin: auto;
+    right: 1%;
+    bottom: 1.5em;
+    height: auto;
+    min-height: 1em;
+    width: auto;
+
+    font-size: large;
+
+    padding: 2em;
+    border-radius: 2em;
+    z-index: 5000;
+
+    opacity: 1;
+    background-color: white;
+
+    transition: all 500ms linear;
+
+    text-align: center;
+    horiz-align: center;
+    font-weight: bold;
+}
+
+
+/************ Slideshow *****************/
+
+
+.image-slideshow {
+    position: relative;
+    text-align: center;
+    max-width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.slides {
+    overflow: hidden;
+}
+
+.prev-button {
+    background-color: black;
+    opacity: 0.3;
+    width: 3.0em;
+
+    height: 100%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+
+    z-index: 5060;
+
+    content:url(/assets/arrow-left-smooth.svg);
+
+    border-radius: 1em;
+}
+
+
+.next-button {
+    background-color: black;
+    opacity: 0.3;
+    width: 3.0em;
+    height: 100%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(0, -50%);
+    border-radius: 1em;
+    
+
+    z-index: 5060;
+
+    content:url(/assets/arrow-right-smooth.svg);
+}
+
+
+.slide > span img {
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 20vh;
+    border-radius: 1em;
+}
+
+
+.hidden {
+    /* This is used by the slideshow, to hide non-active slides*/
+    display: none !important;
+
+}
+
+
+.imgWithAttr {
+    max-height: 20em;
+
+    position: relative;
+    overflow: hidden;
+
+}
+
+.wikimedia-link {
+    /*The actual wikimedia logo*/
+    width: 1.5em !important;
+}
+
+.attribution {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-weight: bold;
+    font-size: smaller;
+
+    position: absolute;
+    bottom: 0;
+    left: 5em; /* Offset for the go left button*/
+    padding: 0.25em;
+    margin-bottom: 0.25em;
+    border-radius: 0.5em;
+
+}
+
+.attribution-author {
+    display: inline-block;
+}
+
+.license {
+    font-size: small;
+    font-weight: lighter;
+}
+
+.attribution a {
+    color: white;
+}
+
+
+/**************** Image upload flow ***************/
+
+.imageflow {
+    margin-top: 1em;
+    margin-bottom: 2em;
+    text-align: center;
+
+}
+
+.imageflow-file-input-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.5em;
+    border-radius: 1em;
+    border: 3px solid black;
+}
+
+.imageflow-add-picture {
+    font-size: 28px;
+    font-weight: bold;
+    float: left;
+    margin-top: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 13px;
+}
+
+.imageflow-file-input-wrapper img {
+    width: 36px;
+    height: 36px;
+    padding: 0.1em;
+    margin-top: 5px;
+    border-radius: 0;
+    float: left;
+}
+
+
+.license-picker {
+    background-color: orange;
+    float: left;
+}
+
+.imageflow > input {
+    display: none;
+}
+
+
+/***************** Info box (box containing features and questions ******************/
+
+.leaflet-popup-content {
+    width: 25vw !important;
+}
+
+.featureinfobox {
+}
+
+.featureinfoboxtitle {
+    position: relative;
+}
+
+.osmlink {
+    position: absolute;
+    right: 0;
+}
+
+.osm-logo path {
+    fill: #7ebc6f;
+}
+
+.featureinfoboxtitle .answer {
+    display: inline;
+    margin-right: 3em;
+}
+
+.featureinfoboxtitle .answer-text {
+    display: inline;
+}
+
+.featureinfoboxtitle .editbutton {
+    float: none;
+    width: 0.8em;
+    height: 0.8em;
+    padding: 0.3em;
+    border-radius: 0.35em;
+    border: solid black 1px;
+    margin-left: 1em;
+    top: 0.2em;
+    position: absolute;
+
+}
+
+
+.editbutton {
+    width: 1.3em;
+    height: 1.3em;
+    padding: 0.5em;
+    border-radius: 0.65em;
+    border: solid black 1px;
+
+    font-size: medium;
+    float: right;
+
+
+}
+
+.wikipedialink {
+    position: absolute;
+    right: 24px;
+    width: 24px;
+    height: 24px;
+    padding-right: 12px;
+}
+
+.wikipedialink img {
+    width: 24px;
+    height: 24px;
+}
+
+
+.featureinfoboxtitle span {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.featureinfoboxtitle a {
+    float: right;
+    margin-left: 1em;
+}
+
+
+.infoboxcontents {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+
+.infobox-information {
+    width: 100%;
+    margin-top: 1em;
+}
+
+.question {
+    margin-top: 1em;
+    background-color: #e5f5ff;
+    padding: 1em;
+    border-radius: 1em;
+    margin-right: 1em;
+    font-size: larger;
+
+}
+
+.answer {
+    display: inline-block;
+    margin: 0.1em;
+    width: 100%;
+    font-size: large;
+}
+
+.answer-text {
+    width: 90%;
+    display: inline-block
+}
+
+
+/**** The save button *****/
+
+.save {
+    display: inline-block;
+    border: solid white 2px;
+    background-color: #3a3aeb;
+    color: white;
+    padding: 0.2em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    font-size: x-large;
+    font-weight: bold;
+    border-radius: 1.5em;
+}
+
+.save-non-active {
+    display: inline-block;
+    border: solid lightgrey 2px;
+    color: grey;
+    padding: 0.2em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    font-size: x-large;
+    font-weight: bold;
+    border-radius: 1.5em;
+}
+
+.skip-button {
+    display: inline-block;
+    border: solid black 0.5px;
+    padding: 0.2em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    border-radius: 1.5em;
+}
+
+/*# sourceMappingURL=/MapComplete.9ad09f98.css.map */
