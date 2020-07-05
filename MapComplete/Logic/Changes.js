@@ -12202,6 +12202,10 @@ function () {
     return false;
   };
 
+  Regex.prototype.substituteValues = function (tags) {
+    throw "Substituting values is not supported on regex tags";
+  };
+
   return Regex;
 }();
 
@@ -12254,6 +12258,10 @@ function () {
     return ['["' + this.key + '"="' + this.value + '"]'];
   };
 
+  Tag.prototype.substituteValues = function (tags) {
+    return new Tag(this.key, TagUtils.ApplyTemplate(this.value, tags));
+  };
+
   return Tag;
 }();
 
@@ -12292,6 +12300,17 @@ function () {
     }
 
     return choices;
+  };
+
+  Or.prototype.substituteValues = function (tags) {
+    var newChoices = [];
+
+    for (var _i = 0, _a = this.or; _i < _a.length; _i++) {
+      var c = _a[_i];
+      newChoices.push(c.substituteValues(tags));
+    }
+
+    return new Or(newChoices);
   };
 
   return Or;
@@ -12354,6 +12373,17 @@ function () {
     return allChoices;
   };
 
+  And.prototype.substituteValues = function (tags) {
+    var newChoices = [];
+
+    for (var _i = 0, _a = this.and; _i < _a.length; _i++) {
+      var c = _a[_i];
+      newChoices.push(c.substituteValues(tags));
+    }
+
+    return new And(newChoices);
+  };
+
   return And;
 }();
 
@@ -12375,6 +12405,16 @@ function () {
     }
 
     return result;
+  };
+
+  TagUtils.ApplyTemplate = function (template, tags) {
+    for (var k in tags) {
+      while (template.indexOf("{" + k + "}") >= 0) {
+        template = template.replace("{" + k + "}", tags[k]);
+      }
+    }
+
+    return template;
   };
 
   return TagUtils;
@@ -12696,7 +12736,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35535" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33221" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

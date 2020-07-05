@@ -16003,6 +16003,10 @@ function () {
     return false;
   };
 
+  Regex.prototype.substituteValues = function (tags) {
+    throw "Substituting values is not supported on regex tags";
+  };
+
   return Regex;
 }();
 
@@ -16055,6 +16059,10 @@ function () {
     return ['["' + this.key + '"="' + this.value + '"]'];
   };
 
+  Tag.prototype.substituteValues = function (tags) {
+    return new Tag(this.key, TagUtils.ApplyTemplate(this.value, tags));
+  };
+
   return Tag;
 }();
 
@@ -16093,6 +16101,17 @@ function () {
     }
 
     return choices;
+  };
+
+  Or.prototype.substituteValues = function (tags) {
+    var newChoices = [];
+
+    for (var _i = 0, _a = this.or; _i < _a.length; _i++) {
+      var c = _a[_i];
+      newChoices.push(c.substituteValues(tags));
+    }
+
+    return new Or(newChoices);
   };
 
   return Or;
@@ -16155,6 +16174,17 @@ function () {
     return allChoices;
   };
 
+  And.prototype.substituteValues = function (tags) {
+    var newChoices = [];
+
+    for (var _i = 0, _a = this.and; _i < _a.length; _i++) {
+      var c = _a[_i];
+      newChoices.push(c.substituteValues(tags));
+    }
+
+    return new And(newChoices);
+  };
+
   return And;
 }();
 
@@ -16176,6 +16206,16 @@ function () {
     }
 
     return result;
+  };
+
+  TagUtils.ApplyTemplate = function (template, tags) {
+    for (var k in tags) {
+      while (template.indexOf("{" + k + "}") >= 0) {
+        template = template.replace("{" + k + "}", tags[k]);
+      }
+    }
+
+    return template;
   };
 
   return TagUtils;
@@ -40725,21 +40765,36 @@ function (_super) {
 
     _this._question = options.question;
     _this._primer = (_a = options.primer) !== null && _a !== void 0 ? _a : "";
-    _this._mapping = (_b = options.mappings) !== null && _b !== void 0 ? _b : [];
+    _this._tagsPreprocessor = options.tagsPreprocessor;
+    _this._mapping = [];
     _this._freeform = options.freeform;
-    _this.elementPriority = (_c = options.priority) !== null && _c !== void 0 ? _c : 0; // Prepare the choices for the Radio buttons
+    _this.elementPriority = (_b = options.priority) !== null && _b !== void 0 ? _b : 0; // Prepare the choices for the Radio buttons
 
     var i = 0;
     var choices = [];
 
-    for (var _i = 0, _d = _this._mapping; _i < _d.length; _i++) {
+    for (var _i = 0, _d = (_c = options.mappings) !== null && _c !== void 0 ? _c : []; _i < _d.length; _i++) {
       var choice = _d[_i];
 
       if (choice.k === null) {
         continue;
       }
 
-      choices.push(new FixedUiElement_1.FixedUiElement(choice.txt));
+      var choiceSubbed = choice;
+
+      if (choice.substitute) {
+        choiceSubbed = {
+          k: choice.k.substituteValues(options.tagsPreprocessor(_this._source.data)),
+          txt: _this.ApplyTemplate(choice.txt),
+          substitute: false,
+          priority: choice.priority
+        };
+      }
+
+      choices.push(new FixedUiElement_1.FixedUiElement(choiceSubbed.txt));
+
+      _this._mapping.push(choiceSubbed);
+
       i++;
     } // Map radiobutton choice and textfield answer onto tagfilter. That tagfilter will be pushed into the changes later on
 
@@ -40749,7 +40804,6 @@ function (_super) {
         return undefined;
       }
 
-      console.log(self._mapping, i);
       return self._mapping[i].k;
     };
 
@@ -40837,17 +40891,11 @@ function (_super) {
   TagRendering.prototype.ApplyTemplate = function (template) {
     var tags = this._source.data;
 
-    if (this._freeform !== undefined && this._freeform.tagsPreprocessor !== undefined) {
-      tags = this._freeform.tagsPreprocessor(tags);
+    if (this._tagsPreprocessor !== undefined) {
+      tags = this._tagsPreprocessor(tags);
     }
 
-    for (var k in tags) {
-      while (template.indexOf("{" + k + "}") >= 0) {
-        template = template.replace("{" + k + "}", tags[k]);
-      }
-    }
-
-    return template;
+    return TagsFilter_1.TagUtils.ApplyTemplate(template, tags);
   };
 
   TagRendering.prototype.IsKnown = function () {
@@ -70061,7 +70109,178 @@ function (_super) {
 }(Layout_1.Layout);
 
 exports.Groen = Groen;
-},{"../Layers/NatureReserves":"Customizations/Layers/NatureReserves.ts","../Layers/Park":"Customizations/Layers/Park.ts","../Layers/Bos":"Customizations/Layers/Bos.ts","../Layout":"Customizations/Layout.ts"}],"Customizations/AllKnownLayouts.ts":[function(require,module,exports) {
+},{"../Layers/NatureReserves":"Customizations/Layers/NatureReserves.ts","../Layers/Park":"Customizations/Layers/Park.ts","../Layers/Bos":"Customizations/Layers/Bos.ts","../Layout":"Customizations/Layout.ts"}],"Customizations/Layers/GrbToFix.ts":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GrbToFix = void 0;
+
+var LayerDefinition_1 = require("../LayerDefinition");
+
+var leaflet_1 = __importDefault(require("leaflet"));
+
+var TagsFilter_1 = require("../../Logic/TagsFilter");
+
+var TagRendering_1 = require("../TagRendering");
+
+var GrbToFix =
+/** @class */
+function (_super) {
+  __extends(GrbToFix, _super);
+
+  function GrbToFix() {
+    var _this = _super.call(this) || this;
+
+    _this.name = "grb";
+    _this.newElementTags = undefined;
+    _this.icon = "./assets/star.svg";
+    _this.overpassFilter = new TagsFilter_1.Regex("fixme", "GRB");
+    _this.minzoom = 13;
+
+    _this.style = function (tags) {
+      return {
+        icon: new leaflet_1.default.icon({
+          iconUrl: "assets/star.svg",
+          iconSize: [40, 40],
+          text: "hi"
+        }),
+        color: "#ff0000"
+      };
+    };
+
+    _this.title = new TagRendering_1.TagRenderingOptions({
+      freeform: {
+        key: "fixme",
+        renderTemplate: "{fixme}",
+        template: "Fixme $$$"
+      }
+    });
+    _this.elementsToShow = [new TagRendering_1.TagRenderingOptions({
+      freeform: {
+        key: "addr:street",
+        renderTemplate: "Het adres is {addr:street} <b>{addr:housenumber}</b>",
+        template: "Straat? $$$"
+      }
+    }), new TagRendering_1.TagRenderingOptions({
+      question: "Wat is het huisnummer?",
+      tagsPreprocessor: function tagsPreprocessor(tags) {
+        var newTags = {};
+        newTags["addr:housenumber"] = tags["addr:housenumber"];
+        newTags["addr:street"] = tags["addr:street"];
+        var telltale = "GRB thinks that this has number ";
+        var index = tags.fixme.indexOf(telltale);
+
+        if (index >= 0) {
+          var housenumber = tags.fixme.slice(index + telltale.length);
+          newTags["grb:housenumber:human"] = housenumber;
+          newTags["grb:housenumber"] = housenumber == "no number" ? "" : housenumber;
+        }
+
+        return newTags;
+      },
+      mappings: [{
+        k: new TagsFilter_1.And([new TagsFilter_1.Tag("addr:housenumber", "{grb:housenumber}"), new TagsFilter_1.Tag("fixme", "")]),
+        txt: "Volg GRB: <b>{grb:housenumber:human}</b>",
+        substitute: true
+      }, {
+        k: new TagsFilter_1.And([new TagsFilter_1.Tag("addr:housenumber", "{addr:housenumber}"), new TagsFilter_1.Tag("fixme", "")]),
+        txt: "Volg OSM: <b>{addr:housenumber}</b>",
+        substitute: true
+      }]
+    })];
+    return _this;
+  }
+
+  return GrbToFix;
+}(LayerDefinition_1.LayerDefinition);
+
+exports.GrbToFix = GrbToFix;
+},{"../LayerDefinition":"Customizations/LayerDefinition.ts","leaflet":"node_modules/leaflet/dist/leaflet-src.js","../../Logic/TagsFilter":"Logic/TagsFilter.ts","../TagRendering":"Customizations/TagRendering.ts"}],"Customizations/Layouts/GRB.ts":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GRB = void 0;
+
+var Layout_1 = require("../Layout");
+
+var GrbToFix_1 = require("../Layers/GrbToFix");
+
+var GRB =
+/** @class */
+function (_super) {
+  __extends(GRB, _super);
+
+  function GRB() {
+    return _super.call(this, "grb", "Grb import fix tool", [new GrbToFix_1.GrbToFix()], 15, 51.2083, 3.2279, "<h3>GRB Fix tool</h3>\n" + "\n" + "Expert use only", "", "") || this;
+  }
+
+  return GRB;
+}(Layout_1.Layout);
+
+exports.GRB = GRB;
+},{"../Layout":"Customizations/Layout.ts","../Layers/GrbToFix":"Customizations/Layers/GrbToFix.ts"}],"Customizations/AllKnownLayouts.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -70071,13 +70290,15 @@ exports.AllKnownLayouts = void 0;
 
 var Groen_1 = require("./Layouts/Groen");
 
+var GRB_1 = require("./Layouts/GRB");
+
 var AllKnownLayouts =
 /** @class */
 function () {
   function AllKnownLayouts() {}
 
   AllKnownLayouts.AllLayouts = function () {
-    var layouts = [new Groen_1.Groen()];
+    var layouts = [new Groen_1.Groen(), new GRB_1.GRB()];
     var allSets = {};
 
     for (var _i = 0, layouts_1 = layouts; _i < layouts_1.length; _i++) {
@@ -70093,7 +70314,7 @@ function () {
 }();
 
 exports.AllKnownLayouts = AllKnownLayouts;
-},{"./Layouts/Groen":"Customizations/Layouts/Groen.ts"}],"index.ts":[function(require,module,exports) {
+},{"./Layouts/Groen":"Customizations/Layouts/Groen.ts","./Layouts/GRB":"Customizations/Layouts/GRB.ts"}],"index.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -70150,10 +70371,6 @@ if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
   // If you have a testfile somewhere, enable this to spoof overpass
   // This should be hosted independantly, e.g. with `cd assets; webfsd -p 8080` + a CORS plugin to disable cors rules
   Overpass_1.Overpass.testUrl = null; // "http://127.0.0.1:8080/test.json";
-}
-
-if (location.href.indexOf("test=true") >= 0) {
-  dryRun = true;
 } // ----------------- SELECT THE RIGHT QUESTSET -----------------
 
 
@@ -70171,6 +70388,10 @@ if (window.location.search) {
 
   if (paramDict.quests) {
     defaultQuest = paramDict.quests;
+  }
+
+  if (paramDict.test) {
+    dryRun = true;
   }
 }
 
@@ -70335,7 +70556,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35535" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33221" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

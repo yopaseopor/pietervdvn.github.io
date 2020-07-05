@@ -12773,6 +12773,10 @@ function () {
     return false;
   };
 
+  Regex.prototype.substituteValues = function (tags) {
+    throw "Substituting values is not supported on regex tags";
+  };
+
   return Regex;
 }();
 
@@ -12825,6 +12829,10 @@ function () {
     return ['["' + this.key + '"="' + this.value + '"]'];
   };
 
+  Tag.prototype.substituteValues = function (tags) {
+    return new Tag(this.key, TagUtils.ApplyTemplate(this.value, tags));
+  };
+
   return Tag;
 }();
 
@@ -12863,6 +12871,17 @@ function () {
     }
 
     return choices;
+  };
+
+  Or.prototype.substituteValues = function (tags) {
+    var newChoices = [];
+
+    for (var _i = 0, _a = this.or; _i < _a.length; _i++) {
+      var c = _a[_i];
+      newChoices.push(c.substituteValues(tags));
+    }
+
+    return new Or(newChoices);
   };
 
   return Or;
@@ -12925,6 +12944,17 @@ function () {
     return allChoices;
   };
 
+  And.prototype.substituteValues = function (tags) {
+    var newChoices = [];
+
+    for (var _i = 0, _a = this.and; _i < _a.length; _i++) {
+      var c = _a[_i];
+      newChoices.push(c.substituteValues(tags));
+    }
+
+    return new And(newChoices);
+  };
+
   return And;
 }();
 
@@ -12946,6 +12976,16 @@ function () {
     }
 
     return result;
+  };
+
+  TagUtils.ApplyTemplate = function (template, tags) {
+    for (var k in tags) {
+      while (template.indexOf("{" + k + "}") >= 0) {
+        template = template.replace("{" + k + "}", tags[k]);
+      }
+    }
+
+    return template;
   };
 
   return TagUtils;
@@ -13511,21 +13551,36 @@ function (_super) {
 
     _this._question = options.question;
     _this._primer = (_a = options.primer) !== null && _a !== void 0 ? _a : "";
-    _this._mapping = (_b = options.mappings) !== null && _b !== void 0 ? _b : [];
+    _this._tagsPreprocessor = options.tagsPreprocessor;
+    _this._mapping = [];
     _this._freeform = options.freeform;
-    _this.elementPriority = (_c = options.priority) !== null && _c !== void 0 ? _c : 0; // Prepare the choices for the Radio buttons
+    _this.elementPriority = (_b = options.priority) !== null && _b !== void 0 ? _b : 0; // Prepare the choices for the Radio buttons
 
     var i = 0;
     var choices = [];
 
-    for (var _i = 0, _d = _this._mapping; _i < _d.length; _i++) {
+    for (var _i = 0, _d = (_c = options.mappings) !== null && _c !== void 0 ? _c : []; _i < _d.length; _i++) {
       var choice = _d[_i];
 
       if (choice.k === null) {
         continue;
       }
 
-      choices.push(new FixedUiElement_1.FixedUiElement(choice.txt));
+      var choiceSubbed = choice;
+
+      if (choice.substitute) {
+        choiceSubbed = {
+          k: choice.k.substituteValues(options.tagsPreprocessor(_this._source.data)),
+          txt: _this.ApplyTemplate(choice.txt),
+          substitute: false,
+          priority: choice.priority
+        };
+      }
+
+      choices.push(new FixedUiElement_1.FixedUiElement(choiceSubbed.txt));
+
+      _this._mapping.push(choiceSubbed);
+
       i++;
     } // Map radiobutton choice and textfield answer onto tagfilter. That tagfilter will be pushed into the changes later on
 
@@ -13535,7 +13590,6 @@ function (_super) {
         return undefined;
       }
 
-      console.log(self._mapping, i);
       return self._mapping[i].k;
     };
 
@@ -13623,17 +13677,11 @@ function (_super) {
   TagRendering.prototype.ApplyTemplate = function (template) {
     var tags = this._source.data;
 
-    if (this._freeform !== undefined && this._freeform.tagsPreprocessor !== undefined) {
-      tags = this._freeform.tagsPreprocessor(tags);
+    if (this._tagsPreprocessor !== undefined) {
+      tags = this._tagsPreprocessor(tags);
     }
 
-    for (var k in tags) {
-      while (template.indexOf("{" + k + "}") >= 0) {
-        template = template.replace("{" + k + "}", tags[k]);
-      }
-    }
-
-    return template;
+    return TagsFilter_1.TagUtils.ApplyTemplate(template, tags);
   };
 
   TagRendering.prototype.IsKnown = function () {
@@ -14104,7 +14152,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35535" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33221" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
