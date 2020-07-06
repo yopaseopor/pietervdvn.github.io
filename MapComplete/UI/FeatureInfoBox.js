@@ -12377,131 +12377,7 @@ function (_super) {
 }(UIEventSource_1.UIEventSource);
 
 exports.ImageSearcher = ImageSearcher;
-},{"../UI/UIEventSource":"UI/UIEventSource.ts","./Wikimedia":"Logic/Wikimedia.ts","../UI/Image/WikimediaImage":"UI/Image/WikimediaImage.ts","../UI/Image/SimpleImageElement":"UI/Image/SimpleImageElement.ts"}],"UI/SlideShow.ts":[function(require,module,exports) {
-"use strict";
-
-var __extends = this && this.__extends || function () {
-  var _extendStatics = function extendStatics(d, b) {
-    _extendStatics = Object.setPrototypeOf || {
-      __proto__: []
-    } instanceof Array && function (d, b) {
-      d.__proto__ = b;
-    } || function (d, b) {
-      for (var p in b) {
-        if (b.hasOwnProperty(p)) d[p] = b[p];
-      }
-    };
-
-    return _extendStatics(d, b);
-  };
-
-  return function (d, b) {
-    _extendStatics(d, b);
-
-    function __() {
-      this.constructor = d;
-    }
-
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-  };
-}();
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.SlideShow = void 0;
-
-var UIElement_1 = require("./UIElement");
-
-var UIEventSource_1 = require("./UIEventSource");
-
-var SlideShow =
-/** @class */
-function (_super) {
-  __extends(SlideShow, _super);
-
-  function SlideShow(embeddedElements, noImages) {
-    var _this = _super.call(this, embeddedElements) || this;
-
-    _this._currentSlide = new UIEventSource_1.UIEventSource(0);
-    _this._embeddedElements = embeddedElements;
-
-    _this.ListenTo(_this._currentSlide);
-
-    _this._noimages = noImages;
-    return _this;
-  }
-
-  SlideShow.prototype.InnerRender = function () {
-    if (this._embeddedElements.data.length == 0) {
-      return this._noimages.Render();
-    }
-
-    if (this._embeddedElements.data.length == 1) {
-      return "<div class='image-slideshow'><div class='slides'><div class='slide'>" + this._embeddedElements.data[0].Render() + "</div></div></div>";
-    }
-
-    var prevBtn = "<div class='prev-button' id='prevbtn-" + this.id + "'></div>";
-    var nextBtn = "<div class='next-button' id='nextbtn-" + this.id + "'></div>";
-    var slides = "";
-
-    for (var i = 0; i < this._embeddedElements.data.length; i++) {
-      var embeddedElement = this._embeddedElements.data[i];
-      var state = "hidden";
-
-      if (this._currentSlide.data === i) {
-        state = "active-slide";
-      }
-
-      slides += "      <div class=\"slide " + state + "\">" + embeddedElement.Render() + "</div>\n";
-    }
-
-    return "<div class='image-slideshow'>" + prevBtn + "<div class='slides'>" + slides + "</div>" + nextBtn + "</div>";
-  };
-
-  SlideShow.prototype.MoveTo = function (index) {
-    if (index < 0) {
-      index = this._embeddedElements.data.length - 1;
-    }
-
-    index = index % this._embeddedElements.data.length;
-
-    this._currentSlide.setData(index);
-  };
-
-  SlideShow.prototype.InnerUpdate = function (htmlElement) {
-    var nextButton = document.getElementById("nextbtn-" + this.id);
-
-    if (nextButton === undefined || nextButton === null) {
-      return;
-    }
-
-    var prevButton = document.getElementById("prevbtn-" + this.id);
-    var self = this;
-
-    nextButton.onclick = function () {
-      var current = self._currentSlide.data;
-      self.MoveTo(current + 1);
-    };
-
-    prevButton.onclick = function () {
-      var current = self._currentSlide.data;
-      self.MoveTo(current - 1);
-    };
-  };
-
-  SlideShow.prototype.Activate = function () {
-    for (var _i = 0, _a = this._embeddedElements.data; _i < _a.length; _i++) {
-      var embeddedElement = _a[_i];
-      embeddedElement.Activate();
-    }
-  };
-
-  return SlideShow;
-}(UIElement_1.UIElement);
-
-exports.SlideShow = SlideShow;
-},{"./UIElement":"UI/UIElement.ts","./UIEventSource":"UI/UIEventSource.ts"}],"UI/Base/FixedUiElement.ts":[function(require,module,exports) {
+},{"../UI/UIEventSource":"UI/UIEventSource.ts","./Wikimedia":"Logic/Wikimedia.ts","../UI/Image/WikimediaImage":"UI/Image/WikimediaImage.ts","../UI/Image/SimpleImageElement":"UI/Image/SimpleImageElement.ts"}],"UI/Base/FixedUiElement.ts":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -12557,7 +12433,125 @@ function (_super) {
 }(UIElement_1.UIElement);
 
 exports.FixedUiElement = FixedUiElement;
-},{"../UIElement":"UI/UIElement.ts"}],"UI/Image/ImageCarousel.ts":[function(require,module,exports) {
+},{"../UIElement":"UI/UIElement.ts"}],"UI/SlideShow.ts":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.SlideShow = void 0;
+
+var UIElement_1 = require("./UIElement");
+
+var UIEventSource_1 = require("./UIEventSource");
+
+var FixedUiElement_1 = require("./Base/FixedUiElement");
+
+var SlideShow =
+/** @class */
+function (_super) {
+  __extends(SlideShow, _super);
+
+  function SlideShow(embeddedElements, noImages) {
+    var _this = _super.call(this, embeddedElements) || this;
+
+    _this._currentSlide = new UIEventSource_1.UIEventSource(0);
+    _this._embeddedElements = embeddedElements;
+
+    _this.ListenTo(_this._currentSlide);
+
+    _this._noimages = noImages;
+    var self = _this;
+    _this._prev = new FixedUiElement_1.FixedUiElement("<div class='prev-button'>" + "<div class='vspan'></div>" + "<img src='assets/arrow-left-smooth.svg' alt='Prev'/>" + "</div>").onClick(function () {
+      var current = self._currentSlide.data;
+      self.MoveTo(current - 1);
+    });
+    _this._next = new FixedUiElement_1.FixedUiElement("<div class='next-button'>" + "<div class='vspan'></div>" + "<img src='assets/arrow-right-smooth.svg' alt='Next'/>" + "</div>").onClick(function () {
+      var current = self._currentSlide.data;
+      self.MoveTo(current + 1);
+    });
+    return _this;
+  }
+
+  SlideShow.prototype.InnerRender = function () {
+    if (this._embeddedElements.data.length == 0) {
+      return this._noimages.Render();
+    }
+
+    if (this._embeddedElements.data.length == 1) {
+      return "<div class='image-slideshow'><div class='slides'><div class='slide'>" + this._embeddedElements.data[0].Render() + "</div></div></div>";
+    }
+
+    var slides = "";
+
+    for (var i = 0; i < this._embeddedElements.data.length; i++) {
+      var embeddedElement = this._embeddedElements.data[i];
+      var state = "hidden";
+
+      if (this._currentSlide.data === i) {
+        state = "active-slide";
+      }
+
+      slides += "      <div class=\"slide " + state + "\">" + embeddedElement.Render() + "</div>\n";
+    }
+
+    return "<div class='image-slideshow'>" + this._prev.Render() + "<div class='slides'>" + slides + "</div>" + this._next.Render() + "</div>";
+  };
+
+  SlideShow.prototype.MoveTo = function (index) {
+    if (index < 0) {
+      index = this._embeddedElements.data.length - 1;
+    }
+
+    index = index % this._embeddedElements.data.length;
+
+    this._currentSlide.setData(index);
+  };
+
+  SlideShow.prototype.InnerUpdate = function (htmlElement) {
+    this._next.Update();
+
+    this._prev.Update();
+  };
+
+  SlideShow.prototype.Activate = function () {
+    for (var _i = 0, _a = this._embeddedElements.data; _i < _a.length; _i++) {
+      var embeddedElement = _a[_i];
+      embeddedElement.Activate();
+    }
+  };
+
+  return SlideShow;
+}(UIElement_1.UIElement);
+
+exports.SlideShow = SlideShow;
+},{"./UIElement":"UI/UIElement.ts","./UIEventSource":"UI/UIEventSource.ts","./Base/FixedUiElement":"UI/Base/FixedUiElement.ts"}],"UI/Image/ImageCarousel.ts":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -13563,6 +13557,8 @@ function (_super) {
       var choice = _d[_i];
 
       if (choice.k === null) {
+        _this._mapping.push(choice);
+
         continue;
       }
 
@@ -14152,7 +14148,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33221" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44455" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -39946,6 +39946,8 @@ var UIElement_1 = require("./UIElement");
 
 var UIEventSource_1 = require("./UIEventSource");
 
+var FixedUiElement_1 = require("./Base/FixedUiElement");
+
 var SlideShow =
 /** @class */
 function (_super) {
@@ -39960,6 +39962,15 @@ function (_super) {
     _this.ListenTo(_this._currentSlide);
 
     _this._noimages = noImages;
+    var self = _this;
+    _this._prev = new FixedUiElement_1.FixedUiElement("<div class='prev-button'>" + "<div class='vspan'></div>" + "<img src='assets/arrow-left-smooth.svg' alt='Prev'/>" + "</div>").onClick(function () {
+      var current = self._currentSlide.data;
+      self.MoveTo(current - 1);
+    });
+    _this._next = new FixedUiElement_1.FixedUiElement("<div class='next-button'>" + "<div class='vspan'></div>" + "<img src='assets/arrow-right-smooth.svg' alt='Next'/>" + "</div>").onClick(function () {
+      var current = self._currentSlide.data;
+      self.MoveTo(current + 1);
+    });
     return _this;
   }
 
@@ -39972,8 +39983,6 @@ function (_super) {
       return "<div class='image-slideshow'><div class='slides'><div class='slide'>" + this._embeddedElements.data[0].Render() + "</div></div></div>";
     }
 
-    var prevBtn = "<div class='prev-button' id='prevbtn-" + this.id + "'></div>";
-    var nextBtn = "<div class='next-button' id='nextbtn-" + this.id + "'></div>";
     var slides = "";
 
     for (var i = 0; i < this._embeddedElements.data.length; i++) {
@@ -39987,7 +39996,7 @@ function (_super) {
       slides += "      <div class=\"slide " + state + "\">" + embeddedElement.Render() + "</div>\n";
     }
 
-    return "<div class='image-slideshow'>" + prevBtn + "<div class='slides'>" + slides + "</div>" + nextBtn + "</div>";
+    return "<div class='image-slideshow'>" + this._prev.Render() + "<div class='slides'>" + slides + "</div>" + this._next.Render() + "</div>";
   };
 
   SlideShow.prototype.MoveTo = function (index) {
@@ -40001,24 +40010,9 @@ function (_super) {
   };
 
   SlideShow.prototype.InnerUpdate = function (htmlElement) {
-    var nextButton = document.getElementById("nextbtn-" + this.id);
+    this._next.Update();
 
-    if (nextButton === undefined || nextButton === null) {
-      return;
-    }
-
-    var prevButton = document.getElementById("prevbtn-" + this.id);
-    var self = this;
-
-    nextButton.onclick = function () {
-      var current = self._currentSlide.data;
-      self.MoveTo(current + 1);
-    };
-
-    prevButton.onclick = function () {
-      var current = self._currentSlide.data;
-      self.MoveTo(current - 1);
-    };
+    this._prev.Update();
   };
 
   SlideShow.prototype.Activate = function () {
@@ -40032,7 +40026,7 @@ function (_super) {
 }(UIElement_1.UIElement);
 
 exports.SlideShow = SlideShow;
-},{"./UIElement":"UI/UIElement.ts","./UIEventSource":"UI/UIEventSource.ts"}],"UI/Image/ImageCarousel.ts":[function(require,module,exports) {
+},{"./UIElement":"UI/UIElement.ts","./UIEventSource":"UI/UIEventSource.ts","./Base/FixedUiElement":"UI/Base/FixedUiElement.ts"}],"UI/Image/ImageCarousel.ts":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -40777,6 +40771,8 @@ function (_super) {
       var choice = _d[_i];
 
       if (choice.k === null) {
+        _this._mapping.push(choice);
+
         continue;
       }
 
@@ -70212,6 +70208,12 @@ function (_super) {
 
         return newTags;
       },
+      freeform: {
+        key: "addr:housenumber",
+        template: "Het huisnummer is $$$",
+        renderTemplate: "Het huisnummer is <b>{addr:housenumber}</b>, GRB denkt <i>{grb:housenumber:human}</i>",
+        extraTags: new TagsFilter_1.Tag("fixme", "")
+      },
       mappings: [{
         k: new TagsFilter_1.And([new TagsFilter_1.Tag("addr:housenumber", "{grb:housenumber}"), new TagsFilter_1.Tag("fixme", "")]),
         txt: "Volg GRB: <b>{grb:housenumber:human}</b>",
@@ -70556,7 +70558,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33221" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44455" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

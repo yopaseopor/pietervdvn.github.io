@@ -276,7 +276,63 @@ function () {
 }();
 
 exports.UIEventSource = UIEventSource;
-},{}],"UI/SlideShow.ts":[function(require,module,exports) {
+},{}],"UI/Base/FixedUiElement.ts":[function(require,module,exports) {
+"use strict";
+
+var __extends = this && this.__extends || function () {
+  var _extendStatics = function extendStatics(d, b) {
+    _extendStatics = Object.setPrototypeOf || {
+      __proto__: []
+    } instanceof Array && function (d, b) {
+      d.__proto__ = b;
+    } || function (d, b) {
+      for (var p in b) {
+        if (b.hasOwnProperty(p)) d[p] = b[p];
+      }
+    };
+
+    return _extendStatics(d, b);
+  };
+
+  return function (d, b) {
+    _extendStatics(d, b);
+
+    function __() {
+      this.constructor = d;
+    }
+
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+  };
+}();
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.FixedUiElement = void 0;
+
+var UIElement_1 = require("../UIElement");
+
+var FixedUiElement =
+/** @class */
+function (_super) {
+  __extends(FixedUiElement, _super);
+
+  function FixedUiElement(html) {
+    var _this = _super.call(this, undefined) || this;
+
+    _this._html = html;
+    return _this;
+  }
+
+  FixedUiElement.prototype.InnerRender = function () {
+    return this._html;
+  };
+
+  return FixedUiElement;
+}(UIElement_1.UIElement);
+
+exports.FixedUiElement = FixedUiElement;
+},{"../UIElement":"UI/UIElement.ts"}],"UI/SlideShow.ts":[function(require,module,exports) {
 "use strict";
 
 var __extends = this && this.__extends || function () {
@@ -314,6 +370,8 @@ var UIElement_1 = require("./UIElement");
 
 var UIEventSource_1 = require("./UIEventSource");
 
+var FixedUiElement_1 = require("./Base/FixedUiElement");
+
 var SlideShow =
 /** @class */
 function (_super) {
@@ -328,6 +386,15 @@ function (_super) {
     _this.ListenTo(_this._currentSlide);
 
     _this._noimages = noImages;
+    var self = _this;
+    _this._prev = new FixedUiElement_1.FixedUiElement("<div class='prev-button'>" + "<div class='vspan'></div>" + "<img src='assets/arrow-left-smooth.svg' alt='Prev'/>" + "</div>").onClick(function () {
+      var current = self._currentSlide.data;
+      self.MoveTo(current - 1);
+    });
+    _this._next = new FixedUiElement_1.FixedUiElement("<div class='next-button'>" + "<div class='vspan'></div>" + "<img src='assets/arrow-right-smooth.svg' alt='Next'/>" + "</div>").onClick(function () {
+      var current = self._currentSlide.data;
+      self.MoveTo(current + 1);
+    });
     return _this;
   }
 
@@ -340,8 +407,6 @@ function (_super) {
       return "<div class='image-slideshow'><div class='slides'><div class='slide'>" + this._embeddedElements.data[0].Render() + "</div></div></div>";
     }
 
-    var prevBtn = "<div class='prev-button' id='prevbtn-" + this.id + "'></div>";
-    var nextBtn = "<div class='next-button' id='nextbtn-" + this.id + "'></div>";
     var slides = "";
 
     for (var i = 0; i < this._embeddedElements.data.length; i++) {
@@ -355,7 +420,7 @@ function (_super) {
       slides += "      <div class=\"slide " + state + "\">" + embeddedElement.Render() + "</div>\n";
     }
 
-    return "<div class='image-slideshow'>" + prevBtn + "<div class='slides'>" + slides + "</div>" + nextBtn + "</div>";
+    return "<div class='image-slideshow'>" + this._prev.Render() + "<div class='slides'>" + slides + "</div>" + this._next.Render() + "</div>";
   };
 
   SlideShow.prototype.MoveTo = function (index) {
@@ -369,24 +434,9 @@ function (_super) {
   };
 
   SlideShow.prototype.InnerUpdate = function (htmlElement) {
-    var nextButton = document.getElementById("nextbtn-" + this.id);
+    this._next.Update();
 
-    if (nextButton === undefined || nextButton === null) {
-      return;
-    }
-
-    var prevButton = document.getElementById("prevbtn-" + this.id);
-    var self = this;
-
-    nextButton.onclick = function () {
-      var current = self._currentSlide.data;
-      self.MoveTo(current + 1);
-    };
-
-    prevButton.onclick = function () {
-      var current = self._currentSlide.data;
-      self.MoveTo(current - 1);
-    };
+    this._prev.Update();
   };
 
   SlideShow.prototype.Activate = function () {
@@ -400,7 +450,7 @@ function (_super) {
 }(UIElement_1.UIElement);
 
 exports.SlideShow = SlideShow;
-},{"./UIElement":"UI/UIElement.ts","./UIEventSource":"UI/UIEventSource.ts"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./UIElement":"UI/UIElement.ts","./UIEventSource":"UI/UIEventSource.ts","./Base/FixedUiElement":"UI/Base/FixedUiElement.ts"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -428,7 +478,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33221" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44455" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
