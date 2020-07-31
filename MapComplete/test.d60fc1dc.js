@@ -363,4 +363,4 @@ var e=require("../src/store-engine"),r=require("../storages/all"),s=[require("..
 },{"../UI/UIElement":"vxUj","../State":"WHi0","../UI/i18n/Translations":"bS2I","../Customizations/AllKnownLayouts":"yRfq","../UI/Base/Combine":"inT9","../UI/Img":"e4Mn","../UI/Input/CheckBox":"qwr0","./CustomLayersState":"turq","./CustomLayers":"fVH9","../UI/Base/SubtleButton":"lf7f"}],"nYeO":[function(require,module,exports) {
 "use strict";var e=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var t=require("./State"),a=e(require("./Customizations/Layouts/Cyclofix")),o=require("./Logic/CustomLayersPanel");t.State.state=new t.State(new a.default),(new o.CustomLayersPanel).AttachTo("maindiv"),t.State.state.osmConnection.GetPreference("mapcomplete-custom-layer-count").addCallback(function(e){return console.log("Count: ",e)}),t.State.state.favourteLayers.addCallback(console.log);
 },{"./State":"WHi0","./Customizations/Layouts/Cyclofix":"VJBy","./Logic/CustomLayersPanel":"aVtM"}]},{},["nYeO"], null)
-//# sourceMappingURL=test.ee0a1827.js.map
+//# sourceMappingURL=test.d60fc1dc.js.map
