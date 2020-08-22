@@ -125,4 +125,4 @@ var e=require("../src/store-engine"),r=require("../storages/all"),s=[require("..
 },{"../TagRenderingOptions":"dZSS","../LayerDefinition":"gn1P","../Layout":"Bkd1","../../UI/i18n/Translation":"L05X","../../UI/Base/Combine":"inT9","../../Logic/TagsFilter":"jfS7","../Questions/FixedText":"VsKc","../../UI/Image/ImageCarouselWithUpload":"FLjA","../../Logic/UIEventSource":"oKap"}],"nYeO":[function(require,module,exports) {
 "use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("./Customizations/JSON/CustomLayoutFromJSON"),o=require("./Logic/TagsFilter"),s=e.CustomLayoutFromJSON.TagsFromJson("indoor=yes&access!=private");console.log(s);var r=new o.And(s).matches([{k:"indoor",v:"yes"},{k:"access",v:"yes"}]);console.log("Matches 0",r);var a=new o.And(s).matches([{k:"indoor",v:"yes"},{k:"access",v:"private"}]);console.log("Matches 1",a);
 },{"./Customizations/JSON/CustomLayoutFromJSON":"ez3b","./Logic/TagsFilter":"jfS7"}]},{},["nYeO"], null)
-//# sourceMappingURL=test.953f4476.js.map
+//# sourceMappingURL=test.652a7028.js.map
